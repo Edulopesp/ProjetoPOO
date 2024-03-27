@@ -1,43 +1,46 @@
 ﻿using ProjetoPOO;
+using System.Globalization;
+using System.Collections;
+using System.Collections.Generic;
 
 class Program
 {
+    // Parte Main dudu
     static void MenuLogRes()
     {
         double opcaoMenuLogRes;
 
-        Console.WriteLine("----------Menu----------");
-        Console.WriteLine("| Login (1)             |");
-        Console.WriteLine("| Registrar (2)         |");
-        Console.WriteLine("=========================");
+        Console.WriteLine(" ----------Menu----------");
+        Console.WriteLine("| 1 - Login              |");
+        Console.WriteLine("| 2 - Registrar          |");
+        Console.WriteLine("==========================");
 
         opcaoMenuLogRes = double.Parse(Console.ReadLine());
+        Console.WriteLine("");
 
         while ((opcaoMenuLogRes != 1) && (opcaoMenuLogRes != 2))
         {
             Console.WriteLine("Opção inválida, escolha novamente: ");
             opcaoMenuLogRes = double.Parse(Console.ReadLine());
+            Console.WriteLine("");
         }
 
-        if (opcaoMenuLogRes == 1)
+        switch (opcaoMenuLogRes)
         {
-            efetuarLogin();
-        }
-        else if (opcaoMenuLogRes == 2)
-        {
-            efetuarRegistro();
+            case 1:
+                Console.Clear();
+                efetuarLogin();
+                break;
+            case 2:
+                Console.Clear();
+                efetuarRegistro();
+                break;
         }
     }
-
-    static void efetuarRegistro()
-    {
-
-        // criando um usuario para teste
-        listaUtilizadores.Add(new Utilizadores("Eduardo Lopes", "Rua Braga", "987654321", "12345"));
-        listaUtilizadores.Add(new Utilizadores("Sara", "Rua Braga", "987654321", "12345"));
-        listaUtilizadores.Add(new Utilizadores("Bruno", "Rua Braga", "987654321", "12345"));
-        // --------------------------------------------------------------------------------
-
+    public static void efetuarRegistro()
+    {   
+        
+        Console.WriteLine("");
         Console.WriteLine("----------Registrar----------");
         Console.Write("| Nome: ");
         string nomeUtilizador = Console.ReadLine();
@@ -47,36 +50,27 @@ class Program
         string telefoneUtilizador = Console.ReadLine();
         Console.Write("| Palavra-Chave: ");
         string palavraChaveUtilizador = Console.ReadLine();
+        Console.Write("| Funcionário: ");
+        string identificadorUtilizador = Console.ReadLine().ToUpper();
         Console.WriteLine("==============================");
         Console.WriteLine();
 
 
-        /* nao ta funcionando pq o foreach itinera mas como altera o valor enquanto itinera ele trava
+        // identificador do funcionario e usuário
 
-        foreach (Utilizadores usuario in listaUtilizadores)
-        {
-            string nomeProcura = usuario.NomeUtilizador;
-
-            if (nomeProcura.Contains(nomeUtilizador))
-            {
-                Console.WriteLine("Usuário já registrado!");
-            }
-            else
-            {
-                Utilizadores novoUsuario = new Utilizadores(nomeUtilizador, enderecoUtilizador, telefoneUtilizador, palavraChaveUtilizador);
-                listaUtilizadores.Add(novoUsuario);
-
-                Console.WriteLine("Usuário registrado com sucesso!");
-            }
-        }
-
-
-       ------------------------------------------------------------------------------------------------ */
-
-
+        bool funcionarioIdentificado;
         bool usuarioEncontrado = false;
 
-        
+
+        if (identificadorUtilizador == "BTCB")
+        {
+            funcionarioIdentificado = true;
+        }
+        else
+        {
+            funcionarioIdentificado = false;
+        }
+
         for (int i = 0; i < listaUtilizadores.Count; i++)
         {
             Utilizadores usuario = listaUtilizadores[i];
@@ -84,92 +78,119 @@ class Program
 
             if (nomeProcura.Contains(nomeUtilizador))
             {
-                Console.WriteLine("Usuário já registrado!");
-                usuarioEncontrado = true; 
-                break; 
+                Console.WriteLine("Usuário já registrado! Faça o login!");
+                usuarioEncontrado = true;
+                Console.WriteLine("");
+                efetuarLogin();
+                break;
             }
         }
 
-        
         if (!usuarioEncontrado)
         {
-            Utilizadores novoUsuario = new Utilizadores(nomeUtilizador, enderecoUtilizador, telefoneUtilizador, palavraChaveUtilizador);
+            Utilizadores novoUsuario = new Utilizadores(nomeUtilizador, enderecoUtilizador, telefoneUtilizador, palavraChaveUtilizador, funcionarioIdentificado);
             listaUtilizadores.Add(novoUsuario);
             Console.WriteLine("Usuário registrado com sucesso!");
+            Console.WriteLine("");
+
+            if (funcionarioIdentificado == true)
+            {
+                Console.Clear();
+                Console.WriteLine($"Bem vindo funcionário {novoUsuario.NomeUtilizador}!");
+                Console.WriteLine("");
+            }
+            else if (funcionarioIdentificado == false)
+            {
+                Console.Clear();
+                Console.WriteLine($"Bem vindo {novoUsuario.NomeUtilizador}!");
+                Console.WriteLine("");
+            }
         }
-
-
-        /* tem que fazer assim pq assim
-
-        Console.WriteLine("---------- Lista de Utilizadores ----------");
-        for (int i = 0; i < listaUtilizadores.Count; i++)
-        {
-            Utilizadores usuario = listaUtilizadores[i];
-            Console.WriteLine($"Nome: {usuario.NomeUtilizador}");
-            Console.WriteLine($"Endereço: {usuario.EnderecoUtilizador}");
-            Console.WriteLine($"Telefone: {usuario.TelefoneUtilizador}");
-            Console.WriteLine($"Palavra-Chave: {usuario.PalavraChave}");
-            Console.WriteLine("--------------------------------------------");
-        }
-
-        */
-
-        // itinerar a lista de utilizadores para ver
-
-        foreach (Utilizadores usuario in listaUtilizadores)
-        {
-            Console.WriteLine("---------- Lista de Utilizadores ----------");
-            Console.WriteLine($"Nome: {usuario.NomeUtilizador}");
-            Console.WriteLine($"Endereço: {usuario.EnderecoUtilizador}");
-            Console.WriteLine($"Telefone: {usuario.TelefoneUtilizador}");
-            Console.WriteLine($"Palavra-Chave: {usuario.PalavraChave}");
-            Console.WriteLine("--------------------------------------------");
-        }
-
-        //
     }
-
     public static void efetuarLogin()
     {
-
-        Console.WriteLine("----------Login----------");
-        Console.Write("| Nome: ");
-        string nomeUtilizador = Console.ReadLine();
-        Console.Write("| Palavra-Chave: ");
-        string palavraChaveUtilizador = Console.ReadLine();
-        Console.WriteLine("==========================");
-        Console.WriteLine();
-
-
-        // string nomeLogin = NomeUtilizador.Utilizadores();
-
-        foreach (Utilizadores usuario in listaUtilizadores)
+        do
         {
-            string nomeValidacao = usuario.NomeUtilizador;
-            string senhaValidacao = usuario.PalavraChave;
+            Console.WriteLine("----------Login----------");
+            Console.Write("| Nome: ");
+            string nomeUtilizador = Console.ReadLine();
+            Console.Write("| Palavra-Chave: ");
+            string palavraChaveUtilizador = Console.ReadLine();
+            Console.WriteLine("==========================");
+            Console.WriteLine();
+            
+            Utilizadores procurarUtilizador = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador); 
 
-            if ((nomeValidacao.Contains(nomeUtilizador)) && (senhaValidacao.Contains(palavraChaveUtilizador)))
+            Utilizadores procurarPalavraChave = listaUtilizadores.Find(a => a.PalavraChave == palavraChaveUtilizador);
+            
+            if ((procurarUtilizador != null) && (procurarPalavraChave != null))
             {
-                Console.WriteLine($"Bem vindo {usuario.NomeUtilizador}!");
+                Console.Clear();
+                Console.WriteLine($"Bem vindo {procurarUtilizador.NomeUtilizador}!");
+                Console.WriteLine("");
+                MenuAcoesPrincipal(procurarUtilizador);
+                break;
             }
             else
             {
-                Console.WriteLine("Nome ou Palavra-Chave Incorretos.");
-
+                Console.Clear();
+                Console.WriteLine("Nome ou Palavra-Chave Incorretos, tente novamente.");
+                Console.WriteLine("");
             }
-        }
+        } while (true);
 
     }
 
+    static List<Utilizadores> listaUtilizadores = new List<Utilizadores>();
 
-    static List<Utilizadores> listaUtilizadores = new List<Utilizadores>(); // Lista para armazenar os usuários registrados
+    static void MenuAcoesPrincipal(Utilizadores procurarUtilizador)
+    {
+        bool permissaoFuncionario = procurarUtilizador.Funcionario;
+
+        Console.WriteLine(" ----------Menu----------");
+
+        if (permissaoFuncionario == true)
+        {
+            // Lista de coisas para o funcionario fazer
+        } else
+        {
+            // lista de coisas para o usuario fazer
+        }
+    }
+
+    // Fim parte Main dudu
     static void Main(string[] args)
     {
+        // criando um usuario para teste
+        listaUtilizadores.Add(new Utilizadores("Eduardo Lopes", "Rua Braga", "987654321", "12345", true));
+        listaUtilizadores.Add(new Utilizadores("Sara", "Rua Braga", "987654321", "12345", true));
+        listaUtilizadores.Add(new Utilizadores("Bruno", "Rua Braga", "987654321", "12345", true));
+        // --------------------------------------------------------------------------------
+
 
         Console.WriteLine("Bem vindo!");
+        Console.WriteLine("");
         MenuLogRes();
 
 
+        // itinerar a lista de utilizadores para ver
+        Console.WriteLine("");
+        Console.WriteLine("---------- Lista de Utilizadores ----------");
+
+        foreach (Utilizadores usuario in listaUtilizadores)
+        {
+            Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-33} |");
+            Console.WriteLine($"| Endereço: {usuario.EnderecoUtilizador,-29} |");
+            Console.WriteLine($"| Telefone: {usuario.TelefoneUtilizador,-29} |");
+            Console.WriteLine($"| Palavra-Chave: {usuario.PalavraChave,-24} |");
+            Console.WriteLine("===========================================");
+        }
+
+
+
+
+        // Menu para mostrar opcoes do que pode fazer
+
     }
-    
+
 }
