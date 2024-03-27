@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 class Program
 {
+
     // Parte Main Sara
 
     // Criar lista para armazenar os livros
@@ -125,6 +126,7 @@ class Program
 
     // Parte Main dudu
         static void MenuLogRes()
+
     {
         double opcaoMenuLogRes;
 
@@ -155,8 +157,10 @@ class Program
                 break;
         }
     }
-    static void efetuarRegistro()
-    {
+
+
+    public static void efetuarRegistro()
+    {   
 
         Console.WriteLine("");
         Console.WriteLine("----------Registrar----------");
@@ -225,26 +229,11 @@ class Program
             }
         }
 
-        // itinerar a lista de utilizadores para ver
-        Console.WriteLine("");
-        Console.WriteLine("---------- Lista de Utilizadores ----------");
-
-        foreach (Utilizadores usuario in listaUtilizadores)
-        {
-
-            Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-33} |");
-            Console.WriteLine($"| Endereço: {usuario.EnderecoUtilizador,-29} |");
-            Console.WriteLine($"| Telefone: {usuario.TelefoneUtilizador,-29} |");
-            Console.WriteLine($"| Palavra-Chave: {usuario.PalavraChave,-24} |");
-            Console.WriteLine("===========================================");
-        }
-
     }
-    static void efetuarLogin()
+    public static void efetuarLogin()
     {
         do
         {
-
             Console.WriteLine("----------Login----------");
             Console.Write("| Nome: ");
             string nomeUtilizador = Console.ReadLine();
@@ -252,17 +241,17 @@ class Program
             string palavraChaveUtilizador = Console.ReadLine();
             Console.WriteLine("==========================");
             Console.WriteLine();
-
-            Utilizadores procurarUtilizador = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
+            
+            Utilizadores procurarUtilizador = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador); 
 
             Utilizadores procurarPalavraChave = listaUtilizadores.Find(a => a.PalavraChave == palavraChaveUtilizador);
-
-
+            
             if ((procurarUtilizador != null) && (procurarPalavraChave != null))
             {
                 Console.Clear();
                 Console.WriteLine($"Bem vindo {procurarUtilizador.NomeUtilizador}!");
                 Console.WriteLine("");
+                MenuAcoesPrincipal(procurarUtilizador);
                 break;
             }
             else
@@ -275,8 +264,25 @@ class Program
 
     }
 
-    static List<Utilizadores> listaUtilizadores = new List<Utilizadores>();
+    static void MenuAcoesPrincipal(Utilizadores procurarUtilizador)
+    {
+        bool permissaoFuncionario = procurarUtilizador.Funcionario;
 
+        Console.WriteLine(" ----------Menu----------");
+
+
+        if (permissaoFuncionario == true)
+        {
+            Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-33} |");
+            Console.WriteLine($"| Endereço: {usuario.EnderecoUtilizador,-29} |");
+            Console.WriteLine($"| Telefone: {usuario.TelefoneUtilizador,-29} |");
+            Console.WriteLine($"| Palavra-Chave: {usuario.PalavraChave,-24} |");
+            Console.WriteLine("===========================================");
+        }
+
+    }
+
+    static List<Utilizadores> listaUtilizadores = new List<Utilizadores>();
 
     // Fim parte Main dudu
     static void Main(string[] args)
@@ -291,6 +297,20 @@ class Program
         Console.WriteLine("Bem vindo!");
         Console.WriteLine("");
         MenuLogRes();
+
+
+        // itinerar a lista de utilizadores para ver
+        Console.WriteLine("");
+        Console.WriteLine("---------- Lista de Utilizadores ----------");
+
+        foreach (Utilizadores usuario in listaUtilizadores)
+        {
+            Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-33} |");
+            Console.WriteLine($"| Endereço: {usuario.EnderecoUtilizador,-29} |");
+            Console.WriteLine($"| Telefone: {usuario.TelefoneUtilizador,-29} |");
+            Console.WriteLine($"| Palavra-Chave: {usuario.PalavraChave,-24} |");
+            Console.WriteLine("===========================================");
+        }
 
         // Menu para mostrar opcoes do que pode fazer
 
