@@ -12,27 +12,15 @@ namespace ProjetoPOO
         public string EnderecoUtilizador;
         public string TelefoneUtilizador;
         public string PalavraChave;
+        public bool Funcionario;
 
-        public Utilizadores(string nome, string endereco, string telefone, string palavraChave)
+        public Utilizadores(string nome, string endereco, string telefone, string palavraChave, bool funcionario)
         {
             NomeUtilizador = nome;
             EnderecoUtilizador = endereco;
             TelefoneUtilizador = telefone;
             PalavraChave = palavraChave;
+            Funcionario = funcionario;
         }
-
-        class Utilizador
-        {
-            public string NomeUtilizador { get; set; }
-
-            public Utilizador(string nome)
-            {
-                NomeUtilizador = nome;
-            }
-        }
-
-
-
-
     }
 }
