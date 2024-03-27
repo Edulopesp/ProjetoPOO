@@ -156,7 +156,6 @@ class Program
             {
                 Console.WriteLine("Nome ou Palavra-Chave Incorretos.");
 
-                // tente novamente ou ver o menu inicial (login registro) dnv.
             }
         }
 
