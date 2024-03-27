@@ -1,7 +1,4 @@
 ﻿using ProjetoPOO;
-using System.Globalization;
-using System.Collections;
-using System.Collections.Generic;
 
 class Program
 {
@@ -10,7 +7,7 @@ class Program
 
     // Criar lista para armazenar os livros
 
-    
+
     static void RegLivros()
     {
         List<RegistarLivro> Livros = new List<RegistarLivro>();
@@ -27,30 +24,31 @@ class Program
             Console.WriteLine(" | 5. Sair                                      |");
             opcao = int.Parse(Console.ReadLine());
             Console.WriteLine("");
+
+
+            switch (opcao)
+            {
+                case 1:
+                    AdicionarNovoLivro(Livros);
+                    break;
+                case 2:
+                    RemoverLivroExistente(Livros);
+                    break;
+                case 3:
+                    AtualizarNumeroExemplares(Livros);
+                    break;
+                case 4:
+                    ExibirListaLivros(Livros);
+                    break;
+                case 5:
+                    Console.WriteLine("Saiu do programa");
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida. Tente novamente!");
+                    break;
+            }
         }
         while (opcao != 5);
-
-        switch (opcao) 
-        {
-            case 1:
-                AdicionarNovoLivro(Livros);
-                break;
-            case 2:
-                RemoverLivroExistente(Livros);
-                break;
-            case 3:
-                AtualizarNumeroExemplares(Livros);
-                break;
-            case 4:
-                ExibirListaLivros(Livros);
-                break;
-            case 5:
-                Console.WriteLine("Saiu do programa");
-                break;
-            default: 
-                Console.WriteLine("Opção inválida. Tente novamente!");
-                break;
-        }
     }
 
     static void AdicionarNovoLivro(List<RegistarLivro> Livros)
@@ -72,7 +70,7 @@ class Program
         Console.WriteLine("Número de exemplares disponíveis: ");
         numExemp = int.Parse(Console.ReadLine());
 
-        RegistarLivro novoLivro= new RegistarLivro(nomeLivro, autor, anoPublic, numExemp);
+        RegistarLivro novoLivro = new RegistarLivro(nomeLivro, autor, anoPublic, numExemp);
 
         Livros.Add(novoLivro);
         Console.WriteLine("Novo Livro adicionado com sucesso!");
@@ -82,8 +80,8 @@ class Program
     {
         Console.Write("Nome do item a ser removido: ");
         string nomeLivro = Console.ReadLine();
-        RegistarLivro livroRemover=Livros.Find(i=>i.NomeLivro==nomeLivro);
-        if (livroRemover!= null)
+        RegistarLivro livroRemover = Livros.Find(i => i.NomeLivro == nomeLivro);
+        if (livroRemover != null)
         {
             Livros.Remove(livroRemover);
             Console.WriteLine("Livro removido com sucesso!");
@@ -125,7 +123,7 @@ class Program
 
 
     // Parte Main dudu
-        static void MenuLogRes()
+    static void MenuLogRes()
 
     {
         double opcaoMenuLogRes;
@@ -160,7 +158,7 @@ class Program
 
 
     public static void efetuarRegistro()
-    {   
+    {
 
         Console.WriteLine("");
         Console.WriteLine("----------Registrar----------");
@@ -241,11 +239,11 @@ class Program
             string palavraChaveUtilizador = Console.ReadLine();
             Console.WriteLine("==========================");
             Console.WriteLine();
-            
-            Utilizadores procurarUtilizador = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador); 
+
+            Utilizadores procurarUtilizador = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
 
             Utilizadores procurarPalavraChave = listaUtilizadores.Find(a => a.PalavraChave == palavraChaveUtilizador);
-            
+
             if ((procurarUtilizador != null) && (procurarPalavraChave != null))
             {
                 Console.Clear();
@@ -270,16 +268,6 @@ class Program
 
         Console.WriteLine(" ----------Menu----------");
 
-
-        if (permissaoFuncionario == true)
-        {
-            Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-33} |");
-            Console.WriteLine($"| Endereço: {usuario.EnderecoUtilizador,-29} |");
-            Console.WriteLine($"| Telefone: {usuario.TelefoneUtilizador,-29} |");
-            Console.WriteLine($"| Palavra-Chave: {usuario.PalavraChave,-24} |");
-            Console.WriteLine("===========================================");
-        }
-
     }
 
     static List<Utilizadores> listaUtilizadores = new List<Utilizadores>();
@@ -297,7 +285,7 @@ class Program
         Console.WriteLine("Bem vindo!");
         Console.WriteLine("");
         MenuLogRes();
-
+        RegLivros();
 
         // itinerar a lista de utilizadores para ver
         Console.WriteLine("");
