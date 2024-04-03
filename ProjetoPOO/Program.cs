@@ -7,10 +7,20 @@ class Program
 
     // Criar lista para armazenar os livros
 
+    // public static List<RegistarLivro> Livros = new List<RegistarLivro>();
+    // public static List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
+
+    static List<RegistarLivro> Livros = new List<RegistarLivro>();
+
+    // public static List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
+
 
     static void RegLivros()
     {
-        List<RegistarLivro> Livros = new List<RegistarLivro>();
+        //List<RegistarLivro> Livros = new List<RegistarLivro>();
+        Livros.Add(new RegistarLivro("uno", "jonh", 1989, 5));
+        Livros.Add(new RegistarLivro("duo", "jonh2", 1986, 0));
+        Livros.Add(new RegistarLivro("trio", "jonh3", 1980, 2));
 
         int opcao;
 
@@ -51,7 +61,7 @@ class Program
         while (opcao != 5);
     }
 
-    static void AdicionarNovoLivro(List<RegistarLivro> Livros)
+    static void AdicionarNovoLivro(List<RegistarLivro> Livros) // conflitos
     {
         string nomeLivro;
         string autor;
@@ -155,7 +165,6 @@ class Program
                 break;
         }
     }
-
 
     public static void efetuarRegistro()
     {
@@ -273,6 +282,165 @@ class Program
     static List<Utilizadores> listaUtilizadores = new List<Utilizadores>();
 
     // Fim parte Main dudu
+
+    // Parte Bruno
+
+    public static void EscolhaAluguer(List<EmprestimosLivros> emprestimoLivros, ref Utilizadores listaUtilizadores, ref RegistarLivro Livros)
+    {
+        string opcao = "";
+        do
+        {
+
+
+            EmprestimosLivros LivroAluguerGeral = new EmprestimosLivros();
+
+            LivroAluguerGeral.LerPedidoAluguer(ref listaUtilizadores, ref Livros);
+            emprestimoLivros.Add(LivroAluguerGeral);
+
+            Console.WriteLine("deseja efetuar mais algum pedido ?(S/N)");
+            opcao = Console.ReadLine();
+        } while (opcao.ToLower() == "s");
+    }
+
+
+    public static void AtualizarQuantidadeLista(ref RegistarLivro Livros, ref EmprestimosLivros Emprestimos)
+    {
+
+        Livros.NumExemp -= Emprestimos.QuantidadeLivroAlugado;
+    }
+    public static void AtualizarLista(ref List<RegistarLivro> registarLivros, ref RegistarLivro Livros, EmprestimosLivros Emprestimos)
+    {
+
+        // ler o nome do objeto 
+        //se for igual a um objeto da lista pedir nova quantidade
+        string itemAatualizar = Emprestimos.Titulo;
+        RegistarLivro livroMudarQuantidade = registarLivros.Find(x => x.NomeLivro == itemAatualizar);
+        if (livroMudarQuantidade != null)
+        {
+            AtualizarQuantidadeLista(ref Livros, ref Emprestimos);
+            Console.WriteLine("item atualizado com sucesso");
+
+        }
+        else { Console.WriteLine("item nao encontrado"); }
+    }
+
+
+    /*      public static int AtualizarQuantidadeLista(RegistarLivro livro, EmprestimosLivros emprestimos)
+      {
+
+          return livro.NumExemp -= emprestimos.QuantidadeLivroAlugado;
+      }
+    */
+
+    // tentei fazer com que as quantidades disponiveis na lista da sara (principal alterem automaticamente consoante os aluguers e devolucoes 
+    public static void AtualizarQuantidadeListaDevolucao(ref RegistarLivro Livros, ref EmprestimosLivros Emprestimos)
+    {
+
+        Livros.NumExemp += Emprestimos.QuantidadeLivroAlugado;
+    }
+
+
+    public static void DevolucaoLivroAluguer(List<EmprestimosLivros> Emprestimos)
+    {
+
+        Console.WriteLine("qual o livro que deseja devolver? ");
+
+        string livroAremover = Console.ReadLine();
+        //lemos o nome do objeto novo atraves de uma variavel e vamos a procura de onde na lista um objeto tem esse nome
+        EmprestimosLivros DevolverLivro = Emprestimos.Find(x => x.Titulo == livroAremover);
+        Console.WriteLine();
+        if (livroAremover != null)
+        {//removemos da lista  existente o objeto presente na lista com o mesmo nome do nosso objeto pedido pelo cliente
+            Emprestimos.Remove(DevolverLivro);
+            Console.WriteLine("livro devolvido com sucesso");
+        }
+        else
+        {
+            Console.WriteLine("livro nao encontrado");
+        }
+
+
+
+        //lista de emprestimos para o relatorio
+
+        // menu relatorio
+
+
+        // Fim parte Main dudu
+    }
+
+
+
+
+    static List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
+    static void RelatorioEmprestimos(List<EmprestimosLivros> emprestimoLivros)
+    {
+        Console.WriteLine("Relatorio de emprestimos de livros: ");
+        foreach (var livroAlugado in emprestimoLivros)
+
+            livroAlugado.ConsultaListaEmpr();
+
+    }
+
+
+    public static void MenuEmprestimo(List<RegistarLivro> Livros, ref Utilizadores listaUtilizadores, ref EmprestimosLivros Emprestimos, ref RegistarLivro Livro)
+    {
+        DateOnly dataAtual = DateOnly.FromDateTime(DateTime.Now);
+
+        //criacao lista emprestimos
+        //   List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
+        //teste
+        RegistarLivro livro = new RegistarLivro("uno", "jonh", 1989, 5);
+        emprestimoLivros.Add(new EmprestimosLivros("grey", "ana", 5, 2, 4, dataAtual));
+        emprestimoLivros.Add(new EmprestimosLivros("foxhoud", "ana", 2, 3, 5, dataAtual));
+        int opcaoEmprestimo = 0;
+
+
+        Console.WriteLine("-----Menu-Emprestimos-----");
+        Console.WriteLine("|(1) Consultar lista     |");
+        Console.WriteLine("|(2) Alugar livro        |");
+        Console.WriteLine("|(3) Devolver livro      |");
+        Console.WriteLine("|(4) Consultar relatorio |");
+        Console.WriteLine("|(5) Retroceder          |");
+        Console.WriteLine("==========================");
+
+        Console.WriteLine("Escolha uma das opcoes");
+
+        opcaoEmprestimo = int.Parse(Console.ReadLine());
+
+        switch (opcaoEmprestimo)
+        {
+            case 1:
+                ExibirListaLivros(Livros);
+                break;
+            case 2:
+
+                EscolhaAluguer(emprestimoLivros, ref listaUtilizadores, ref Livro);
+                AtualizarQuantidadeLista(ref Livro, ref Emprestimos);
+                break;
+            case 3:
+                DevolucaoLivroAluguer(emprestimoLivros);
+                //objetivo seria a cada retirada ou adicao de livros no aluguer essa alteracao de quantidade fosse refletida na lista principal que inclui NumExemp
+                AtualizarQuantidadeListaDevolucao(ref Livro, ref Emprestimos);
+
+                break;
+            case 4:
+                RelatorioEmprestimos(emprestimoLivros);
+                break;
+            case 5:
+                Console.WriteLine("voltar ao menu anterior");
+                break;
+            default:
+                Console.WriteLine("opcao nao existente");
+                break;
+
+
+        }
+
+
+    }
+
+    // Fim parte Bruno
     static void Main(string[] args)
     {
         // criando um usuario para teste
@@ -302,6 +470,27 @@ class Program
 
         // Menu para mostrar opcoes do que pode fazer
 
+
+        MenuLogRes();
+
+        efetuarRegistro();
+
+        efetuarLogin();
+
+        RegLivros();
+
+        // MenuEmprestimo(Livros, ref listaUtilizadores, ref emprestimoLivros, ref livro); // ref livro nao encontrada, tem 3 Livros no metodo.
+
+
     }
 
+
+
+    //extra
+
+
+    //colocaria menu principal login registo consulta livros
+    //depois do login colocaria menu gestao livros menu aluguer livro menu lista utilizadores
+
 }
+
