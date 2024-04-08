@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using ProjetoPOO;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using ProjetoPOO;
+using System.Linq.Expressions;
 
 class Program
 {
@@ -107,14 +106,16 @@ class Program
     }
     static void ExibirListaLivros()
     {
-        Console.WriteLine("--------------- Consulta de Livros ---------------");
+        Console.WriteLine("---------------------------------------- Consulta de Livros ----------------------------------------");
         foreach (var livro in Livros)
         {
-            livro.ConsultaLivros();
-            Console.WriteLine("");
-
+            if (livro.NumExemp > 0)
+            {
+                livro.ConsultaLivros();
+            }
             // talvez passar a lista para ca para ter organizacao, ja que nao eh uma metodo grande
         }
+        Console.WriteLine("====================================================================================================");
     }
 
     // Fim da parte Main Sara
@@ -125,6 +126,10 @@ class Program
     {
         double opcaoMenuLogRes;
         Utilizadores utilizadorLogado = null;
+        
+        Console.Clear();
+        Console.WriteLine("        Bem vindo!");
+        Console.WriteLine("");
 
         Console.WriteLine(" ----------Menu----------");
         Console.WriteLine("| 1 - Login              |");
@@ -193,7 +198,7 @@ class Program
             Console.Clear();
             Console.WriteLine("Usuário já registrado! Faça o login!");
             Console.WriteLine("");
-            return utilizadorLogado;
+            return utilizadorLogado; // adicionar a volta para o login
         }
         else
         {
@@ -236,10 +241,20 @@ class Program
 
             if ((utilizadorLogado != null) && (procurarPalavraChave != null))
             {
-                Console.Clear();
-                Console.WriteLine($"Bem vindo {utilizadorLogado.NomeUtilizador}!");
-                Console.WriteLine("");
-                return utilizadorLogado;
+                if (utilizadorLogado.Funcionario == true)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Bem vindo funcionário {utilizadorLogado.NomeUtilizador}!");
+                    Console.WriteLine("");
+                    return utilizadorLogado;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Bem vindo {utilizadorLogado.NomeUtilizador}!");
+                    Console.WriteLine("");
+                    return utilizadorLogado;
+                }
             }
             else
             {
@@ -253,105 +268,153 @@ class Program
     static void MenuAcoesPrincipal(Utilizadores utilizadorLogado)
     {
         bool permissaoFuncionario = utilizadorLogado.Funcionario;
-        int opcaoMenuPrincipal;
+        int opcaoMenuPrincipal = 0;
+
 
         if (permissaoFuncionario == true)
         {
-            Console.WriteLine(" ------------ Menu ------------");
-            Console.WriteLine("| 1. Exibir lista de livros   |");
-            Console.WriteLine("| 2. Alugar livro             |");
-            Console.WriteLine("| 3. Devolver livro           |");
-            Console.WriteLine("| 4. Relatório de Empréstimos |");
-            Console.WriteLine("| 5. Gestão de livros         |");
-            Console.WriteLine("| 6. Lista de Utilizadores    |");
-            Console.WriteLine("| 7. Sair                     |");
-            Console.WriteLine("===============================");
-            Console.WriteLine();
-
-            Console.WriteLine("Escolha uma opção: ");
-            opcaoMenuPrincipal = int.Parse(Console.ReadLine());
-
-            while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4) && (opcaoMenuPrincipal != 5) && (opcaoMenuPrincipal != 6) && (opcaoMenuPrincipal != 7))
+            do
             {
-                Console.WriteLine("Opção inválida, escolha novamente: ");
+                Console.WriteLine(" ------------ Menu ------------");
+                Console.WriteLine("| 1. Exibir lista de livros   |");
+                Console.WriteLine("| 2. Alugar livro             |");
+                Console.WriteLine("| 3. Devolver livro           |");
+                Console.WriteLine("| 4. Relatório de Empréstimos |");
+                Console.WriteLine("| 5. Gestão de livros         |");
+                Console.WriteLine("| 6. Lista de Utilizadores    |");
+                Console.WriteLine("| 7. Sair                     |");
+                Console.WriteLine("===============================");
+                Console.WriteLine();
+
+                Console.WriteLine("Escolha uma opção: ");
                 opcaoMenuPrincipal = int.Parse(Console.ReadLine());
-                Console.WriteLine("");
-            }
 
-            switch (opcaoMenuPrincipal)
-            {
-                case 1:
-                    ExibirListaLivros();
-                    break;
-                case 2:
-                    LerPedidoAluguer(utilizadorLogado);
-                    break;
-                case 3:
-                    DevolucaoLivroAluguer();
-                    break;
-                case 4:
-                    RelatorioEmprestimos();
-                    break;
-                case 5:
-                    RegLivros();
-                    break;
-                case 6:
-                    mostrarListaUtilizadores();
-                    break;
-                case 7:
-                    Console.WriteLine("Obrigado, até a próxima!");
-                    break;
+                while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4) && (opcaoMenuPrincipal != 5) && (opcaoMenuPrincipal != 6) && (opcaoMenuPrincipal != 7))
+                {
+                    Console.WriteLine("Opção inválida, escolha novamente: ");
+                    opcaoMenuPrincipal = int.Parse(Console.ReadLine());
+                    Console.WriteLine("");
+                }
 
-            }
+                switch (opcaoMenuPrincipal)
+                {
+                    case 1:
+                        Console.Clear();
+                        ExibirListaLivros();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        ExibirListaLivros();
+                        Console.WriteLine();
+                        LerPedidoAluguer(utilizadorLogado);
+                        break;
+                    case 3:
+                        Console.Clear();
+                        DevolucaoLivroAluguer(utilizadorLogado);
+                        break;
+                    case 4:
+                        Console.Clear();
+                        RelatorioEmprestimos();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        RegLivros();
+                        break;
+                    case 6:
+                        Console.Clear();
+                        mostrarListaUtilizadores();
+                        break;
+                    case 7:
+                        Console.WriteLine("Obrigado, até a próxima!");
+                        break;
 
-        } else
-        {
-            Console.WriteLine(" ------------ Menu ------------");
-            Console.WriteLine("| 1. Exibir lista de livros   |");
-            Console.WriteLine("| 2. Alugar livro             |");
-            Console.WriteLine("| 3. Devolver livro           |");
-            Console.WriteLine("| 4. Sair                     |");
-            Console.WriteLine("===============================");
-            Console.WriteLine();
+                }
 
-            Console.WriteLine("Escolha uma opção: ");
-            opcaoMenuPrincipal = int.Parse(Console.ReadLine());
 
-            while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4))
-            {
-                Console.WriteLine("Opção inválida, escolha novamente: ");
-                opcaoMenuPrincipal = int.Parse(Console.ReadLine());
-                Console.WriteLine("");
-            }
+                if (opcaoMenuPrincipal != 7)
+                {
+                    Console.WriteLine("Deseja ver o menu novamente? (S/N)");
+                    string verMenu = Console.ReadLine();
 
-            switch (opcaoMenuPrincipal)
-            {
-                case 1:
-                    ExibirListaLivros();
-                    break;
-                case 2:
-                    LerPedidoAluguer(utilizadorLogado);
-                    break;
-                case 3:
-                    DevolucaoLivroAluguer();
-                    break;
-                case 4:
-                    Console.WriteLine("Obrigado, até a próxima!");
-                    break;
-            }
+                    if (verMenu.ToLower() == "n")
+                    {
+                        opcaoMenuPrincipal = 7;
+                        Console.WriteLine("Obrigado, até a próxima!");
+                    } else if (verMenu.ToLower() == "s")
+                    {
+                        Console.Clear();
+                    }
+                }
+            } while (opcaoMenuPrincipal != 7);
         }
+        else
+        {
+            do
+            {
+                Console.WriteLine(" ------------ Menu ------------");
+                Console.WriteLine("| 1. Exibir lista de livros   |");
+                Console.WriteLine("| 2. Alugar livro             |");
+                Console.WriteLine("| 3. Devolver livro           |");
+                Console.WriteLine("| 4. Sair                     |");
+                Console.WriteLine("===============================");
+                Console.WriteLine();
+
+                Console.WriteLine("Escolha uma opção: ");
+                opcaoMenuPrincipal = int.Parse(Console.ReadLine());
+
+                while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4))
+                {
+                    Console.WriteLine("Opção inválida, escolha novamente: ");
+                    opcaoMenuPrincipal = int.Parse(Console.ReadLine());
+                    Console.WriteLine("");
+                }
+
+                switch (opcaoMenuPrincipal)
+                {
+                    case 1:
+                        ExibirListaLivros();
+                        break;
+                    case 2:
+                        LerPedidoAluguer(utilizadorLogado);
+                        break;
+                    case 3:
+                        DevolucaoLivroAluguer(utilizadorLogado);
+                        break;
+                    case 4:
+                        Console.WriteLine("Obrigado, até a próxima!");
+                        break;
+                }
+
+                if (opcaoMenuPrincipal != 4)
+                {
+                    Console.WriteLine("Deseja ver o menu novamente? (S/N)");
+                    string verMenu = Console.ReadLine();
+
+                    if (verMenu.ToLower() == "n")
+                    {
+                        opcaoMenuPrincipal = 4;
+                        Console.WriteLine("Obrigado, até a próxima!");
+                    } else if (verMenu.ToLower() == "s")
+                    {
+                        Console.Clear();
+                    }
+                }
+            } while (opcaoMenuPrincipal != 4); 
+        }
+        MenuLogRes();
     }
     static void mostrarListaUtilizadores()
     {
         Console.WriteLine("");
-            Console.WriteLine("------------------------------ Lista de Utilizadores -------------------------------");
+        Console.WriteLine("-------------------- Lista de Utilizadores --------------------");
 
         foreach (Utilizadores usuario in listaUtilizadores)
         {
-            Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-33} - Telefone: {usuario.TelefoneUtilizador,-29} |");
-            Console.WriteLine("-----------------------------------------------------------------------------------");
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-20} | Telefone: {usuario.TelefoneUtilizador,-20} |");
+
         }
-            Console.WriteLine("===================================================================================");
+        Console.WriteLine("===============================================================");
     }
 
     // Fim parte dudu
@@ -387,11 +450,11 @@ class Program
 
                 string nomeClienteAluguer = utilizadorLogado.NomeUtilizador;
 
-                emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado.NomeUtilizador, tituloLivroAluguer, duracaoLivroAluguer, false, dataLivroAluguer));
+                emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado.NomeUtilizador, livroEscolhido, duracaoLivroAluguer, false, dataLivroAluguer));
 
                 livroEscolhido.NumExemp--;
 
-                return livroEscolhido; 
+                return livroEscolhido;
             }
             else
             {
@@ -434,19 +497,33 @@ class Program
      // AtualizarLista == atualizar quantidade sem ser por aluguer, opcao ja feita pela sara na gestao de livros
      
      */
-    public static void DevolucaoLivroAluguer()
+    public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado)
     {
-        // exibir lista de livros emprestados consoante ao utilizadorLogado.NomeUtilizador == lista de emprestimos a.NomeClinte = utilizadorLogado.NomeUtilizador 
+        Console.WriteLine("--------------------------------------------- Os seus Livros ---------------------------------------------");
+        foreach (EmprestimosLivros livro in emprestimoLivros)
+        {
+            if ((livro.NomeCliente == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
+            {
+                livro.ConsultaEmprestimoIndividual();
+            } else
+            {
+                Console.WriteLine("Não há livros alugados na sua conta.");
+                MenuAcoesPrincipal(utilizadorLogado);
+            }
+
+        }
+        Console.WriteLine("==========================================================================================================");
 
         Console.WriteLine("Qual o livro que deseja devolver? ");
         string livroAremover = Console.ReadLine();
 
         //lemos o nome do objeto novo atraves de uma variavel e vamos a procura de onde na lista um objeto tem esse nome
-        EmprestimosLivros DevolverLivro = emprestimoLivros.Find(x => x.Titulo == livroAremover);
+        EmprestimosLivros DevolverLivro = emprestimoLivros.Find(x => x.Livro.NomeLivro == livroAremover);
         Console.WriteLine();
         if (livroAremover != null)
         {//removemos da lista  existente o objeto presente na lista com o mesmo nome do nosso objeto pedido pelo cliente
             DevolverLivro.Devolvido = true;
+            DevolverLivro.Livro.NumExemp++;
             Console.WriteLine("Livro devolvido com sucesso");
         }
         else
@@ -456,12 +533,12 @@ class Program
     }
     static void RelatorioEmprestimos()
     {
-        Console.WriteLine("---------- Lista de Emprestimos ----------");
+        Console.WriteLine("-------------------------------------- Lista de Emprestimos ---------------------------------");
         foreach (var livroAlugado in emprestimoLivros)
         {
-            Console.WriteLine("| Titulo: " + livroAlugado.Titulo + " Nome Cliente: " + livroAlugado.NomeCliente + " Duracao: " + livroAlugado.Duracao + " Data Pedido: " + livroAlugado.Data + "|"); //  + "Nr vezes Alugado: " + QuantidadeLivroAlugado
+            livroAlugado.ConsultaListaEmpr();
         }
-        Console.WriteLine("============================================================================="); // ajustar tamanho dps
+        Console.WriteLine("============================================================================================="); // ajustar tamanho dps
     }
 
     static List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
@@ -477,31 +554,31 @@ class Program
         DateOnly dataAtual = DateOnly.FromDateTime(DateTime.Now);
 
         // criando um usuario para teste
+        RegistarLivro livroGrey = new RegistarLivro("grey", "bruno", 1720, 12);
+        RegistarLivro livroFox = new RegistarLivro("foxhound", "joaqui,", 1790, 2);
         listaUtilizadores.Add(new Utilizadores("Eduardo Lopes", "Rua Braga", "987654321", "12345", true));
         listaUtilizadores.Add(new Utilizadores("Sara", "Rua Braga", "987654321", "12345", true));
         listaUtilizadores.Add(new Utilizadores("Bruno", "Rua Braga", "987654321", "12345", true));
-        emprestimoLivros.Add(new EmprestimosLivros("grey", "ana", 5, false, dataAtual));
-        emprestimoLivros.Add(new EmprestimosLivros("foxhoud", "ana", 2, false, dataAtual));
+        emprestimoLivros.Add(new EmprestimosLivros("paula", livroGrey, 5, false, dataAtual));
+        emprestimoLivros.Add(new EmprestimosLivros("Sara", livroFox, 2, false, dataAtual));
+        Livros.Add(livroGrey);
+        Livros.Add(livroFox);
         Livros.Add(new RegistarLivro("uno", "jonh", 1989, 5));
         Livros.Add(new RegistarLivro("duo", "jonh2", 1986, 0));
-        Livros.Add(new RegistarLivro("trio", "jonh3", 1980, 2));        
+        Livros.Add(new RegistarLivro("trio", "jonh3", 1980, 2));
         // --------------------------------------------------------------------------------
 
-
-
-        Console.WriteLine("Bem vindo!");
-        Console.WriteLine("");
         
+
         // criar uma variável para armazenar o usuário logado
         Utilizadores utilizadorLogado = MenuLogRes();
 
         MenuAcoesPrincipal(utilizadorLogado);
 
 
+        // Ajustar as tabelas, adicionar o livro da semana, organizar os consoleClear da gestao de livros, maior leitor do mes, penalizacao para qm nao devolver a tempo
 
-        // opcoes sem funcionalidade
-
-        // Consulta de livros disponiveis metodo ExibirListaLivros, DevolucaoLivroAluguer, RelatorioEmprestimos, 
+        // Arrumar tabela Consulta Livros (opcao 1)
+        // 
     }
 }
-

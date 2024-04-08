@@ -53,8 +53,8 @@ namespace ProjetoPOO
 
         public void ConsultaLivros()
         {
-            Console.WriteLine("Consulta de Livros");
-            Console.WriteLine($"| Título: {NomeLivro} | Autor: {Autor} | Ano de publicação: {AnoPublic} | Número de exemplares disponíveis:{NumExemp} |");
+            Console.WriteLine("----------------------------------------------------------------------------------------------------------");
+            Console.WriteLine($"| Título: {NomeLivro, -9} | Autor: {Autor, -9} | Ano de Publicação: {AnoPublic, -9} | Exemplares Disponíveis:{NumExemp, -3} |");
         }
 
     }
