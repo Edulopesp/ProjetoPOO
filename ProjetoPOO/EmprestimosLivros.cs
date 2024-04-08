@@ -11,7 +11,7 @@ namespace ProjetoPOO
     internal class EmprestimosLivros
     {
         public string NomeCliente;
-        public string Titulo;
+        public RegistarLivro Livro;
         public int Duracao;
         public int QuantidadeExemplaresExistente;
         //public int QuantidadeLivroAlugado;
@@ -21,10 +21,10 @@ namespace ProjetoPOO
 
 
 
-        public EmprestimosLivros(string nomeCliente, string titulo, int duracao, bool devolvido, DateOnly data) // int quantidadeLivroAlugado, int quantidadeExemplaresExistente,
+        public EmprestimosLivros(string nomeCliente, RegistarLivro livro, int duracao, bool devolvido, DateOnly data) // int quantidadeLivroAlugado, int quantidadeExemplaresExistente,
         {
             NomeCliente = nomeCliente;
-            Titulo = titulo;
+            Livro = livro;
             Duracao = duracao;
             //QuantidadeExemplaresExistente = quantidadeExemplaresExistente;
             //QuantidadeLivroAlugado = quantidadeLivroAlugado;
@@ -32,28 +32,28 @@ namespace ProjetoPOO
             Data = data;
 
             // NrVezesAlugado = nrVezesAlugado;
-
         }
         public EmprestimosLivros() 
         {
         }
-
-
-
         public void LerPedidoAluguer()
         {
-            
+        }
+        public void ConsultaListaEmpr()
+        {
+            //objetivo do nr vezes alugado seria para fazer um best of livros mais requisitados
+            Console.WriteLine("---------------------------------------------------------------------------------------------");
+            Console.WriteLine($"| Titulo: {Livro.NomeLivro, -10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao} | Data Pedido: {Data,-10} |");
+            //  + "Nr vezes Alugado: " + QuantidadeLivroAlugado
+
+        }
+        public void ConsultaEmprestimoIndividual()
+        {
+            Console.WriteLine("------------------------------------------------------------------------");
+            Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Duração: {Duracao,-9} | Data Pedido: {Data,-9} |");
         }
 
         /*
-        public void ConsultaListaEmpr()
-        {
-
-            //objetivo do nr vezes alugado seria para fazer um best of livros mais requisitados
-            Console.WriteLine("| Titulo: " + Titulo + " Nome Cliente: " + NomeCliente + " Duracao: " + Duracao + " Data Pedido: " + Data + "|"); //  + "Nr vezes Alugado: " + QuantidadeLivroAlugado
-
-        }
-
        public void AtualizarQuantidadeLista(RegistarLivro livro)
          {
 
