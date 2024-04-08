@@ -1,4 +1,6 @@
-﻿using ProjetoPOO;
+﻿using System.Collections.Generic;
+using ProjetoPOO;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class Program
 {
@@ -6,32 +8,21 @@ class Program
     // Parte Main Sara
 
     // Criar lista para armazenar os livros
-
-    // public static List<RegistarLivro> Livros = new List<RegistarLivro>();
-    // public static List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
-
-    static List<RegistarLivro> Livros = new List<RegistarLivro>();
-
-    // public static List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
-
-
     static void RegLivros()
     {
-        //List<RegistarLivro> Livros = new List<RegistarLivro>();
-        Livros.Add(new RegistarLivro("uno", "jonh", 1989, 5));
-        Livros.Add(new RegistarLivro("duo", "jonh2", 1986, 0));
-        Livros.Add(new RegistarLivro("trio", "jonh3", 1980, 2));
-
         int opcao;
 
+
+        // mudar a validacao para while na resposta ou so tirar o menu de dentro, assim nao repete o menu
         do
         {
-            Console.WriteLine(" --------------- Gestão de Livros ---------------");
-            Console.WriteLine(" | 1. Adicionar Novo Livro                      |");
-            Console.WriteLine(" | 2. Remover Livro Existente                   |");
-            Console.WriteLine(" | 3. Atualizar Número de Exemplares Disponíveis|");
-            Console.WriteLine(" | 4. Exibir Lista Atual de Livros              |");
-            Console.WriteLine(" | 5. Sair                                      |");
+            Console.WriteLine("--------------- Gestão de Livros ---------------");
+            Console.WriteLine("| 1. Adicionar Novo Livro                      |");
+            Console.WriteLine("| 2. Remover Livro Existente                   |");
+            Console.WriteLine("| 3. Atualizar Número de Exemplares Disponíveis|");
+            Console.WriteLine("| 4. Exibir Lista Atual de Livros              |");
+            Console.WriteLine("| 5. Sair                                      |");
+            Console.WriteLine("================================================");
             opcao = int.Parse(Console.ReadLine());
             Console.WriteLine("");
 
@@ -48,7 +39,7 @@ class Program
                     AtualizarNumeroExemplares(Livros);
                     break;
                 case 4:
-                    ExibirListaLivros(Livros);
+                    ExibirListaLivros();
                     break;
                 case 5:
                     Console.WriteLine("Saiu do programa");
@@ -60,7 +51,6 @@ class Program
         }
         while (opcao != 5);
     }
-
     static void AdicionarNovoLivro(List<RegistarLivro> Livros) // conflitos
     {
         string nomeLivro;
@@ -85,7 +75,6 @@ class Program
         Livros.Add(novoLivro);
         Console.WriteLine("Novo Livro adicionado com sucesso!");
     }
-
     static void RemoverLivroExistente(List<RegistarLivro> Livros)
     {
         Console.Write("Nome do item a ser removido: ");
@@ -101,7 +90,6 @@ class Program
             Console.WriteLine("Livro não encontrado.");
         }
     }
-
     static void AtualizarNumeroExemplares(List<RegistarLivro> Livros)
     {
         Console.Write("Nome do Livro que deseja atualizar o número de exemplares disponíveis: ");
@@ -117,26 +105,26 @@ class Program
             Console.WriteLine("Livro não encontrado.");
         }
     }
-
-    static void ExibirListaLivros(List<RegistarLivro> Livros)
+    static void ExibirListaLivros()
     {
-        Console.WriteLine("Consulta de Livros");
+        Console.WriteLine("--------------- Consulta de Livros ---------------");
         foreach (var livro in Livros)
         {
             livro.ConsultaLivros();
             Console.WriteLine("");
+
+            // talvez passar a lista para ca para ter organizacao, ja que nao eh uma metodo grande
         }
     }
 
     // Fim da parte Main Sara
 
 
-
-    // Parte Main dudu
-    static void MenuLogRes()
-
+    // Parte dudu
+    static Utilizadores MenuLogRes()
     {
         double opcaoMenuLogRes;
+        Utilizadores utilizadorLogado = null;
 
         Console.WriteLine(" ----------Menu----------");
         Console.WriteLine("| 1 - Login              |");
@@ -157,16 +145,16 @@ class Program
         {
             case 1:
                 Console.Clear();
-                efetuarLogin();
+                utilizadorLogado = efetuarLogin();
                 break;
             case 2:
                 Console.Clear();
-                efetuarRegistro();
+                utilizadorLogado = efetuarRegistro();
                 break;
         }
+        return utilizadorLogado;
     }
-
-    public static void efetuarRegistro()
+    public static Utilizadores efetuarRegistro()
     {
 
         Console.WriteLine("");
@@ -188,8 +176,6 @@ class Program
         // identificador do funcionario e usuário
 
         bool funcionarioIdentificado;
-        bool usuarioEncontrado = false;
-
 
         if (identificadorUtilizador == "BTCB")
         {
@@ -200,44 +186,39 @@ class Program
             funcionarioIdentificado = false;
         }
 
-        for (int i = 0; i < listaUtilizadores.Count; i++)
-        {
-            Utilizadores usuario = listaUtilizadores[i];
-            string nomeProcura = usuario.NomeUtilizador;
+        Utilizadores utilizadorLogado = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
 
-            if (nomeProcura.Contains(nomeUtilizador))
-            {
-                Console.WriteLine("Usuário já registrado! Faça o login!");
-                usuarioEncontrado = true;
-                Console.WriteLine("");
-                efetuarLogin();
-                break;
-            }
+        if (utilizadorLogado != null)
+        {
+            Console.Clear();
+            Console.WriteLine("Usuário já registrado! Faça o login!");
+            Console.WriteLine("");
+            return utilizadorLogado;
         }
-
-        if (!usuarioEncontrado)
+        else
         {
-            Utilizadores novoUsuario = new Utilizadores(nomeUtilizador, enderecoUtilizador, telefoneUtilizador, palavraChaveUtilizador, funcionarioIdentificado);
-            listaUtilizadores.Add(novoUsuario);
+            utilizadorLogado = new Utilizadores(nomeUtilizador, enderecoUtilizador, telefoneUtilizador, palavraChaveUtilizador, funcionarioIdentificado);
+            listaUtilizadores.Add(utilizadorLogado);
             Console.WriteLine("Usuário registrado com sucesso!");
             Console.WriteLine("");
 
             if (funcionarioIdentificado == true)
             {
                 Console.Clear();
-                Console.WriteLine($"Bem vindo funcionário {novoUsuario.NomeUtilizador}!");
+                Console.WriteLine($"Bem vindo funcionário {utilizadorLogado.NomeUtilizador}!");
                 Console.WriteLine("");
+                return utilizadorLogado;
             }
-            else if (funcionarioIdentificado == false)
+            else
             {
                 Console.Clear();
-                Console.WriteLine($"Bem vindo {novoUsuario.NomeUtilizador}!");
+                Console.WriteLine($"Bem vindo {utilizadorLogado.NomeUtilizador}!");
                 Console.WriteLine("");
+                return utilizadorLogado;
             }
         }
-
     }
-    public static void efetuarLogin()
+    public static Utilizadores efetuarLogin()
     {
         do
         {
@@ -249,17 +230,16 @@ class Program
             Console.WriteLine("==========================");
             Console.WriteLine();
 
-            Utilizadores procurarUtilizador = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
+            Utilizadores utilizadorLogado = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
 
             Utilizadores procurarPalavraChave = listaUtilizadores.Find(a => a.PalavraChave == palavraChaveUtilizador);
 
-            if ((procurarUtilizador != null) && (procurarPalavraChave != null))
+            if ((utilizadorLogado != null) && (procurarPalavraChave != null))
             {
                 Console.Clear();
-                Console.WriteLine($"Bem vindo {procurarUtilizador.NomeUtilizador}!");
+                Console.WriteLine($"Bem vindo {utilizadorLogado.NomeUtilizador}!");
                 Console.WriteLine("");
-                MenuAcoesPrincipal(procurarUtilizador);
-                break;
+                return utilizadorLogado;
             }
             else
             {
@@ -270,43 +250,171 @@ class Program
         } while (true);
 
     }
-
-    static void MenuAcoesPrincipal(Utilizadores procurarUtilizador)
+    static void MenuAcoesPrincipal(Utilizadores utilizadorLogado)
     {
-        bool permissaoFuncionario = procurarUtilizador.Funcionario;
+        bool permissaoFuncionario = utilizadorLogado.Funcionario;
+        int opcaoMenuPrincipal;
 
-        Console.WriteLine(" ----------Menu----------");
+        if (permissaoFuncionario == true)
+        {
+            Console.WriteLine(" ------------ Menu ------------");
+            Console.WriteLine("| 1. Exibir lista de livros   |");
+            Console.WriteLine("| 2. Alugar livro             |");
+            Console.WriteLine("| 3. Devolver livro           |");
+            Console.WriteLine("| 4. Relatório de Empréstimos |");
+            Console.WriteLine("| 5. Gestão de livros         |");
+            Console.WriteLine("| 6. Lista de Utilizadores    |");
+            Console.WriteLine("| 7. Sair                     |");
+            Console.WriteLine("===============================");
+            Console.WriteLine();
 
+            Console.WriteLine("Escolha uma opção: ");
+            opcaoMenuPrincipal = int.Parse(Console.ReadLine());
+
+            while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4) && (opcaoMenuPrincipal != 5) && (opcaoMenuPrincipal != 6) && (opcaoMenuPrincipal != 7))
+            {
+                Console.WriteLine("Opção inválida, escolha novamente: ");
+                opcaoMenuPrincipal = int.Parse(Console.ReadLine());
+                Console.WriteLine("");
+            }
+
+            switch (opcaoMenuPrincipal)
+            {
+                case 1:
+                    ExibirListaLivros();
+                    break;
+                case 2:
+                    LerPedidoAluguer(utilizadorLogado);
+                    break;
+                case 3:
+                    DevolucaoLivroAluguer();
+                    break;
+                case 4:
+                    RelatorioEmprestimos();
+                    break;
+                case 5:
+                    RegLivros();
+                    break;
+                case 6:
+                    mostrarListaUtilizadores();
+                    break;
+                case 7:
+                    Console.WriteLine("Obrigado, até a próxima!");
+                    break;
+
+            }
+
+        } else
+        {
+            Console.WriteLine(" ------------ Menu ------------");
+            Console.WriteLine("| 1. Exibir lista de livros   |");
+            Console.WriteLine("| 2. Alugar livro             |");
+            Console.WriteLine("| 3. Devolver livro           |");
+            Console.WriteLine("| 4. Sair                     |");
+            Console.WriteLine("===============================");
+            Console.WriteLine();
+
+            Console.WriteLine("Escolha uma opção: ");
+            opcaoMenuPrincipal = int.Parse(Console.ReadLine());
+
+            while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4))
+            {
+                Console.WriteLine("Opção inválida, escolha novamente: ");
+                opcaoMenuPrincipal = int.Parse(Console.ReadLine());
+                Console.WriteLine("");
+            }
+
+            switch (opcaoMenuPrincipal)
+            {
+                case 1:
+                    ExibirListaLivros();
+                    break;
+                case 2:
+                    LerPedidoAluguer(utilizadorLogado);
+                    break;
+                case 3:
+                    DevolucaoLivroAluguer();
+                    break;
+                case 4:
+                    Console.WriteLine("Obrigado, até a próxima!");
+                    break;
+            }
+        }
+    }
+    static void mostrarListaUtilizadores()
+    {
+        Console.WriteLine("");
+            Console.WriteLine("------------------------------ Lista de Utilizadores -------------------------------");
+
+        foreach (Utilizadores usuario in listaUtilizadores)
+        {
+            Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-33} - Telefone: {usuario.TelefoneUtilizador,-29} |");
+            Console.WriteLine("-----------------------------------------------------------------------------------");
+        }
+            Console.WriteLine("===================================================================================");
     }
 
-    static List<Utilizadores> listaUtilizadores = new List<Utilizadores>();
-
-    // Fim parte Main dudu
+    // Fim parte dudu
 
     // Parte Bruno
 
-    public static void EscolhaAluguer(List<EmprestimosLivros> emprestimoLivros, ref Utilizadores listaUtilizadores, ref RegistarLivro Livros)
+    /*public static void EscolhaAluguer(Utilizadores utilizadorLogado)
+    {
+        EmprestimosLivros LivroAluguerGeral = new EmprestimosLivros();
+
+        LivroAluguerGeral.LerPedidoAluguer(utilizadorLogado);
+        emprestimoLivros.Add(LivroAluguerGeral);
+    }*/
+
+    public static RegistarLivro LerPedidoAluguer(Utilizadores utilizadorLogado)
+    {
+        do
+        {
+            Console.WriteLine("Qual o livro que deseja alugar? ");
+            string tituloLivroAluguer = Console.ReadLine();
+
+            RegistarLivro livroEscolhido = Livros.Find(a => a.NomeLivro == tituloLivroAluguer);
+
+            if (livroEscolhido != null)
+            {
+                Console.WriteLine("Quantos dias de aluguer deseja? ");
+                int duracaoLivroAluguer = int.Parse(Console.ReadLine());
+
+                DateOnly dataLivroAluguer = DateOnly.FromDateTime(DateTime.Now);
+
+                //Console.WriteLine("Quantos exemplares pretende alugar?"); 
+                //int qntLivroAluguer = int.Parse(Console.ReadLine());
+
+                string nomeClienteAluguer = utilizadorLogado.NomeUtilizador;
+
+                emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado.NomeUtilizador, tituloLivroAluguer, duracaoLivroAluguer, false, dataLivroAluguer));
+
+                livroEscolhido.NumExemp--;
+
+                return livroEscolhido; 
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Livro não encontrado, tente novamente.");
+                Console.WriteLine("");
+            }
+        } while (true);
+    }
+
+    /*public static void EscolhaAluguer(List<EmprestimosLivros> emprestimoLivros, ref Utilizadores listaUtilizadores, ref RegistarLivro Livros)
     {
         string opcao = "";
         do
         {
-
-
             EmprestimosLivros LivroAluguerGeral = new EmprestimosLivros();
 
-            LivroAluguerGeral.LerPedidoAluguer(ref listaUtilizadores, ref Livros);
+            LivroAluguerGeral.LerPedidoAluguer();
             emprestimoLivros.Add(LivroAluguerGeral);
 
-            Console.WriteLine("deseja efetuar mais algum pedido ?(S/N)");
+            Console.WriteLine("Deseja efetuar mais algum pedido ?(S/N)");
             opcao = Console.ReadLine();
         } while (opcao.ToLower() == "s");
-    }
-
-
-    public static void AtualizarQuantidadeLista(ref RegistarLivro Livros, ref EmprestimosLivros Emprestimos)
-    {
-
-        Livros.NumExemp -= Emprestimos.QuantidadeLivroAlugado;
     }
     public static void AtualizarLista(ref List<RegistarLivro> registarLivros, ref RegistarLivro Livros, EmprestimosLivros Emprestimos)
     {
@@ -318,179 +426,82 @@ class Program
         if (livroMudarQuantidade != null)
         {
             AtualizarQuantidadeLista(ref Livros, ref Emprestimos);
-            Console.WriteLine("item atualizado com sucesso");
+            Console.WriteLine("Item atualizado com sucesso");
 
         }
-        else { Console.WriteLine("item nao encontrado"); }
+        else { Console.WriteLine("Item nao encontrado"); }
     }
-
-
-    /*      public static int AtualizarQuantidadeLista(RegistarLivro livro, EmprestimosLivros emprestimos)
-      {
-
-          return livro.NumExemp -= emprestimos.QuantidadeLivroAlugado;
-      }
-    */
-
-    // tentei fazer com que as quantidades disponiveis na lista da sara (principal alterem automaticamente consoante os aluguers e devolucoes 
-    public static void AtualizarQuantidadeListaDevolucao(ref RegistarLivro Livros, ref EmprestimosLivros Emprestimos)
+     // AtualizarLista == atualizar quantidade sem ser por aluguer, opcao ja feita pela sara na gestao de livros
+     
+     */
+    public static void DevolucaoLivroAluguer()
     {
+        // exibir lista de livros emprestados consoante ao utilizadorLogado.NomeUtilizador == lista de emprestimos a.NomeClinte = utilizadorLogado.NomeUtilizador 
 
-        Livros.NumExemp += Emprestimos.QuantidadeLivroAlugado;
-    }
-
-
-    public static void DevolucaoLivroAluguer(List<EmprestimosLivros> Emprestimos)
-    {
-
-        Console.WriteLine("qual o livro que deseja devolver? ");
-
+        Console.WriteLine("Qual o livro que deseja devolver? ");
         string livroAremover = Console.ReadLine();
+
         //lemos o nome do objeto novo atraves de uma variavel e vamos a procura de onde na lista um objeto tem esse nome
-        EmprestimosLivros DevolverLivro = Emprestimos.Find(x => x.Titulo == livroAremover);
+        EmprestimosLivros DevolverLivro = emprestimoLivros.Find(x => x.Titulo == livroAremover);
         Console.WriteLine();
         if (livroAremover != null)
         {//removemos da lista  existente o objeto presente na lista com o mesmo nome do nosso objeto pedido pelo cliente
-            Emprestimos.Remove(DevolverLivro);
-            Console.WriteLine("livro devolvido com sucesso");
+            DevolverLivro.Devolvido = true;
+            Console.WriteLine("Livro devolvido com sucesso");
         }
         else
         {
-            Console.WriteLine("livro nao encontrado");
+            Console.WriteLine("Livro nao encontrado");
         }
-
-
-
-        //lista de emprestimos para o relatorio
-
-        // menu relatorio
-
-
-        // Fim parte Main dudu
     }
-
-
-
+    static void RelatorioEmprestimos()
+    {
+        Console.WriteLine("---------- Lista de Emprestimos ----------");
+        foreach (var livroAlugado in emprestimoLivros)
+        {
+            Console.WriteLine("| Titulo: " + livroAlugado.Titulo + " Nome Cliente: " + livroAlugado.NomeCliente + " Duracao: " + livroAlugado.Duracao + " Data Pedido: " + livroAlugado.Data + "|"); //  + "Nr vezes Alugado: " + QuantidadeLivroAlugado
+        }
+        Console.WriteLine("============================================================================="); // ajustar tamanho dps
+    }
 
     static List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
-    static void RelatorioEmprestimos(List<EmprestimosLivros> emprestimoLivros)
-    {
-        Console.WriteLine("Relatorio de emprestimos de livros: ");
-        foreach (var livroAlugado in emprestimoLivros)
 
-            livroAlugado.ConsultaListaEmpr();
+    static List<RegistarLivro> Livros = new List<RegistarLivro>();
 
-    }
+    static List<Utilizadores> listaUtilizadores = new List<Utilizadores>();
 
-
-    public static void MenuEmprestimo(List<RegistarLivro> Livros, ref Utilizadores listaUtilizadores, ref EmprestimosLivros Emprestimos, ref RegistarLivro Livro)
-    {
-        DateOnly dataAtual = DateOnly.FromDateTime(DateTime.Now);
-
-        //criacao lista emprestimos
-        //   List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
-        //teste
-        RegistarLivro livro = new RegistarLivro("uno", "jonh", 1989, 5);
-        emprestimoLivros.Add(new EmprestimosLivros("grey", "ana", 5, 2, 4, dataAtual));
-        emprestimoLivros.Add(new EmprestimosLivros("foxhoud", "ana", 2, 3, 5, dataAtual));
-        int opcaoEmprestimo = 0;
-
-
-        Console.WriteLine("-----Menu-Emprestimos-----");
-        Console.WriteLine("|(1) Consultar lista     |");
-        Console.WriteLine("|(2) Alugar livro        |");
-        Console.WriteLine("|(3) Devolver livro      |");
-        Console.WriteLine("|(4) Consultar relatorio |");
-        Console.WriteLine("|(5) Retroceder          |");
-        Console.WriteLine("==========================");
-
-        Console.WriteLine("Escolha uma das opcoes");
-
-        opcaoEmprestimo = int.Parse(Console.ReadLine());
-
-        switch (opcaoEmprestimo)
-        {
-            case 1:
-                ExibirListaLivros(Livros);
-                break;
-            case 2:
-
-                EscolhaAluguer(emprestimoLivros, ref listaUtilizadores, ref Livro);
-                AtualizarQuantidadeLista(ref Livro, ref Emprestimos);
-                break;
-            case 3:
-                DevolucaoLivroAluguer(emprestimoLivros);
-                //objetivo seria a cada retirada ou adicao de livros no aluguer essa alteracao de quantidade fosse refletida na lista principal que inclui NumExemp
-                AtualizarQuantidadeListaDevolucao(ref Livro, ref Emprestimos);
-
-                break;
-            case 4:
-                RelatorioEmprestimos(emprestimoLivros);
-                break;
-            case 5:
-                Console.WriteLine("voltar ao menu anterior");
-                break;
-            default:
-                Console.WriteLine("opcao nao existente");
-                break;
-
-
-        }
-
-
-    }
 
     // Fim parte Bruno
     static void Main(string[] args)
     {
+        DateOnly dataAtual = DateOnly.FromDateTime(DateTime.Now);
+
         // criando um usuario para teste
         listaUtilizadores.Add(new Utilizadores("Eduardo Lopes", "Rua Braga", "987654321", "12345", true));
         listaUtilizadores.Add(new Utilizadores("Sara", "Rua Braga", "987654321", "12345", true));
         listaUtilizadores.Add(new Utilizadores("Bruno", "Rua Braga", "987654321", "12345", true));
+        emprestimoLivros.Add(new EmprestimosLivros("grey", "ana", 5, false, dataAtual));
+        emprestimoLivros.Add(new EmprestimosLivros("foxhoud", "ana", 2, false, dataAtual));
+        Livros.Add(new RegistarLivro("uno", "jonh", 1989, 5));
+        Livros.Add(new RegistarLivro("duo", "jonh2", 1986, 0));
+        Livros.Add(new RegistarLivro("trio", "jonh3", 1980, 2));        
         // --------------------------------------------------------------------------------
+
 
 
         Console.WriteLine("Bem vindo!");
         Console.WriteLine("");
-        MenuLogRes();
-        RegLivros();
+        
+        // criar uma variável para armazenar o usuário logado
+        Utilizadores utilizadorLogado = MenuLogRes();
 
-        // itinerar a lista de utilizadores para ver
-        Console.WriteLine("");
-        Console.WriteLine("---------- Lista de Utilizadores ----------");
-
-        foreach (Utilizadores usuario in listaUtilizadores)
-        {
-            Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-33} |");
-            Console.WriteLine($"| Endereço: {usuario.EnderecoUtilizador,-29} |");
-            Console.WriteLine($"| Telefone: {usuario.TelefoneUtilizador,-29} |");
-            Console.WriteLine($"| Palavra-Chave: {usuario.PalavraChave,-24} |");
-            Console.WriteLine("===========================================");
-        }
-
-        // Menu para mostrar opcoes do que pode fazer
+        MenuAcoesPrincipal(utilizadorLogado);
 
 
-        MenuLogRes();
 
-        efetuarRegistro();
+        // opcoes sem funcionalidade
 
-        efetuarLogin();
-
-        RegLivros();
-
-        // MenuEmprestimo(Livros, ref listaUtilizadores, ref emprestimoLivros, ref livro); // ref livro nao encontrada, tem 3 Livros no metodo.
-
-
+        // Consulta de livros disponiveis metodo ExibirListaLivros, DevolucaoLivroAluguer, RelatorioEmprestimos, 
     }
-
-
-
-    //extra
-
-
-    //colocaria menu principal login registo consulta livros
-    //depois do login colocaria menu gestao livros menu aluguer livro menu lista utilizadores
-
 }
 
