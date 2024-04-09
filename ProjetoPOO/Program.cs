@@ -1,4 +1,5 @@
 ﻿using ProjetoPOO;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 class Program
@@ -120,7 +121,7 @@ class Program
 
     // Fim da parte Main Sara
 
-
+/*
     // Parte dudu
     static Utilizadores MenuLogRes()
     {
@@ -150,15 +151,17 @@ class Program
         {
             case 1:
                 Console.Clear();
-                utilizadorLogado = efetuarLogin();
+                utilizadorLogado = Utilizadores.efetuarLogin(listaUtilizadores);
                 break;
             case 2:
                 Console.Clear();
-                utilizadorLogado = efetuarRegistro();
+                utilizadorLogado = Utilizadores.efetuarRegistro(listaUtilizadores);
                 break;
         }
         return utilizadorLogado;
-    }
+    }*/
+
+    /*
     public static Utilizadores efetuarRegistro()
     {
 
@@ -415,7 +418,7 @@ class Program
 
         }
         Console.WriteLine("===============================================================");
-    }
+    }*/
 
     // Fim parte dudu
 
@@ -508,7 +511,7 @@ class Program
             } else
             {
                 Console.WriteLine("Não há livros alugados na sua conta.");
-                MenuAcoesPrincipal(utilizadorLogado);
+                MenuPrincipal.MenuAcoesPrincipal(utilizadorLogado);
             }
 
         }
@@ -573,7 +576,7 @@ class Program
         // criar uma variável para armazenar o usuário logado
         Utilizadores utilizadorLogado = MenuLogRes();
 
-        MenuAcoesPrincipal(utilizadorLogado);
+        MenuPrincipal.MenuAcoesPrincipal(utilizadorLogado);
 
 
         // Ajustar as tabelas, adicionar o livro da semana, organizar os consoleClear da gestao de livros, maior leitor do mes, penalizacao para qm nao devolver a tempo
