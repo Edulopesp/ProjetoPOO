@@ -18,12 +18,12 @@ namespace ProjetoPOO
 
         public static void RelatorioEmprestimos(List<EmprestimosLivros> emprestimoLivros)
         {
-            Console.WriteLine("-------------------------------------- Lista de Emprestimos ---------------------------------");
+            Console.WriteLine("----------------------------------------------- Lista de Emprestimos ------------------------------------------------");
             foreach (var livroAlugado in emprestimoLivros)
             {
                 livroAlugado.ConsultaListaEmpr();
             }
-            Console.WriteLine("============================================================================================="); // ajustar tamanho dps
+            Console.WriteLine("====================================================================================================================="); // ajustar tamanho dps
         }
 
         public void RelatorioLivrosClientes(List<RegistarLivro> Livros)

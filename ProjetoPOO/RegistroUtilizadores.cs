@@ -112,17 +112,16 @@ namespace ProjetoPOO
 
             Console.WriteLine("");
             Console.WriteLine("----------Registrar----------");
-            Console.Write("| Nome: ");
+            Console.Write(" Nome: ");
             string nomeUtilizador = Console.ReadLine();
-            Console.Write("| Endereço: ");
+            Console.Write(" Endereço: ");
             string enderecoUtilizador = Console.ReadLine();
-            Console.Write("| Telefone: ");
+            Console.Write(" Telefone: ");
             string telefoneUtilizador = Console.ReadLine();
-            Console.Write("| Palavra-Chave: ");
+            Console.Write(" Palavra-Chave: ");
             string palavraChaveUtilizador = Console.ReadLine();
-            Console.Write("| Funcionário: ");
+            Console.Write(" Funcionário: ");
             string identificadorUtilizador = Console.ReadLine().ToUpper();
-            Console.WriteLine("==============================");
             Console.WriteLine();
 
 

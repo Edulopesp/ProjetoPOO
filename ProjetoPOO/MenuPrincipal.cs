@@ -100,8 +100,9 @@ namespace ProjetoPOO
                     Console.WriteLine(" ------------ Menu ------------");
                     Console.WriteLine("| 1. Exibir lista de livros   |");
                     Console.WriteLine("| 2. Alugar livro             |");
-                    Console.WriteLine("| 3. Devolver livro           |");
-                    Console.WriteLine("| 4. Sair                     |");
+                    Console.WriteLine("| 3. Consultar alugueres      |");
+                    Console.WriteLine("| 4. Devolver livro           |");
+                    Console.WriteLine("| 5. Sair                     |");
                     Console.WriteLine("===============================");
                     Console.WriteLine();
 
@@ -119,27 +120,32 @@ namespace ProjetoPOO
                     {
                         case 1:
                             RegistarLivro.ExibirListaLivros(Livros);
-                            break;
-                        case 2:
-                            EmprestimosLivros.LerPedidoAluguer(Livros, utilizadorLogado, emprestimoLivros);
                            
                             break;
+                        case 2:
+                            Console.Clear();
+                            RegistarLivro.ExibirListaLivros(Livros);
+                            EmprestimosLivros.LerPedidoAluguer(Livros, utilizadorLogado, emprestimoLivros);
+                            break; 
                         case 3:
-                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
+                           
                             break;
                         case 4:
+                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
+                            break;
+                        case 5:
                             Console.WriteLine("Obrigado, até a próxima!");
                             break;
                     }
 
-                    if (opcaoMenuPrincipal != 4)
+                    if (opcaoMenuPrincipal != 5)
                     {
                         Console.WriteLine("Deseja ver o menu novamente? (S/N)");
                         string verMenu = Console.ReadLine();
 
                         if (verMenu.ToLower() == "n")
                         {
-                            opcaoMenuPrincipal = 4;
+                            opcaoMenuPrincipal = 5;
                             Console.WriteLine("Obrigado, até a próxima!");
                         }
                         else if (verMenu.ToLower() == "s")
@@ -147,7 +153,7 @@ namespace ProjetoPOO
                             Console.Clear();
                         }
                     }
-                } while (opcaoMenuPrincipal != 4);
+                } while (opcaoMenuPrincipal != 5);
             }
             Utilizadores.MenuLogRes(listaUtilizadores, Livros);
         }

@@ -60,8 +60,8 @@ namespace ProjetoPOO
 
         public void ConsultaLivros()
         {
-            Console.WriteLine("----------------------------------------------------------------------------------------------------------");
-            Console.WriteLine($"| Título: {NomeLivro, -9} | Autor: {Autor, -9} | Ano de Publicação: {AnoPublic, -9} | Exemplares Disponíveis:{NumExemp, -3} |");
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Console.WriteLine($"| Título: {NomeLivro, -12} | Autor: {Autor, -12} | Ano de Publicação: {AnoPublic, -6} | Exemplares Disponíveis:{NumExemp, -3} |");
         }
 
         public static void RegLivros(List<RegistarLivro> Livros)
@@ -71,11 +71,11 @@ namespace ProjetoPOO
             do
             {
                 Console.WriteLine("--------------- Gestão de Livros ---------------");
-                Console.WriteLine("| 1. Adicionar Novo Livro                      |");
-                Console.WriteLine("| 2. Remover Livro Existente                   |");
-                Console.WriteLine("| 3. Atualizar Número de Exemplares Disponíveis|");
-                Console.WriteLine("| 4. Exibir Lista Atual de Livros              |");
-                Console.WriteLine("| 5. Sair                                      |");
+                Console.WriteLine("| 1. Adicionar Novo Livro                       |");
+                Console.WriteLine("| 2. Remover Livro Existente                    |");
+                Console.WriteLine("| 3. Atualizar Número de Exemplares Disponíveis |");
+                Console.WriteLine("| 4. Exibir Lista Atual de Livros               |");
+                Console.WriteLine("| 5. Sair                                       |");
                 Console.WriteLine("================================================");
                 opcao = int.Parse(Console.ReadLine());
                 Console.WriteLine("");
@@ -93,6 +93,7 @@ namespace ProjetoPOO
                         AtualizarNumeroExemplares(Livros);
                         break;
                     case 4:
+                        Console.Clear();
                         ExibirListaLivros(Livros);
                         break;
                     case 5:
@@ -162,7 +163,7 @@ namespace ProjetoPOO
         }
         public static void ExibirListaLivros(List<RegistarLivro> Livros)
         {
-            Console.WriteLine("---------------------------------------- Consulta de Livros ----------------------------------------");
+            Console.WriteLine("------------------------------------------ Consulta de Livros -----------------------------------------");
             foreach (var livro in Livros)
             {
                 if (livro.NumExemp > 0)
@@ -171,7 +172,7 @@ namespace ProjetoPOO
                 }
                 // talvez passar a lista para ca para ter organizacao, ja que nao eh uma metodo grande
             }
-            Console.WriteLine("====================================================================================================");
+            Console.WriteLine("=======================================================================================================");
         }
 
     }
