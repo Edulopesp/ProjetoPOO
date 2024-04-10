@@ -121,10 +121,11 @@ namespace ProjetoPOO
                             ExibirListaLivros();
                             break;
                         case 2:
-                            LerPedidoAluguer(utilizadorLogado);
+                            EmprestimosLivros.LerPedidoAluguer(Livros, utilizadorLogado, emprestimoLivros);
+                           
                             break;
                         case 3:
-                            DevolucaoLivroAluguer(utilizadorLogado);
+                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, livro);
                             break;
                         case 4:
                             Console.WriteLine("Obrigado, até a próxima!");
