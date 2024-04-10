@@ -8,8 +8,8 @@ namespace ProjetoPOO
 {
     class MenuPrincipal
     {
-
         public static void MenuAcoesPrincipal(List<Utilizadores> listaUtilizadores, Utilizadores utilizadorLogado,List<RegistarLivro> Livros,List  <EmprestimosLivros> emprestimoLivros)
+
         {
             bool permissaoFuncionario = utilizadorLogado.Funcionario;
             int opcaoMenuPrincipal = 0;
@@ -45,13 +45,13 @@ namespace ProjetoPOO
                     {
                         case 1:
                             Console.Clear();
-                            ExibirListaLivros();
+                            RegistarLivro.ExibirListaLivros(Livros);
                             break;
                         case 2:
                             Console.Clear();
-                            ExibirListaLivros();
+                            RegistarLivro.ExibirListaLivros(Livros);
                             Console.WriteLine();
-                         EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros);
+                            EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros);
                             break;
                         case 3:
                             Console.Clear();
@@ -63,7 +63,7 @@ namespace ProjetoPOO
                             break;
                         case 5:
                             Console.Clear();
-                            RegLivros();
+                            RegistarLivro.RegLivros(Livros);
                             break;
                         case 6:
                             Console.Clear();
@@ -118,7 +118,7 @@ namespace ProjetoPOO
                     switch (opcaoMenuPrincipal)
                     {
                         case 1:
-                            ExibirListaLivros();
+                            RegistarLivro.ExibirListaLivros(Livros);
                             break;
                         case 2:
                             EmprestimosLivros.LerPedidoAluguer(Livros, utilizadorLogado, emprestimoLivros);

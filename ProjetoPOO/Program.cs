@@ -8,6 +8,7 @@ class Program
     // Parte Main Sara
 
     // Criar lista para armazenar os livros
+    /*
     static void RegLivros()
     {
         int opcao;
@@ -51,6 +52,7 @@ class Program
         }
         while (opcao != 5);
     }
+    
     static void AdicionarNovoLivro(List<RegistarLivro> Livros) // conflitos
     {
         string nomeLivro;
@@ -118,7 +120,6 @@ class Program
         }
         Console.WriteLine("====================================================================================================");
     }
-    
     // Fim da parte Main Sara
     /*
     static List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
