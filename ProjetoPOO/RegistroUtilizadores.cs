@@ -170,7 +170,7 @@ namespace ProjetoPOO
             }
         }
 
-        static void mostrarListaUtilizadores(List<Utilizadores> listaUtilizadores)
+        public static void mostrarListaUtilizadores(List<Utilizadores> listaUtilizadores)
         {
             Console.WriteLine("");
             Console.WriteLine("-------------------- Lista de Utilizadores --------------------");
