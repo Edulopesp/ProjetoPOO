@@ -8,7 +8,7 @@ namespace ProjetoPOO
 {
     class MenuPrincipal
     {
-        static void MenuAcoesPrincipal(Utilizadores utilizadorLogado)
+        public static void MenuAcoesPrincipal(Utilizadores utilizadorLogado, List<Utilizadores> listaUtilizadores)
         {
             bool permissaoFuncionario = utilizadorLogado.Funcionario;
             int opcaoMenuPrincipal = 0;
@@ -146,7 +146,7 @@ namespace ProjetoPOO
                     }
                 } while (opcaoMenuPrincipal != 4);
             }
-            MenuLogRes();
+            Utilizadores.MenuLogRes(listaUtilizadores);
         }
     }
 }

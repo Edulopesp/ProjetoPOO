@@ -23,7 +23,7 @@ namespace ProjetoPOO
             Funcionario = funcionario;
         }
 
-        static Utilizadores MenuLogRes(List<Utilizadores> listaUtilizadores)
+        public static Utilizadores MenuLogRes(List<Utilizadores> listaUtilizadores)
         {
             double opcaoMenuLogRes;
             Utilizadores utilizadorLogado = null;
