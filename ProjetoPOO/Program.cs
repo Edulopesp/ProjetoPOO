@@ -511,7 +511,7 @@ class Program
             } else
             {
                 Console.WriteLine("Não há livros alugados na sua conta.");
-                MenuPrincipal.MenuAcoesPrincipal(utilizadorLogado);
+                MenuPrincipal.MenuAcoesPrincipal(utilizadorLogado, listaUtilizadores);
             }
 
         }
@@ -566,9 +566,9 @@ class Program
         
 
         // criar uma variável para armazenar o usuário logado
-        Utilizadores utilizadorLogado = MenuLogRes();
+        Utilizadores utilizadorLogado = Utilizadores.MenuLogRes(listaUtilizadores);
 
-        MenuPrincipal.MenuAcoesPrincipal(utilizadorLogado);
+        MenuPrincipal.MenuAcoesPrincipal(utilizadorLogado, listaUtilizadores);
 
 
         // Ajustar as tabelas, adicionar o livro da semana, organizar os consoleClear da gestao de livros, maior leitor do mes, penalizacao para qm nao devolver a tempo

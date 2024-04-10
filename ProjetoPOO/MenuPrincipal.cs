@@ -8,6 +8,7 @@ namespace ProjetoPOO
 {
     class MenuPrincipal
     {
+
         public static void MenuAcoesPrincipal(Utilizadores utilizadorLogado,List<RegistarLivro> Livros,List  <EmprestimosLivros> emprestimoLivros,RegistarLivro livro)
         {
             bool permissaoFuncionario = utilizadorLogado.Funcionario;
@@ -147,7 +148,7 @@ namespace ProjetoPOO
                     }
                 } while (opcaoMenuPrincipal != 4);
             }
-            MenuLogRes();
+            Utilizadores.MenuLogRes(listaUtilizadores);
         }
     }
 }
