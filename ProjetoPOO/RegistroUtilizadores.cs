@@ -23,14 +23,16 @@ namespace ProjetoPOO
             Funcionario = funcionario;
         }
 
-        public static Utilizadores MenuLogRes(List<Utilizadores> listaUtilizadores)
+        public static Utilizadores MenuLogRes(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
         {
             double opcaoMenuLogRes;
             Utilizadores utilizadorLogado = null;
 
             Console.Clear();
-            Console.WriteLine("        Bem vindo!");
-            Console.WriteLine("");
+            Console.WriteLine("                   Bem vindo à Biblioteca BES(T)!           ");
+            Console.WriteLine($"   Onde temos à sua disposição mais de {Livros.Count() - 1} Títulos!");
+            Console.WriteLine();
+            Console.WriteLine();
 
             Console.WriteLine(" ----------Menu----------");
             Console.WriteLine("| 1 - Login              |");

@@ -21,7 +21,6 @@ namespace ProjetoPOO
             NomeCliente = nomeCliente;
             Livro = livro;
             Duracao = duracao;
-           
             Devolvido = devolvido;
             Data = data;
         }
@@ -44,21 +43,16 @@ namespace ProjetoPOO
 
                     var dataLivroAluguer = DateOnly.FromDateTime(DateTime.Now);
 
-                    //Console.WriteLine("Quantos exemplares pretende alugar?"); 
-                    //int qntLivroAluguer = int.Parse(Console.ReadLine());
-
                     string nomeClienteAluguer = utilizadorLogado.NomeUtilizador;
 
                     emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado.NomeUtilizador, livroEscolhido, duracaoLivroAluguer, false, dataLivroAluguer));
 
                     livroEscolhido.NumExemp--;
 
-                    //livroEscolhido.NumVezesEscolhido++
-
-                    //retornamos o livro escolhido como registar livro para ? sair da funcao ?
+                    livroEscolhido.NumVezesAlugado++;
 
                     //return livroEscolhido;
-                   break; //inverter os ifs talvez o break salte fora do while 
+                    break;
                 }
                 else
                 {
@@ -109,22 +103,21 @@ namespace ProjetoPOO
         {
             //objetivo do nr vezes alugado seria para fazer um best of livros mais requisitados
             Console.WriteLine("---------------------------------------------------------------------------------------------");
-            Console.WriteLine($"| Titulo: {Livro.NomeLivro, -10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao} | Data Pedido: {Data,-10} |");
+            Console.WriteLine($"| Titulo: {Livro.NomeLivro, -10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao} | Data Pedido: {Data,-10} | Quantidade de Alugueres: {Livro.NumVezesAlugado} |");
         }
         public void ConsultaEmprestimoIndividual()
         {
+            var dataHoje = DateOnly.FromDateTime(DateTime.Now);
+
             Console.WriteLine("------------------------------------------------------------------------");
-            Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Duração: {Duracao,-9} | Data Pedido: {Data,-9} |");
+            Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Duração: {Duracao,-9} | Data Pedido: {Data,-9} | Data Entrega: {DataEntregaLivroAlugado()} | Entregar em: {DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber} |");
         }
         // no relatorio poderia vir a informacao  se o livro foi devolvido a tempo etc
-        public static void RelatorioEmprestimos(List<EmprestimosLivros>emprestimoLivros)
+       
+        public DateOnly DataEntregaLivroAlugado()
         {
-            Console.WriteLine("-------------------------------------- Lista de Emprestimos ---------------------------------");
-            foreach (var livroAlugado in emprestimoLivros)
-            {
-                livroAlugado.ConsultaListaEmpr();
-            }
-            Console.WriteLine("============================================================================================="); // ajustar tamanho dps
+            var dataLimite = Data.AddDays(Duracao);
+            return dataLimite;
         }
     }
 }

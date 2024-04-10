@@ -137,8 +137,7 @@ class Program
         List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
         List<RegistarLivro> Livros = new List<RegistarLivro>();
 
-        var dataTeste = DateOnly.FromDateTime(DateTime.Now);
-        string dataAtual = Convert.ToString(dataTeste);
+        var dataAtual = DateOnly.FromDateTime(DateTime.Now);
 
         // criando um usuario para teste
         RegistarLivro livroGrey = new RegistarLivro("grey", "bruno", 1720, 12);
@@ -158,7 +157,7 @@ class Program
         
 
         // criar uma variável para armazenar o usuário logado
-        Utilizadores utilizadorLogado = Utilizadores.MenuLogRes(listaUtilizadores);
+        Utilizadores utilizadorLogado = Utilizadores.MenuLogRes(listaUtilizadores, Livros);
 
         MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
 

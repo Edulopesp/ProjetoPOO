@@ -14,6 +14,12 @@ namespace ProjetoPOO
         public string Autor;
         public int AnoPublic;
         public int NumExemp;
+        public int NumVezesAlugado;
+       
+
+        // adicionar o genero
+        // adicionar idioma 
+        // adicionar sinopse individual 
 
         // Construtor padrão
         public RegistarLivro(string nomeLivro, string autor, int anoPublic,int numExemp)
@@ -22,6 +28,7 @@ namespace ProjetoPOO
             Autor = autor;
             AnoPublic = anoPublic;
             NumExemp = numExemp;
+            NumVezesAlugado = 0;
         }
 
         // Métodos

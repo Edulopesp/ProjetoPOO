@@ -55,11 +55,11 @@ namespace ProjetoPOO
                             break;
                         case 3:
                             Console.Clear();
-                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado,emprestimoLivros,Livros);
+                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado,emprestimoLivros,Livros, listaUtilizadores);
                             break;
                         case 4:
                             Console.Clear();
-                            EmprestimosLivros.RelatorioEmprestimos(emprestimoLivros);
+                            RelatoriosEmprestimos.RelatorioEmprestimos(emprestimoLivros);
                             break;
                         case 5:
                             Console.Clear();
@@ -149,7 +149,7 @@ namespace ProjetoPOO
                     }
                 } while (opcaoMenuPrincipal != 4);
             }
-            Utilizadores.MenuLogRes(listaUtilizadores);
+            Utilizadores.MenuLogRes(listaUtilizadores, Livros);
         }
     }
 }
