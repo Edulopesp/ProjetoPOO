@@ -8,7 +8,8 @@ namespace ProjetoPOO
 {
     class MenuPrincipal
     {
-        public static void MenuAcoesPrincipal(Utilizadores utilizadorLogado,List<RegistarLivro> Livros,List  <EmprestimosLivros> emprestimoLivros,RegistarLivro livro, List<Utilizadores> listaUtilizadores)
+        public static void MenuAcoesPrincipal(List<Utilizadores> listaUtilizadores, Utilizadores utilizadorLogado,List<RegistarLivro> Livros,List  <EmprestimosLivros> emprestimoLivros)
+
         {
             bool permissaoFuncionario = utilizadorLogado.Funcionario;
             int opcaoMenuPrincipal = 0;
@@ -54,7 +55,7 @@ namespace ProjetoPOO
                             break;
                         case 3:
                             Console.Clear();
-                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado,emprestimoLivros,Livros,livro);
+                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado,emprestimoLivros,Livros);
                             break;
                         case 4:
                             Console.Clear();
@@ -124,7 +125,7 @@ namespace ProjetoPOO
                            
                             break;
                         case 3:
-                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, livro);
+                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
                             break;
                         case 4:
                             Console.WriteLine("Obrigado, até a próxima!");

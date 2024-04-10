@@ -42,7 +42,7 @@ namespace ProjetoPOO
                     Console.WriteLine("Quantos dias de aluguer deseja? ");
                     int duracaoLivroAluguer = int.Parse(Console.ReadLine());
 
-                    DateOnly dataLivroAluguer = DateOnly.FromDateTime(DateTime.Now);
+                    var dataLivroAluguer = DateOnly.FromDateTime(DateTime.Now);
 
                     //Console.WriteLine("Quantos exemplares pretende alugar?"); 
                     //int qntLivroAluguer = int.Parse(Console.ReadLine());
@@ -69,7 +69,7 @@ namespace ProjetoPOO
             } while (true);
         }
 
-        public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado,List<EmprestimosLivros>emprestimoLivros,List<RegistarLivro>Livros, RegistarLivro livro)
+        public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado,List<EmprestimosLivros>emprestimoLivros,List<RegistarLivro>Livros, List<Utilizadores> listaUtilizadores)
         {
             Console.WriteLine("--------------------------------------------- Os seus Livros ---------------------------------------------");
             foreach (EmprestimosLivros book in emprestimoLivros)
@@ -81,7 +81,7 @@ namespace ProjetoPOO
                 else
                 {
                     Console.WriteLine("Não há livros alugados na sua conta.");
-                    MenuPrincipal.MenuAcoesPrincipal(utilizadorLogado,Livros,emprestimoLivros,livro);
+                    MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
                 }
 
             }
@@ -108,12 +108,8 @@ namespace ProjetoPOO
         public void ConsultaListaEmpr()
         {
             //objetivo do nr vezes alugado seria para fazer um best of livros mais requisitados
-            
-
             Console.WriteLine("---------------------------------------------------------------------------------------------");
             Console.WriteLine($"| Titulo: {Livro.NomeLivro, -10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao} | Data Pedido: {Data,-10} |");
-           
-
         }
         public void ConsultaEmprestimoIndividual()
         {
