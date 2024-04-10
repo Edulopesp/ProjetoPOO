@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace ProjetoPOO
 {
-
-
     internal class EmprestimosLivros
     {
         public string NomeCliente;
