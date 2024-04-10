@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+
 
 namespace ProjetoPOO
 {
@@ -51,7 +53,7 @@ namespace ProjetoPOO
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
                             Console.WriteLine();
-                            EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros);
+                            EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros, listaUtilizadores);
                             break;
                         case 3:
                             Console.Clear();
@@ -63,7 +65,7 @@ namespace ProjetoPOO
                             break;
                         case 5:
                             Console.Clear();
-                            RegistarLivro.RegLivros(Livros);
+                            RegistarLivro.RegLivros(Livros, utilizadorLogado, emprestimoLivros, listaUtilizadores);
                             break;
                         case 6:
                             Console.Clear();
@@ -100,8 +102,9 @@ namespace ProjetoPOO
                     Console.WriteLine(" ------------ Menu ------------");
                     Console.WriteLine("| 1. Exibir lista de livros   |");
                     Console.WriteLine("| 2. Alugar livro             |");
-                    Console.WriteLine("| 3. Devolver livro           |");
-                    Console.WriteLine("| 4. Sair                     |");
+                    Console.WriteLine("| 3. Consultar Alugueres      |");
+                    Console.WriteLine("| 4. Devolver livro           |");
+                    Console.WriteLine("| 5. Sair                     |");
                     Console.WriteLine("===============================");
                     Console.WriteLine();
 
@@ -118,28 +121,38 @@ namespace ProjetoPOO
                     switch (opcaoMenuPrincipal)
                     {
                         case 1:
+                            Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
                             break;
                         case 2:
-                            EmprestimosLivros.LerPedidoAluguer(Livros, utilizadorLogado, emprestimoLivros);
-                           
+                            Console.Clear();
+                            RegistarLivro.ExibirListaLivros(Livros);
+                            EmprestimosLivros.LerPedidoAluguer(Livros, utilizadorLogado, emprestimoLivros, listaUtilizadores);
                             break;
                         case 3:
-                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
+                            Console.Clear();
+                            EmprestimosLivros.consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
                             break;
                         case 4:
+                            Console.Clear();
+                            EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
+                            break;
+                        case 5:
+                            Console.Clear();
                             Console.WriteLine("Obrigado, até a próxima!");
                             break;
+
                     }
 
-                    if (opcaoMenuPrincipal != 4)
+                    if (opcaoMenuPrincipal != 5)
                     {
+                        Console.WriteLine();
                         Console.WriteLine("Deseja ver o menu novamente? (S/N)");
                         string verMenu = Console.ReadLine();
 
                         if (verMenu.ToLower() == "n")
                         {
-                            opcaoMenuPrincipal = 4;
+                            opcaoMenuPrincipal = 5;
                             Console.WriteLine("Obrigado, até a próxima!");
                         }
                         else if (verMenu.ToLower() == "s")
@@ -147,7 +160,7 @@ namespace ProjetoPOO
                             Console.Clear();
                         }
                     }
-                } while (opcaoMenuPrincipal != 4);
+                } while (opcaoMenuPrincipal != 5);
             }
             Utilizadores.MenuLogRes(listaUtilizadores, Livros);
         }

@@ -27,12 +27,20 @@ namespace ProjetoPOO
         public EmprestimosLivros() 
         {
         }
-        public static void LerPedidoAluguer(List<RegistarLivro>Livros,Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros)
+        public static RegistarLivro LerPedidoAluguer(List<RegistarLivro>Livros,Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<Utilizadores> listaUtilizadores)
         {
+                Console.WriteLine("Para voltar digite 'sair'.");
+
             do
             {
-                Console.WriteLine("Qual o livro que deseja alugar? ");
+                Console.WriteLine("Qual o livro que deseja alugar?");
                 string tituloLivroAluguer = Console.ReadLine();
+
+                if (tituloLivroAluguer.ToLower() == "sair")
+                {
+                    Console.Clear();
+                    MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
+                } 
 
                 RegistarLivro livroEscolhido = Livros.Find(a => a.NomeLivro == tituloLivroAluguer);
 
@@ -43,7 +51,7 @@ namespace ProjetoPOO
 
                     var dataLivroAluguer = DateOnly.FromDateTime(DateTime.Now);
 
-                    string nomeClienteAluguer = utilizadorLogado.NomeUtilizador;
+                    //string nomeClienteAluguer = utilizadorLogado.NomeUtilizador;
 
                     emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado.NomeUtilizador, livroEscolhido, duracaoLivroAluguer, false, dataLivroAluguer));
 
@@ -51,8 +59,8 @@ namespace ProjetoPOO
 
                     livroEscolhido.NumVezesAlugado++;
 
-                    //return livroEscolhido;
-                    break;
+                    return livroEscolhido;
+                    //break;
                 }
                 else
                 {
@@ -65,21 +73,8 @@ namespace ProjetoPOO
 
         public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado,List<EmprestimosLivros>emprestimoLivros,List<RegistarLivro>Livros, List<Utilizadores> listaUtilizadores)
         {
-            Console.WriteLine("--------------------------------------------- Os seus Livros ---------------------------------------------");
-            foreach (EmprestimosLivros book in emprestimoLivros)
-            {
-                if ((book.NomeCliente == utilizadorLogado.NomeUtilizador) && (book.Devolvido == false))
-                {
-                    book.ConsultaEmprestimoIndividual();
-                }
-                else
-                {
-                    Console.WriteLine("Não há livros alugados na sua conta.");
-                    MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
-                }
+            consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
 
-            }
-            Console.WriteLine("==========================================================================================================");
 
             Console.WriteLine("Qual o livro que deseja devolver? ");
             string livroAremover = Console.ReadLine();
@@ -113,11 +108,32 @@ namespace ProjetoPOO
             Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Duração: {Duracao,-9} | Data Pedido: {Data,-9} | Data Entrega: {DataEntregaLivroAlugado()} | Entregar em: {DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber} |");
         }
         // no relatorio poderia vir a informacao  se o livro foi devolvido a tempo etc
-       
         public DateOnly DataEntregaLivroAlugado()
         {
             var dataLimite = Data.AddDays(Duracao);
             return dataLimite;
         }
+        public static void consultaAlugueresCliente(Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<RegistarLivro> Livros, List<Utilizadores> listaUtilizadores) 
+        {
+            int contadorLivrosDoUtilizador = 0;
+
+            Console.WriteLine("--------------------------------------------- Os seus Livros ---------------------------------------------");
+            foreach (EmprestimosLivros livro in emprestimoLivros)
+            {
+                if ((livro.NomeCliente == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
+                {
+                    livro.ConsultaEmprestimoIndividual();
+                    contadorLivrosDoUtilizador++;
+                }
+            }
+            if (contadorLivrosDoUtilizador == 0)
+            {
+                Console.WriteLine("Não há livros alugados na sua conta.");
+                MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
+            }
+
+            Console.WriteLine("==========================================================================================================");
+
+            }
     }
 }

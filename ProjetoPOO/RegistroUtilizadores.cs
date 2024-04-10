@@ -27,10 +27,18 @@ namespace ProjetoPOO
         {
             double opcaoMenuLogRes;
             Utilizadores utilizadorLogado = null;
+            int totalLivrosBiblioteca = 0;
+
+            foreach (var livro in Livros)
+            {
+                totalLivrosBiblioteca += livro.NumExemp;
+            }
 
             Console.Clear();
-            Console.WriteLine("                   Bem vindo à Biblioteca BES(T)!           ");
-            Console.WriteLine($"   Onde temos à sua disposição mais de {Livros.Count() - 1} Títulos!");
+            Console.WriteLine("            Bem vindo à Biblioteca BES<T>!");
+            Console.WriteLine($"   Onde temos à sua disposição mais de {totalLivrosBiblioteca - 1} Livros"); 
+            Console.WriteLine($"           entre {Livros.Count() - 1} Títulos diferentes!");
+
             Console.WriteLine();
             Console.WriteLine();
 
