@@ -430,7 +430,7 @@ class Program
 
         LivroAluguerGeral.LerPedidoAluguer(utilizadorLogado);
         emprestimoLivros.Add(LivroAluguerGeral);
-    }*/
+    }
 
     public static RegistarLivro LerPedidoAluguer(Utilizadores utilizadorLogado)
     {
@@ -499,7 +499,7 @@ class Program
     }
      // AtualizarLista == atualizar quantidade sem ser por aluguer, opcao ja feita pela sara na gestao de livros
      
-     */
+     
     public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado)
     {
         Console.WriteLine("--------------------------------------------- Os seus Livros ---------------------------------------------");
@@ -534,16 +534,8 @@ class Program
             Console.WriteLine("Livro nao encontrado");
         }
     }
-    static void RelatorioEmprestimos()
-    {
-        Console.WriteLine("-------------------------------------- Lista de Emprestimos ---------------------------------");
-        foreach (var livroAlugado in emprestimoLivros)
-        {
-            livroAlugado.ConsultaListaEmpr();
-        }
-        Console.WriteLine("============================================================================================="); // ajustar tamanho dps
-    }
-
+    
+    */
     static List<EmprestimosLivros> emprestimoLivros = new List<EmprestimosLivros>();
 
     static List<RegistarLivro> Livros = new List<RegistarLivro>();
