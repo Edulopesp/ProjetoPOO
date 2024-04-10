@@ -29,7 +29,7 @@ namespace ProjetoPOO
         }
         public static RegistarLivro LerPedidoAluguer(List<RegistarLivro>Livros,Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<Utilizadores> listaUtilizadores)
         {
-                Console.WriteLine("Para voltar digite 'sair'.");
+                Console.WriteLine("Para retroceder digite 'sair'.");
 
             do
             {
@@ -40,33 +40,37 @@ namespace ProjetoPOO
                 {
                     Console.Clear();
                     MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
-                } 
-
-                RegistarLivro livroEscolhido = Livros.Find(a => a.NomeLivro == tituloLivroAluguer);
-
-                if (livroEscolhido != null)
-                {
-                    Console.WriteLine("Quantos dias de aluguer deseja? ");
-                    int duracaoLivroAluguer = int.Parse(Console.ReadLine());
-
-                    var dataLivroAluguer = DateOnly.FromDateTime(DateTime.Now);
-
-                    //string nomeClienteAluguer = utilizadorLogado.NomeUtilizador;
-
-                    emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado.NomeUtilizador, livroEscolhido, duracaoLivroAluguer, false, dataLivroAluguer));
-
-                    livroEscolhido.NumExemp--;
-
-                    livroEscolhido.NumVezesAlugado++;
-
-                    return livroEscolhido;
-                    //break;
                 }
                 else
                 {
-                    Console.Clear();
-                    Console.WriteLine("Livro não encontrado, tente novamente.");
-                    Console.WriteLine("");
+
+                    RegistarLivro livroEscolhido = Livros.Find(a => a.NomeLivro == tituloLivroAluguer);
+
+
+                    if (livroEscolhido != null)
+                    {
+                        Console.WriteLine("Quantos dias de aluguer deseja? ");
+                        int duracaoLivroAluguer = int.Parse(Console.ReadLine());
+
+                        var dataLivroAluguer = DateOnly.FromDateTime(DateTime.Now);
+
+                        //string nomeClienteAluguer = utilizadorLogado.NomeUtilizador;
+
+                        emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado.NomeUtilizador, livroEscolhido, duracaoLivroAluguer, false, dataLivroAluguer));
+
+                        livroEscolhido.NumExemp--;
+
+                        livroEscolhido.NumVezesAlugado++;
+
+                        return livroEscolhido;
+                        //break;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Livro não encontrado, tente novamente.");
+                        Console.WriteLine("");
+                    }
                 }
             } while (true);
         }
