@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +15,16 @@ namespace ProjetoPOO
         public string Autor;
         public int AnoPublic;
         public int NumExemp;
+        public int NumVezesAlugado=0;
 
         // Construtor padrão
-        public RegistarLivro(string nomeLivro, string autor, int anoPublic,int numExemp)
+        public RegistarLivro(string nomeLivro, string autor, int anoPublic,int numExemp, int numVezesAlugado)
         {
             NomeLivro = nomeLivro;
             Autor = autor;
             AnoPublic = anoPublic;
             NumExemp = numExemp;
+            NumVezesAlugado = numVezesAlugado;
         }
 
         // Métodos
