@@ -239,6 +239,8 @@
             {
                 Console.Write("| Género do livro: ");
                 opcaoEscolhida = int.Parse(Console.ReadLine());
+                return "Opção Inválida";
+
 
             } while ((opcaoEscolhida != 0) && (opcaoEscolhida != 1) && (opcaoEscolhida != 2) && (opcaoEscolhida != 3) && (opcaoEscolhida != 4) && (opcaoEscolhida != 5));
 
@@ -274,20 +276,23 @@
         public static void ConsultaFiltrada(List<RegistarLivro> Livros)
 
         {
-            Console.WriteLine("1. Pesquisa por Genero");
-            Console.WriteLine("2. Pesquisa por Idioma");
-            Console.WriteLine("3. Sair");
-            int option = int.Parse(Console.ReadLine());
+            Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
 
-            switch (option)
+            string valor = Console.ReadLine();
+
+            while (valor != "sair")
             {
-                case 1:
-                    Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
 
-                    string valor = Console.ReadLine();
+                Console.WriteLine("1. Pesquisa por Genero");
+                Console.WriteLine("2. Pesquisa por Idioma");
+                Console.WriteLine("3. Sair");
+                int option = int.Parse(Console.ReadLine());
 
-                    while (valor != "sair")
-                    {
+                switch (option)
+                {
+                    case 1:
+
+
                         Console.WriteLine("-----------Pesquisa por Genero------------");
 
                         Console.WriteLine();
@@ -305,56 +310,66 @@
 
                         }
                         if ((genero == "sair") || (genero == "Opção Inválida"))
-                        {
+                        /*
 
                             Console.WriteLine();
                             Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
                             valor = Console.ReadLine();
                         }
+*/
+
+                        { }
+                        break;
+
+                    case 2:
 
 
-                    }
-                    break;
-
-                case 2:
-                    Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
-
-                    string valor1 = Console.ReadLine();
-
-                    while (valor1 != "sair")
-                    {
-                        Console.WriteLine("-----------Pesquisa por Genero------------");
-
-                        Console.WriteLine();
-
-                        string idioma = ExibirListaIdiomas();
-
-                        foreach (var livro in Livros)
+                        while (valor != "sair")
                         {
-
-                            if (idioma == livro.IdiomaLivro)
-                            {
-                                livro.ConsultaLivros();
-
-                            }
-
-                        }
-                        if ((idioma == "sair") || (idioma == "Opção Inválida"))
-                        {
+                            Console.WriteLine("-----------Pesquisa por Idioma------------");
 
                             Console.WriteLine();
-                            Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
-                            valor1 = Console.ReadLine();
+
+                            string idioma = ExibirListaIdiomas();
+
+                            foreach (var livro in Livros)
+                            {
+
+                                if (idioma == livro.IdiomaLivro)
+                                {
+                                    livro.ConsultaLivros();
+
+                                }
+
+                            }
+                            if ((idioma == "sair") || (idioma == "Opção Inválida"))
+                            {
+                                /*
+                                Console.WriteLine();
+                                Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
+                                valor = Console.ReadLine();
+                                break;
+
+                                */
+                            }
+                            break;
+
                         }
+                        break;
 
+                    case 3:
+                        Console.WriteLine("obrigado");
+                        break;
 
-                    }
-                    break;
-
+                }
             }
+            Console.WriteLine("obrigado");
+
         }
     }
 }
+
+
 
 
 
