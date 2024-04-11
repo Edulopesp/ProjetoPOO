@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjetoPOO.Enum
 {
-    internal enum EstadoAluguel
-    {
-        Entregue = 1,
-        Atrasado = 2,
-        Processando = 3,
+    internal enum MultasAluguer
+    {//apenas se quer pagar a multa em dias de interdicao ou em dinheiro
+        Dias = 5,
+        Pagamento = 5
+
     }
 }

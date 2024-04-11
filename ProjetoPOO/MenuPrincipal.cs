@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+
 
 namespace ProjetoPOO
 {
@@ -46,12 +48,13 @@ namespace ProjetoPOO
                         case 1:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
+                            RegistarLivro.ConsultaFiltrada(Livros);
                             break;
                         case 2:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
                             Console.WriteLine();
-                            EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros);
+                            EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros, listaUtilizadores);
                             break;
                         case 3:
                             Console.Clear();
@@ -63,7 +66,7 @@ namespace ProjetoPOO
                             break;
                         case 5:
                             Console.Clear();
-                            RegistarLivro.RegLivros(Livros);
+                            RegistarLivro.RegLivros(Livros, utilizadorLogado, emprestimoLivros, listaUtilizadores);
                             break;
                         case 6:
                             Console.Clear();
@@ -100,7 +103,7 @@ namespace ProjetoPOO
                     Console.WriteLine(" ------------ Menu ------------");
                     Console.WriteLine("| 1. Exibir lista de livros   |");
                     Console.WriteLine("| 2. Alugar livro             |");
-                    Console.WriteLine("| 3. Consultar alugueres      |");
+                    Console.WriteLine("| 3. Consultar Alugueres      |");
                     Console.WriteLine("| 4. Devolver livro           |");
                     Console.WriteLine("| 5. Sair                     |");
                     Console.WriteLine("===============================");
@@ -119,27 +122,33 @@ namespace ProjetoPOO
                     switch (opcaoMenuPrincipal)
                     {
                         case 1:
+                            Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
-                           
+                            RegistarLivro.ConsultaFiltrada(Livros);
                             break;
                         case 2:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
-                            EmprestimosLivros.LerPedidoAluguer(Livros, utilizadorLogado, emprestimoLivros);
-                            break; 
+                            EmprestimosLivros.LerPedidoAluguer(Livros, utilizadorLogado, emprestimoLivros, listaUtilizadores);
+                            break;
                         case 3:
-                           
+                            Console.Clear();
+                            EmprestimosLivros.consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
                             break;
                         case 4:
+                            Console.Clear();
                             EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
                             break;
                         case 5:
+                            Console.Clear();
                             Console.WriteLine("Obrigado, até a próxima!");
                             break;
+
                     }
 
                     if (opcaoMenuPrincipal != 5)
                     {
+                        Console.WriteLine();
                         Console.WriteLine("Deseja ver o menu novamente? (S/N)");
                         string verMenu = Console.ReadLine();
 

@@ -26,6 +26,20 @@ namespace ProjetoPOO
             Console.WriteLine("====================================================================================================================="); // ajustar tamanho dps
         }
 
+        public static void RelatorioLivrosEmpresas(List<EmprestimosLivros> emprestimoLivros, List<RegistarLivro> Livros)
+        {
+            int totalLivrosBiblioteca = 0;
+
+            foreach (var livro in Livros)
+            {
+                totalLivrosBiblioteca += livro.NumExemp;
+            }
+
+
+            Console.WriteLine("============================== Relatórios ============================== ");
+            Console.WriteLine("============================================================================================="); // ajustar tamanho dps
+        }
+
         public void RelatorioLivrosClientes(List<RegistarLivro> Livros)
         {
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
@@ -49,7 +63,7 @@ namespace ProjetoPOO
             Console.WriteLine($"| Titulo: Too Late | Autor: Collen Hoover | Gênero: Drama | Idioma: Inglês |");
             Console.WriteLine($"| Titulo: King of Sloth | Autor: Ana Huang | Gênero: Romance | Idioma: Inglês |");
             Console.WriteLine(" |--------------------------------------------------------------------------------------------------------");
-            Console.WriteLine($"| --------------------------------- Ultimas Oportunidades ---------------------------------|");
+            Console.WriteLine($"|--------------------------------- Ultimas Oportunidades ---------------------------------|");
 
 
             foreach (var livro in Livros)
@@ -61,7 +75,6 @@ namespace ProjetoPOO
                 }
             }
             Console.WriteLine(" |--------------------------------------------------------------------------------------------------------");
-
 
 
             Console.WriteLine("============================================================================================="); // ajustar tamanho dps

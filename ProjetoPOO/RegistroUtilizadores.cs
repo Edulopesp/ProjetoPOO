@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjetoPOO
+﻿namespace ProjetoPOO
 {
     class Utilizadores
     {
@@ -27,10 +21,18 @@ namespace ProjetoPOO
         {
             double opcaoMenuLogRes;
             Utilizadores utilizadorLogado = null;
+            int totalLivrosBiblioteca = 0;
+
+            foreach (var livro in Livros)
+            {
+                totalLivrosBiblioteca += livro.NumExemp;
+            }
 
             Console.Clear();
-            Console.WriteLine("                   Bem vindo à Biblioteca BES(T)!           ");
-            Console.WriteLine($"   Onde temos à sua disposição mais de {Livros.Count() - 1} Títulos!");
+            Console.WriteLine("            Bem vindo à Biblioteca BES<T>!");
+            Console.WriteLine($"   Onde temos à sua disposição mais de {totalLivrosBiblioteca - 1} Livros");
+            Console.WriteLine($"           entre {Livros.Count()} Títulos diferentes!");
+
             Console.WriteLine();
             Console.WriteLine();
 
@@ -53,36 +55,157 @@ namespace ProjetoPOO
             {
                 case 1:
                     Console.Clear();
-                    utilizadorLogado = Utilizadores.efetuarLogin(listaUtilizadores);
+                    utilizadorLogado = Utilizadores.efetuarLogin(listaUtilizadores, Livros);
                     break;
                 case 2:
                     Console.Clear();
-                    utilizadorLogado = Utilizadores.efetuarRegistro(listaUtilizadores);
+                    utilizadorLogado = Utilizadores.efetuarRegistro(listaUtilizadores, Livros);
                     break;
             }
             return utilizadorLogado;
         }
 
 
-        public static Utilizadores efetuarLogin(List<Utilizadores> listaUtilizadores)
+        public static Utilizadores efetuarLogin(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
         {
-            do
+            Console.WriteLine("-----------------------------------Login-------------------------------");
+            Console.WriteLine();
+
+
+            Console.WriteLine("  Para retroceder escreva 'sair', caso contrario primar ENTER");
+            string saida = Console.ReadLine();
+
+            if (saida == "sair")
             {
-                Console.WriteLine("----------Login----------");
-                Console.Write("| Nome: ");
+                Console.Clear();
+                return MenuLogRes(listaUtilizadores, Livros);
+
+            }
+            else
+            {
+
+                do
+                {
+                    {
+
+                        Console.Write("(1) Nome: ");
+                        string nomeUtilizador = Console.ReadLine();
+                        Console.Write("(2) Palavra-Chave: ");
+                        string palavraChaveUtilizador = Console.ReadLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+
+                        Utilizadores utilizadorLogado = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
+
+                        Utilizadores procurarPalavraChave = listaUtilizadores.Find(a => a.PalavraChave == palavraChaveUtilizador);
+
+
+
+                        if ((utilizadorLogado != null) && (procurarPalavraChave != null))
+                        {
+                            if (utilizadorLogado.Funcionario == true)
+                            {
+                                Console.Clear();
+                                Console.WriteLine($"Bem vindo funcionário {utilizadorLogado.NomeUtilizador}!");
+                                Console.WriteLine("");
+                                return utilizadorLogado;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine($"Bem vindo {utilizadorLogado.NomeUtilizador}!");
+                                Console.WriteLine("");
+                                return utilizadorLogado;
+                            }
+                        }
+                        else
+                        {
+
+                            Console.WriteLine("  Para retroceder escreva 'sair', caso contrario primar ENTER");
+                            string saida2 = Console.ReadLine();
+
+                            if (saida2 == "sair")
+                            {
+                                Console.Clear();
+                                return MenuLogRes(listaUtilizadores, Livros);
+
+                            }
+
+                            Console.Clear();
+                            Console.WriteLine("Nome ou Palavra-Chave Incorretos, tente novamente.");
+                            Console.WriteLine("");
+
+                        }
+
+                    }
+                } while (true);
+
+            }
+        }
+
+        public static Utilizadores efetuarRegistro(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
+        {
+
+            Console.WriteLine("");
+            Console.WriteLine("----------------------------Registrar-----------------------------");
+            Console.WriteLine();
+            Console.WriteLine(" ==> Para retroceder escreva 'sair', para continuar prima ENTER");
+            string saida = Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            if (saida == "sair")
+            {
+                Console.Clear();
+                return MenuLogRes(listaUtilizadores, Livros);
+
+            }
+            else
+            {
+
+                Console.Write("(1) Nome: ");
                 string nomeUtilizador = Console.ReadLine();
-                Console.Write("| Palavra-Chave: ");
+                Console.Write("(2) Endereço: ");
+                string enderecoUtilizador = Console.ReadLine();
+                Console.Write("(3) Telefone: ");
+                string telefoneUtilizador = Console.ReadLine();
+                Console.Write("(4) Palavra-Chave: ");
                 string palavraChaveUtilizador = Console.ReadLine();
-                Console.WriteLine("==========================");
+                Console.Write("(5) Funcionário: ");
+                string identificadorUtilizador = Console.ReadLine().ToUpper();
                 Console.WriteLine();
+                Console.WriteLine();
+
+
+                // identificador do funcionario e usuário
+
+                bool funcionarioIdentificado;
+
+                if (identificadorUtilizador == "BTCB")
+                {
+                    funcionarioIdentificado = true;
+                }
+                else
+                {
+                    funcionarioIdentificado = false;
+                }
 
                 Utilizadores utilizadorLogado = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
 
-                Utilizadores procurarPalavraChave = listaUtilizadores.Find(a => a.PalavraChave == palavraChaveUtilizador);
-
-                if ((utilizadorLogado != null) && (procurarPalavraChave != null))
+                if (utilizadorLogado != null)
                 {
-                    if (utilizadorLogado.Funcionario == true)
+                    Console.Clear();
+                    Console.WriteLine("Usuário já registrado! Faça o login!");
+                    Console.WriteLine("");
+                    return utilizadorLogado; // adicionar a volta para o login
+                }
+                else
+                {
+                    utilizadorLogado = new Utilizadores(nomeUtilizador, enderecoUtilizador, telefoneUtilizador, palavraChaveUtilizador, funcionarioIdentificado);
+                    listaUtilizadores.Add(utilizadorLogado);
+                    Console.WriteLine("Usuário registrado com sucesso!");
+                    Console.WriteLine("");
+
+                    if (funcionarioIdentificado == true)
                     {
                         Console.Clear();
                         Console.WriteLine($"Bem vindo funcionário {utilizadorLogado.NomeUtilizador}!");
@@ -96,77 +219,6 @@ namespace ProjetoPOO
                         Console.WriteLine("");
                         return utilizadorLogado;
                     }
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Nome ou Palavra-Chave Incorretos, tente novamente.");
-                    Console.WriteLine("");
-                }
-            } while (true);
-
-        }
-
-        public static Utilizadores efetuarRegistro(List<Utilizadores> listaUtilizadores)
-        {
-
-            Console.WriteLine("");
-            Console.WriteLine("----------Registrar----------");
-            Console.Write(" Nome: ");
-            string nomeUtilizador = Console.ReadLine();
-            Console.Write(" Endereço: ");
-            string enderecoUtilizador = Console.ReadLine();
-            Console.Write(" Telefone: ");
-            string telefoneUtilizador = Console.ReadLine();
-            Console.Write(" Palavra-Chave: ");
-            string palavraChaveUtilizador = Console.ReadLine();
-            Console.Write(" Funcionário: ");
-            string identificadorUtilizador = Console.ReadLine().ToUpper();
-            Console.WriteLine();
-
-
-            // identificador do funcionario e usuário
-
-            bool funcionarioIdentificado;
-
-            if (identificadorUtilizador == "BTCB")
-            {
-                funcionarioIdentificado = true;
-            }
-            else
-            {
-                funcionarioIdentificado = false;
-            }
-
-            Utilizadores utilizadorLogado = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
-
-            if (utilizadorLogado != null)
-            {
-                Console.Clear();
-                Console.WriteLine("Usuário já registrado! Faça o login!");
-                Console.WriteLine("");
-                return utilizadorLogado; // adicionar a volta para o login
-            }
-            else
-            {
-                utilizadorLogado = new Utilizadores(nomeUtilizador, enderecoUtilizador, telefoneUtilizador, palavraChaveUtilizador, funcionarioIdentificado);
-                listaUtilizadores.Add(utilizadorLogado);
-                Console.WriteLine("Usuário registrado com sucesso!");
-                Console.WriteLine("");
-
-                if (funcionarioIdentificado == true)
-                {
-                    Console.Clear();
-                    Console.WriteLine($"Bem vindo funcionário {utilizadorLogado.NomeUtilizador}!");
-                    Console.WriteLine("");
-                    return utilizadorLogado;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine($"Bem vindo {utilizadorLogado.NomeUtilizador}!");
-                    Console.WriteLine("");
-                    return utilizadorLogado;
                 }
             }
         }
