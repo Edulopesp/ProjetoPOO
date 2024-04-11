@@ -182,6 +182,7 @@
             Console.WriteLine("| 3. Frances        |");
             Console.WriteLine("| 4. Espanhol       |");
             Console.WriteLine("| 5. Alemão         |");
+            Console.WriteLine("| 0. voltar         |");
             Console.WriteLine("====================");
             Console.WriteLine();
 
@@ -190,7 +191,7 @@
                 Console.Write("| Idioma do livro: ");
                 opcaoEscolhida = int.Parse(Console.ReadLine());
 
-            } while ((opcaoEscolhida != 1) && (opcaoEscolhida != 2) && (opcaoEscolhida != 3) && (opcaoEscolhida != 4) && (opcaoEscolhida != 5));
+            } while ((opcaoEscolhida != 0) && (opcaoEscolhida != 1) && (opcaoEscolhida != 2) && (opcaoEscolhida != 3) && (opcaoEscolhida != 4) && (opcaoEscolhida != 5));
 
 
             switch (opcaoEscolhida)
@@ -210,8 +211,12 @@
                 case 5:
                     return "Alemão";
                     break;
+                case 0:
+                    return "sair";
+
+                    break;
                 default:
-                    return "Idioma Inválido";
+                    return "Opção Inválida";
             }
 
         }
@@ -259,8 +264,8 @@
                     return "sair";
                     break;
                 default:
-                    return "Opcao Invalida";
-                    break;
+                    return "Opção Inválida";
+
             }
 
 
@@ -269,59 +274,107 @@
         public static void ConsultaFiltrada(List<RegistarLivro> Livros)
 
         {
+            Console.WriteLine("1. Pesquisa por Genero");
+            Console.WriteLine("2. Pesquisa por Idioma");
+            Console.WriteLine("3. Sair");
+            int option = int.Parse(Console.ReadLine());
 
-
-
-
-            Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
-
-            string valor = Console.ReadLine();
-
-            while (valor != "sair")
+            switch (option)
             {
+                case 1:
+                    Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
 
-                
+                    string valor = Console.ReadLine();
 
-
-                Console.WriteLine("-----------Pesquisa por Genero------------");
-
-                Console.WriteLine();
-
-                string genero = ExibirListaGeneros();
-
-                foreach (var livro in Livros)
-                {
-
-                    if ((genero == livro.GeneroLivro)||(genero==livro.IdiomaLivro))
+                    while (valor != "sair")
                     {
-                        livro.ConsultaLivros();
+                        Console.WriteLine("-----------Pesquisa por Genero------------");
+
+                        Console.WriteLine();
+
+                        string genero = ExibirListaGeneros();
+
+                        foreach (var livro in Livros)
+                        {
+
+                            if (genero == livro.GeneroLivro)
+                            {
+                                livro.ConsultaLivros();
+
+                            }
+
+                        }
+                        if ((genero == "sair") || (genero == "Opção Inválida"))
+                        {
+
+                            Console.WriteLine();
+                            Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
+                            valor = Console.ReadLine();
+                        }
+
 
                     }
+                    break;
 
-                }
-                if ((genero == "sair") || (genero == "Opcao Invalida "))
-                {
-                    
-                    Console.WriteLine();
+                case 2:
                     Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
-                    valor = Console.ReadLine();
-                }
+
+                    string valor1 = Console.ReadLine();
+
+                    while (valor1 != "sair")
+                    {
+                        Console.WriteLine("-----------Pesquisa por Genero------------");
+
+                        Console.WriteLine();
+
+                        string idioma = ExibirListaIdiomas();
+
+                        foreach (var livro in Livros)
+                        {
+
+                            if (idioma == livro.IdiomaLivro)
+                            {
+                                livro.ConsultaLivros();
+
+                            }
+
+                        }
+                        if ((idioma == "sair") || (idioma == "Opção Inválida"))
+                        {
+
+                            Console.WriteLine();
+                            Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
+                            valor1 = Console.ReadLine();
+                        }
+
+
+                    }
+                    break;
 
             }
-
         }
-
-
     }
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
