@@ -239,7 +239,7 @@
             {
                 Console.Write("| Género do livro: ");
                 opcaoEscolhida = int.Parse(Console.ReadLine());
-                return "Opção Inválida";
+                
 
 
             } while ((opcaoEscolhida != 0) && (opcaoEscolhida != 1) && (opcaoEscolhida != 2) && (opcaoEscolhida != 3) && (opcaoEscolhida != 4) && (opcaoEscolhida != 5));
@@ -338,20 +338,25 @@
                                 if (idioma == livro.IdiomaLivro)
                                 {
                                     livro.ConsultaLivros();
-
+                                    break;
                                 }
 
                             }
-                            if ((idioma == "sair") || (idioma == "Opção Inválida"))
+                            if ((idioma == "sair")|| (idioma == "Opção Inválida"))
                             {
-                                /*
-                                Console.WriteLine();
-                                Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
-                                valor = Console.ReadLine();
-                                break;
+                                
+                               
+                              //  break;
 
-                                */
+                                
                             }
+
+
+
+
+                            Console.WriteLine();
+                            Console.WriteLine("Paoduto n encntrado");
+
                             break;
 
                         }
