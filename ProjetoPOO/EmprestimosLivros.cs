@@ -75,7 +75,8 @@ namespace ProjetoPOO
         }
 
         public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado,List<EmprestimosLivros>emprestimoLivros,List<RegistarLivro>Livros, List<Utilizadores> listaUtilizadores)
-        {
+        {   
+            int contadorLivrosEmprestados = 0;
             Console.WriteLine("--------------------------------------------- Os seus Livros ---------------------------------------------");
 
             foreach (EmprestimosLivros livro in emprestimoLivros)
@@ -83,14 +84,15 @@ namespace ProjetoPOO
                 if ((livro.NomeCliente == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
                 {
                     livro.ConsultaEmprestimoIndividual();
+                    contadorLivrosEmprestados++;
                 }
-                else
-                {
-                    Console.WriteLine("Não há livros alugados na sua conta.");
-                    MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
-                }
-
             }
+
+            if (contadorLivrosEmprestados == 0)
+              {
+                Console.WriteLine("Não há livros alugados na sua conta.");
+                MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
+              }
 
             Console.WriteLine("==========================================================================================================");
 
@@ -102,7 +104,7 @@ namespace ProjetoPOO
             //lemos o nome do objeto novo atraves de uma variavel e vamos a procura de onde na lista um objeto tem esse nome
             EmprestimosLivros DevolverLivro = emprestimoLivros.Find(x => x.Livro.NomeLivro == livroAremover);
             Console.WriteLine();
-            if (livroAremover != null)
+            if (DevolverLivro != null)
             {//atribuimos o estado verdadeiro ao atributo da nossa classe emprestimosLivros
                 //adicionamos novamente a quantidade ao registo do livro devolvido
                 DevolverLivro.Devolvido = true;
