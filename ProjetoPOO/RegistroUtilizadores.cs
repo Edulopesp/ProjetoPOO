@@ -7,6 +7,7 @@
         public string TelefoneUtilizador;
         public string PalavraChave;
         public bool Funcionario;
+        public int Penalizado;
 
         public Utilizadores(string nome, string endereco, string telefone, string palavraChave, bool funcionario)
         {
@@ -15,6 +16,8 @@
             TelefoneUtilizador = telefone;
             PalavraChave = palavraChave;
             Funcionario = funcionario;
+            Penalizado = 0;
+
         }
 
         public static Utilizadores MenuLogRes(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
@@ -64,13 +67,12 @@
             }
             return utilizadorLogado;
         }
-
-
         public static Utilizadores efetuarLogin(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
         {
-            Console.WriteLine("------------ Login -----------");
             do
             {
+                Console.Clear();
+                Console.WriteLine("------------ Login -----------");
                 Console.Write("| Nome: ");
                 string nomeUtilizador = Console.ReadLine();
                 Console.Write("| Palavra-Chave: ");
