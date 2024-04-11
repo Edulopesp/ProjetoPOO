@@ -90,10 +90,6 @@
 
                         Console.Write("(1) Nome: ");
                         string nomeUtilizador = Console.ReadLine();
-
-
-
-
                         Console.Write("(2) Palavra-Chave: ");
                         string palavraChaveUtilizador = Console.ReadLine();
                         Console.WriteLine();

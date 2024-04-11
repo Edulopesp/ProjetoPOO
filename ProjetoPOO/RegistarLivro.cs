@@ -35,7 +35,6 @@
 
         public void ConsultaLivros()
         {
-
             Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine($"| Título: {NomeLivro,-9} | Autor: {Autor,-9} | Ano de Publicação: {AnoPublic} | Qtd Disp: {NumExemp,-2} |  Gênero: {GeneroLivro,-7} | Idioma: {IdiomaLivro,-9} |");
         }
@@ -53,6 +52,7 @@
                 Console.WriteLine("| 4. Exibir Lista Atual de Livros               |");
                 Console.WriteLine("| 5. Voltar                                     |");
                 Console.WriteLine("=================================================");
+
                 opcao = int.Parse(Console.ReadLine());
                 Console.WriteLine("");
 
@@ -73,7 +73,6 @@
                         break;
                     case 4:
                         Console.Clear();
-
                         ExibirListaLivros(Livros);
 
                         ConsultaFiltrada(Livros);
@@ -167,6 +166,7 @@
                     livro.ConsultaLivros();
                 }
             }
+
             Console.WriteLine("=======================================================================================================================");
             Console.WriteLine();
             Console.WriteLine();

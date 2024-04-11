@@ -55,7 +55,6 @@ namespace ProjetoPOO
                         var dataLivroAluguer = DateOnly.FromDateTime(DateTime.Now);
 
                         //string nomeClienteAluguer = utilizadorLogado.NomeUtilizador;
-
                         emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado.NomeUtilizador, livroEscolhido, duracaoLivroAluguer, false, dataLivroAluguer));
 
                         livroEscolhido.NumExemp--;
@@ -70,15 +69,32 @@ namespace ProjetoPOO
                         Console.Clear();
                         Console.WriteLine("Livro não encontrado, tente novamente.");
                         Console.WriteLine("");
+                        RegistarLivro.ExibirListaLivros(Livros);
                     }
-                
             } while (true);
         }
 
         public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado,List<EmprestimosLivros>emprestimoLivros,List<RegistarLivro>Livros, List<Utilizadores> listaUtilizadores)
         {
-            consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
+            Console.WriteLine("--------------------------------------------- Os seus Livros ---------------------------------------------");
 
+            foreach (EmprestimosLivros livro in emprestimoLivros)
+            {
+                if ((livro.NomeCliente == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
+                {
+                    livro.ConsultaEmprestimoIndividual();
+                }
+                else
+                {
+                    Console.WriteLine("Não há livros alugados na sua conta.");
+                    MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
+                }
+
+            }
+
+            Console.WriteLine("==========================================================================================================");
+
+            consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
 
             Console.WriteLine("Qual o livro que deseja devolver? ");
             string livroAremover = Console.ReadLine();
@@ -102,7 +118,7 @@ namespace ProjetoPOO
         {
             //objetivo do nr vezes alugado seria para fazer um best of livros mais requisitados
             Console.WriteLine("---------------------------------------------------------------------------------------------");
-            Console.WriteLine($"| Titulo: {Livro.NomeLivro, -10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao}  | Data Pedido: {Data,-10} Data Entrega: {DataEntregaLivroAlugado()} | Quantidade de Alugueres: {Livro.NumVezesAlugado} |");
+            Console.WriteLine($"| Titulo: {Livro.NomeLivro, -10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao}  | Data Pedido: {Data,-10} |");
         }
         public void ConsultaEmprestimoIndividual()
         {
