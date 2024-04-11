@@ -271,7 +271,6 @@
 
 
         }
-
         public static void ConsultaFiltrada(List<RegistarLivro> Livros)
 
         {
@@ -279,9 +278,9 @@
 
             string valor = Console.ReadLine();
 
-            while (valor != "sair")
+            while (valor.ToLower() != "sair")
             {
-
+                Console.WriteLine();
                 Console.WriteLine("1. Pesquisa por Genero");
                 Console.WriteLine("2. Pesquisa por Idioma");
                 Console.WriteLine("3. Sair");
@@ -291,8 +290,8 @@
                 {
                     case 1:
 
-
-                        Console.WriteLine("-----------Pesquisa por Genero------------");
+                        Console.Clear();
+                        Console.WriteLine("----------- Pesquisa por Genero ------------");
 
                         Console.WriteLine();
 
@@ -301,27 +300,29 @@
                         foreach (var livro in Livros)
                         {
 
-                            if (genero == livro.GeneroLivro)
+                            if (genero.ToLower() == livro.GeneroLivro.ToLower())
                             {
+                                Console.Clear();
                                 livro.ConsultaLivros();
 
                             }
 
                         }
 
-                        if ((genero == "sair") || (genero == "Opção Inválida"))
+                        if ((genero.ToLower() == "sair") || (genero == "Opção Inválida"))
 
                         {
-                            Console.WriteLine("obrigado");
-                            break;
+                            Console.WriteLine("Obrigado");
+
+                        
                         }
                         break;
 
                     case 2:
-
-                        while (valor != "sair")
+                        while (valor.ToLower() != "sair")
                         {
-                            Console.WriteLine("-----------Pesquisa por Idioma------------");
+                            Console.Clear();
+                            Console.WriteLine("----------- Pesquisa por Idioma ------------");
 
                             Console.WriteLine();
 
@@ -330,20 +331,21 @@
                             foreach (var livro in Livros)
                             {
 
-                                if (idioma == livro.IdiomaLivro)
+                                if (idioma.ToLower() == livro.IdiomaLivro.ToLower())
                                 {
+                                    Console.Clear();
                                     livro.ConsultaLivros();
                                 }
                             }
-                            if ((idioma == "sair") || (idioma == "Opção Inválida"))
+                            if ((idioma.ToLower() == "sair") || (idioma == "Opção Inválida"))
                             {
-                                Console.WriteLine("obrigado");
-                                break;
+                                Console.WriteLine("Obrigado");
                             }
                         }
                         break;
                     case 3:
-                        Console.WriteLine("obrigado");
+                        Console.WriteLine("Obrigado");
+                        valor = "sair";
                         break;
                      
                 }
