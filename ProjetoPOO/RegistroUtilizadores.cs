@@ -68,12 +68,15 @@
 
         public static Utilizadores efetuarLogin(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
         {
-            Console.WriteLine("-----------------------------------Login-------------------------------");
+            Console.WriteLine("  Para retroceder escreva 'sair', caso contrario primar ENTER");
+            string saida = Console.ReadLine();
+
+
+            Console.WriteLine("------------Login-----------");
             Console.WriteLine();
 
 
-            Console.WriteLine("  Para retroceder escreva 'sair', caso contrario primar ENTER");
-            string saida = Console.ReadLine();
+
 
             if (saida == "sair")
             {
@@ -86,13 +89,13 @@
 
                 do
                 {
-                    {
+                    
 
-                        Console.Write("(1) Nome: ");
+                        Console.Write(" | Nome: ");
                         string nomeUtilizador = Console.ReadLine();
-                        Console.Write("(2) Palavra-Chave: ");
+                        Console.Write(" | Palavra-Chave: ");
                         string palavraChaveUtilizador = Console.ReadLine();
-                        Console.WriteLine();
+                        Console.WriteLine("========================");
                         Console.WriteLine();
 
                         Utilizadores utilizadorLogado = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
@@ -121,23 +124,24 @@
                         else
                         {
 
-                            Console.WriteLine("  Para retroceder escreva 'sair', caso contrario primar ENTER");
-                            string saida2 = Console.ReadLine();
-
-                            if (saida2 == "sair")
-                            {
-                                Console.Clear();
-                                return MenuLogRes(listaUtilizadores, Livros);
-
-                            }
+                            
 
                             Console.Clear();
                             Console.WriteLine("Nome ou Palavra-Chave Incorretos, tente novamente.");
                             Console.WriteLine("");
 
-                        }
+                        Console.WriteLine("  Para retroceder escreva 'sair', caso contrario primar ENTER");
+                        string saida2 = Console.ReadLine();
 
+                        if (saida2 == "sair")
+                        {
+                            Console.Clear();
+                            return MenuLogRes(listaUtilizadores, Livros);
+
+                        }
                     }
+
+                    
                 } while (true);
 
             }
@@ -145,14 +149,13 @@
 
         public static Utilizadores efetuarRegistro(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
         {
-
-            Console.WriteLine("");
-            Console.WriteLine("----------------------------Registrar-----------------------------");
-            Console.WriteLine();
             Console.WriteLine(" ==> Para retroceder escreva 'sair', para continuar prima ENTER");
             string saida = Console.ReadLine();
+
+            Console.WriteLine("");
+            Console.WriteLine("---------Registrar--------");
             Console.WriteLine();
-            Console.WriteLine();
+           
             if (saida == "sair")
             {
                 Console.Clear();
@@ -162,17 +165,17 @@
             else
             {
 
-                Console.Write("(1) Nome: ");
+                Console.Write(" | Nome: ");
                 string nomeUtilizador = Console.ReadLine();
-                Console.Write("(2) Endereço: ");
+                Console.Write(" | Endereço: ");
                 string enderecoUtilizador = Console.ReadLine();
-                Console.Write("(3) Telefone: ");
+                Console.Write(" | Telefone: ");
                 string telefoneUtilizador = Console.ReadLine();
-                Console.Write("(4) Palavra-Chave: ");
+                Console.Write(" | Palavra-Chave: ");
                 string palavraChaveUtilizador = Console.ReadLine();
-                Console.Write("(5) Funcionário: ");
+                Console.Write(" | Funcionário: ");
                 string identificadorUtilizador = Console.ReadLine().ToUpper();
-                Console.WriteLine();
+                Console.WriteLine("=======================");
                 Console.WriteLine();
 
 

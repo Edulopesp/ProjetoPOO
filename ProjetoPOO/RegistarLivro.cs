@@ -173,7 +173,7 @@
         }
         public static string ExibirListaIdiomas()
         {
-            int opcaoEscolhida = 0;
+            int opcaoEscolhida;
 
             Console.WriteLine();
             Console.WriteLine("------ Idiomas ------");
@@ -239,7 +239,6 @@
             {
                 Console.Write("| Género do livro: ");
                 opcaoEscolhida = int.Parse(Console.ReadLine());
-                return "Opção Inválida";
 
 
             } while ((opcaoEscolhida != 0) && (opcaoEscolhida != 1) && (opcaoEscolhida != 2) && (opcaoEscolhida != 3) && (opcaoEscolhida != 4) && (opcaoEscolhida != 5));
@@ -309,20 +308,16 @@
                             }
 
                         }
+
                         if ((genero == "sair") || (genero == "Opção Inválida"))
-                        /*
 
-                            Console.WriteLine();
-                            Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
-                            valor = Console.ReadLine();
+                        {
+                            Console.WriteLine("obrigado");
+                            break;
                         }
-*/
-
-                        { }
                         break;
 
                     case 2:
-
 
                         while (valor != "sair")
                         {
@@ -338,36 +333,27 @@
                                 if (idioma == livro.IdiomaLivro)
                                 {
                                     livro.ConsultaLivros();
-
                                 }
-
                             }
                             if ((idioma == "sair") || (idioma == "Opção Inválida"))
                             {
-                                /*
-                                Console.WriteLine();
-                                Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
-                                valor = Console.ReadLine();
+                                Console.WriteLine("obrigado");
                                 break;
-
-                                */
                             }
-                            break;
-
                         }
                         break;
-
                     case 3:
                         Console.WriteLine("obrigado");
                         break;
-
+                     
                 }
-            }
-            Console.WriteLine("obrigado");
 
+
+            }
         }
     }
 }
+
 
 
 
