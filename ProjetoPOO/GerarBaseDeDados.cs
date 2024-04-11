@@ -13,7 +13,7 @@ namespace ProjetoPOO
             var dataAtual = DateOnly.FromDateTime(DateTime.Now);
 
             RegistarLivro livroGrey = new RegistarLivro("grey", "bruno", 1720, 12, "Inglês", "Drama");
-            RegistarLivro livroFox = new RegistarLivro("foxhound", "joaqui,", 1790, 2, "Inglês", "Ação");
+            RegistarLivro livroFox = new RegistarLivro("foxhound", "joaquim", 1790, 2, "Inglês", "Ação");
             listaUtilizadores.Add(new Utilizadores("Eduardo Lopes", "Rua Braga", "987654321", "12345", true));
             listaUtilizadores.Add(new Utilizadores("Sara", "Rua Braga", "987654321", "12345", true));
             listaUtilizadores.Add(new Utilizadores("Bruno", "Rua Braga", "987654321", "12345", true));

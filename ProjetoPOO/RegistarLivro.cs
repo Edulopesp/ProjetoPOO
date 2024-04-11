@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-
-
-namespace ProjetoPOO
+﻿namespace ProjetoPOO
 {
     internal class RegistarLivro
     {
@@ -23,7 +15,7 @@ namespace ProjetoPOO
         // adicionar sinopse individual 
 
         // Construtor padrão
-        public RegistarLivro(string nomeLivro, string autor, int anoPublic,int numExemp, string idioma, string genero)
+        public RegistarLivro(string nomeLivro, string autor, int anoPublic, int numExemp, string idioma, string genero)
         {
             NomeLivro = nomeLivro;
             Autor = autor;
@@ -43,14 +35,15 @@ namespace ProjetoPOO
 
         public void ConsultaLivros()
         {
-            Console.WriteLine("----------------------------------------------------------------------------------------------------------");
-            Console.WriteLine($"| Título: {NomeLivro, -9} | Autor: {Autor, -9} | Ano de Publicação: {AnoPublic} | Exemplares Disponíveis: {NumExemp, -3} |  Gênero: {GeneroLivro,-7} | Idioma: {IdiomaLivro,-9} |");
+
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine($"| Título: {NomeLivro,-9} | Autor: {Autor,-9} | Ano de Publicação: {AnoPublic} | Qtd Disp: {NumExemp,-2} |  Gênero: {GeneroLivro,-7} | Idioma: {IdiomaLivro,-9} |");
         }
 
         public static void RegLivros(List<RegistarLivro> Livros, Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<Utilizadores> listaUtilizadores)
         {
             int opcao;
-            
+
             do
             {
                 Console.WriteLine("--------------- Gestão de Livros ----------------");
@@ -80,7 +73,10 @@ namespace ProjetoPOO
                         break;
                     case 4:
                         Console.Clear();
+
                         ExibirListaLivros(Livros);
+
+                        ConsultaFiltrada(Livros);
                         break;
                     case 5:
                         Console.Clear();
@@ -162,7 +158,8 @@ namespace ProjetoPOO
         }
         public static void ExibirListaLivros(List<RegistarLivro> Livros)
         {
-            Console.WriteLine("---------------------------------------- Consulta de Livros ----------------------------------------");
+            Console.WriteLine("------------------------------------------------ Consulta de Livros ---------------------------------------------------");
+
             foreach (var livro in Livros)
             {
                 if (livro.NumExemp > 0)
@@ -170,7 +167,7 @@ namespace ProjetoPOO
                     livro.ConsultaLivros();
                 }
             }
-            Console.WriteLine("====================================================================================================");
+            Console.WriteLine("=======================================================================================================================");
             Console.WriteLine();
             Console.WriteLine();
         }
@@ -220,7 +217,7 @@ namespace ProjetoPOO
         }
         public static string ExibirListaGeneros()
         {
-            int opcaoEscolhida = 0;
+            int opcaoEscolhida;
 
             Console.WriteLine();
             Console.WriteLine("------ Géneros ------");
@@ -229,6 +226,7 @@ namespace ProjetoPOO
             Console.WriteLine("| 3. Ação           |");
             Console.WriteLine("| 4. Thriller       |");
             Console.WriteLine("| 5. Terror         |");
+            Console.WriteLine("| 0. voltar         |");
             Console.WriteLine("=====================");
             Console.WriteLine();
 
@@ -237,7 +235,7 @@ namespace ProjetoPOO
                 Console.Write("| Género do livro: ");
                 opcaoEscolhida = int.Parse(Console.ReadLine());
 
-            } while ((opcaoEscolhida != 1) && (opcaoEscolhida != 2) && (opcaoEscolhida != 3) && (opcaoEscolhida != 4) && (opcaoEscolhida != 5));
+            } while ((opcaoEscolhida != 0) && (opcaoEscolhida != 1) && (opcaoEscolhida != 2) && (opcaoEscolhida != 3) && (opcaoEscolhida != 4) && (opcaoEscolhida != 5));
 
 
             switch (opcaoEscolhida)
@@ -257,11 +255,73 @@ namespace ProjetoPOO
                 case 5:
                     return "Terror";
                     break;
+                case 0:
+                    return "sair";
+                    break;
                 default:
-                    return "Género Inválido";
+                    return "Opcao Invalida";
+                    break;
             }
+
+
         }
+
+        public static void ConsultaFiltrada(List<RegistarLivro> Livros)
+
+        {
+
+
+
+
+            Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
+
+            string valor = Console.ReadLine();
+
+            while (valor != "sair")
+            {
+
+                
+
+
+                Console.WriteLine("-----------Pesquisa por Genero------------");
+
+                Console.WriteLine();
+
+                string genero = ExibirListaGeneros();
+
+                foreach (var livro in Livros)
+                {
+
+                    if ((genero == livro.GeneroLivro)||(genero==livro.IdiomaLivro))
+                    {
+                        livro.ConsultaLivros();
+
+                    }
+
+                }
+                if ((genero == "sair") || (genero == "Opcao Invalida "))
+                {
+                    
+                    Console.WriteLine();
+                    Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
+                    valor = Console.ReadLine();
+                }
+
+            }
+
+        }
+
+
     }
+
+
+
+
+
+
+
+
+
 }
 
 
