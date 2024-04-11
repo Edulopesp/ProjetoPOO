@@ -41,8 +41,8 @@ namespace ProjetoPOO
                     Console.Clear();
                     MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
                 }
-                else
-                {
+                
+                
 
                     RegistarLivro livroEscolhido = Livros.Find(a => a.NomeLivro == tituloLivroAluguer);
 
@@ -71,7 +71,7 @@ namespace ProjetoPOO
                         Console.WriteLine("Livro não encontrado, tente novamente.");
                         Console.WriteLine("");
                     }
-                }
+                
             } while (true);
         }
 
@@ -102,14 +102,14 @@ namespace ProjetoPOO
         {
             //objetivo do nr vezes alugado seria para fazer um best of livros mais requisitados
             Console.WriteLine("---------------------------------------------------------------------------------------------");
-            Console.WriteLine($"| Titulo: {Livro.NomeLivro, -10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao} | Data Pedido: {Data,-10} | Quantidade de Alugueres: {Livro.NumVezesAlugado} |");
+            Console.WriteLine($"| Titulo: {Livro.NomeLivro, -10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao}  | Data Pedido: {Data,-10} Data Entrega: {DataEntregaLivroAlugado()} | Quantidade de Alugueres: {Livro.NumVezesAlugado} |");
         }
         public void ConsultaEmprestimoIndividual()
         {
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
 
             Console.WriteLine("------------------------------------------------------------------------");
-            Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Duração: {Duracao,-9} | Data Pedido: {Data,-9} | Data Entrega: {DataEntregaLivroAlugado()} | Entregar em: {DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber} |");
+            Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Duração: {Duracao,-9} | Data Pedido: {Data,-9} | | Entregar em: {DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber} |");
         }
         // no relatorio poderia vir a informacao  se o livro foi devolvido a tempo etc
         public DateOnly DataEntregaLivroAlugado()

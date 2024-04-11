@@ -48,6 +48,7 @@ namespace ProjetoPOO
                         case 1:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
+                            RegistarLivro.ConsultaFiltrada(Livros);
                             break;
                         case 2:
                             Console.Clear();
@@ -123,6 +124,7 @@ namespace ProjetoPOO
                         case 1:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
+                            RegistarLivro.ConsultaFiltrada(Livros);
                             break;
                         case 2:
                             Console.Clear();
