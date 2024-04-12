@@ -36,10 +36,11 @@
             Console.WriteLine();
             Console.WriteLine();
 
-            Console.WriteLine(" ----------Menu----------");
+            Console.WriteLine("========== Menu ==========");
             Console.WriteLine("| 1 - Login              |");
+            Console.WriteLine("|------------------------|");
             Console.WriteLine("| 2 - Registrar          |");
-            Console.WriteLine("==========================");
+            Console.WriteLine("|========================|");
 
             opcaoMenuLogRes = double.Parse(Console.ReadLine());
             Console.WriteLine("");
@@ -68,14 +69,17 @@
 
         public static Utilizadores efetuarLogin(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
         {
-            Console.WriteLine("------------ Login -----------");
+            Console.WriteLine("============ Login ============");
+            Console.WriteLine("|-----------------------------|");
+
             do
             {
-                Console.Write("| Nome: ");
+                Console.Write("| 1 - Nome: ");
                 string nomeUtilizador = Console.ReadLine();
-                Console.Write("| Palavra-Chave: ");
-                string palavraChaveUtilizador = Console.ReadLine();
-                Console.WriteLine("========================");
+                Console.WriteLine("|-----------------------------|");
+                Console.Write("| 2 - Palavra-Chave: ");
+                string palavraChaveUtilizador = Console.ReadLine() ;
+                Console.WriteLine("|_____________________________|");
                 Console.WriteLine();
 
                 Utilizadores utilizadorLogado = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
@@ -119,9 +123,8 @@
         public static Utilizadores efetuarRegistro(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
         {
             Console.WriteLine("");
-            Console.WriteLine("---------Registrar--------");
-            Console.WriteLine();
-
+            Console.WriteLine("======== Registrar =======");
+            Console.WriteLine("|------------------------|");
             string nomeUtilizador;
             string enderecoUtilizador;
             string telefoneUtilizador;
@@ -130,33 +133,39 @@
 
             do
             {
-                Console.Write(" | Nome: ");
+                Console.Write("| Nome: ");
                 nomeUtilizador = Console.ReadLine();
+                Console.WriteLine("|------------------------|");
             } while (nomeUtilizador == null);
 
             do {
-                Console.Write(" | Endereço: ");
+                Console.Write("| Endereço: ");
                 enderecoUtilizador = Console.ReadLine();
+                Console.WriteLine("|------------------------|");
             } while(enderecoUtilizador == null);
 
 
             do {
-                Console.Write(" | Telefone: ");
+                Console.Write("| Telefone: ");
                 telefoneUtilizador = Console.ReadLine();
-            } while(telefoneUtilizador == null);
+                Console.WriteLine("|------------------------|");
+
+            } while (telefoneUtilizador == null);
 
             do
             {
-                Console.Write(" | Palavra-Chave: ");
+                Console.Write("| Palavra-Chave: ");
                 palavraChaveUtilizador = Console.ReadLine();
+                Console.WriteLine("|------------------------|");
             } while (palavraChaveUtilizador == null);
 
             do {
-                Console.Write(" | Funcionário: ");
+                Console.Write("| Funcionário: ");
                 identificadorUtilizador = Console.ReadLine().ToUpper();
+                Console.WriteLine("|------------------------|");
             } while(identificadorUtilizador == null);
 
-            Console.WriteLine("=======================");
+            Console.WriteLine("|------------------------|");
             Console.WriteLine();
 
 
@@ -209,14 +218,15 @@
         public static void mostrarListaUtilizadores(List<Utilizadores> listaUtilizadores)
         {
             Console.WriteLine("");
-            Console.WriteLine("-------------------- Lista de Utilizadores --------------------");
+            Console.WriteLine("===================== Lista de Utilizadores ===================");
 
             foreach (Utilizadores usuario in listaUtilizadores)
             {
-                Console.WriteLine("---------------------------------------------------------------");
+                Console.WriteLine("|-------------------------------------------------------------|");
                 Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-20} | Telefone: {usuario.TelefoneUtilizador,-20} |");
+                Console.WriteLine("|-------------------------------------------------------------|");
             }
-            Console.WriteLine("===============================================================");
+            Console.WriteLine("|_________________________________________________________________|");
         }
     }
 }

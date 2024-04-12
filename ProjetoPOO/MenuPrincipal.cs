@@ -22,17 +22,19 @@ namespace ProjetoPOO
 
                 do
                 {
-                    Console.WriteLine(" ------------ Menu ------------");
+                    Console.WriteLine("============= Menu ============");
+                    Console.WriteLine("|-----------------------------|");
                     Console.WriteLine("| 1. Exibir lista de livros   |");
                     Console.WriteLine("| 2. Alugar livro             |");
                     Console.WriteLine("| 3. Devolver livro           |");
                     Console.WriteLine("| 4. Relatório de Empréstimos |");
                     Console.WriteLine("| 5. Gestão de livros         |");
                     Console.WriteLine("| 6. Lista de Utilizadores    |");
-                    Console.WriteLine("| 7. Sair                     |");
-                    Console.WriteLine("===============================");
+                    Console.WriteLine("| 7. A não Perder             |");
+                    Console.WriteLine("| 8. Sair                     |");
+                    Console.WriteLine("|_____________________________|");
                     Console.WriteLine();
-
+                    //acrescentar funcao relatorioclientes
                     Console.WriteLine("Escolha uma opção: ");
                     opcaoMenuPrincipal = int.Parse(Console.ReadLine());
 
@@ -100,13 +102,14 @@ namespace ProjetoPOO
             {
                 do
                 {
-                    Console.WriteLine(" ------------ Menu ------------");
+                    Console.WriteLine("============ Menu =============");
+                    Console.WriteLine("|-----------------------------|");
                     Console.WriteLine("| 1. Exibir lista de livros   |");
                     Console.WriteLine("| 2. Alugar livro             |");
                     Console.WriteLine("| 3. Consultar Alugueres      |");
                     Console.WriteLine("| 4. Devolver livro           |");
                     Console.WriteLine("| 5. Sair                     |");
-                    Console.WriteLine("===============================");
+                    Console.WriteLine("|_____________________________|");
                     Console.WriteLine();
 
                     Console.WriteLine("Escolha uma opção: ");
@@ -124,6 +127,7 @@ namespace ProjetoPOO
                         case 1:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
+                            
                             RegistarLivro.ConsultaFiltrada(Livros);
                             break;
                         case 2:

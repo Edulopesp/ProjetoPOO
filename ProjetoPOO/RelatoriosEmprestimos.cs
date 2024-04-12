@@ -18,12 +18,12 @@ namespace ProjetoPOO
 
         public static void RelatorioEmprestimos(List<EmprestimosLivros> emprestimoLivros)
         {
-            Console.WriteLine("----------------------------------------------- Lista de Emprestimos ------------------------------------------------");
+            Console.WriteLine("=============================================== Lista de Emprestimos ================================================");
             foreach (var livroAlugado in emprestimoLivros)
             {
                 livroAlugado.ConsultaListaEmpr();
             }
-            Console.WriteLine("====================================================================================================================="); // ajustar tamanho dps
+            Console.WriteLine("|____________________________________________________________________________________________________________________|"); // ajustar tamanho dps
         }
 
         public static void RelatorioLivrosEmpresas(List<EmprestimosLivros> emprestimoLivros, List<RegistarLivro> Livros)
@@ -36,8 +36,8 @@ namespace ProjetoPOO
             }
 
 
-            Console.WriteLine("============================== Relatórios ============================== ");
-            Console.WriteLine("============================================================================================="); // ajustar tamanho dps
+            Console.WriteLine("======================================= Relatórios ========================================== ");
+            Console.WriteLine("---------------------------------------------------------------------------------------------"); // ajustar tamanho dps
         }
 
         public void RelatorioLivrosClientes(List<RegistarLivro> Livros)
@@ -52,18 +52,18 @@ namespace ProjetoPOO
                     LivroMaisAlugado = livro;
                 }
             }
-            Console.WriteLine("============================== A Não Perder ============================== ");
-            
-            Console.WriteLine($"| --------------------------------- Livro mais alugado do mês ---------------------------------|");
+            Console.WriteLine("==================================================== A Não Perder ===================================================");
+            Console.WriteLine("|                                                                                                                   |");
+            Console.WriteLine("|___________________________________________ Livro mais alugado do mês _____________________________________________|");
             Console.WriteLine($"| Titulo: {LivroMaisAlugado.NomeLivro} | Autor: {LivroMaisAlugado.Autor} | Publicado: {LivroMaisAlugado.AnoPublic}  |");
-            Console.WriteLine("| ----------------------------------------------------------------------");
-            Console.WriteLine($"| --------------------------------- Proximos Lançamentos ---------------------------------|");
-            Console.WriteLine($"| Titulo: O Rapaz | Autor: Claudio Ramos | Gênero: Romance | Idioma: Português |");
-            Console.WriteLine($"| Titulo: A Corrente | Autor: Filipa Amorim | Gênero: Thriller | Idioma: Português |");
-            Console.WriteLine($"| Titulo: Too Late | Autor: Collen Hoover | Gênero: Drama | Idioma: Inglês |");
-            Console.WriteLine($"| Titulo: King of Sloth | Autor: Ana Huang | Gênero: Romance | Idioma: Inglês |");
-            Console.WriteLine(" |--------------------------------------------------------------------------------------------------------");
-            Console.WriteLine($"|--------------------------------- Ultimas Oportunidades ---------------------------------|");
+            Console.WriteLine("|-------------------------------------------------------------------------------------------------------------------|");
+            Console.WriteLine("|_______________________________________________ Proximos Lançamentos ______________________________________________|");
+            Console.WriteLine("| Titulo: O Rapaz | Autor: Claudio Ramos | Gênero: Romance | Idioma: Português                                      |");
+            Console.WriteLine("| Titulo: A Corrente | Autor: Filipa Amorim | Gênero: Thriller | Idioma: Português                                  |");
+            Console.WriteLine("| Titulo: Too Late | Autor: Collen Hoover | Gênero: Drama | Idioma: Inglês                                          |");
+            Console.WriteLine("| Titulo: King of Sloth | Autor: Ana Huang | Gênero: Romance | Idioma: Inglês                                       |");
+            Console.WriteLine("|-------------------------------------------------------------------------------------------------------------------|");
+            Console.WriteLine("|_______________________________________________ Ultimas Oportunidades _____________________________________________|");
 
 
             foreach (var livro in Livros)
@@ -74,10 +74,10 @@ namespace ProjetoPOO
 
                 }
             }
-            Console.WriteLine(" |--------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("|--------------------------------------------------------------------------------------------------------------------|");
 
 
-            Console.WriteLine("============================================================================================="); // ajustar tamanho dps
+            Console.WriteLine("|____________________________________________________________________________________________________________________|"); // ajustar tamanho dps
         }
     }
 }

@@ -77,7 +77,7 @@ namespace ProjetoPOO
         public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado,List<EmprestimosLivros>emprestimoLivros,List<RegistarLivro>Livros, List<Utilizadores> listaUtilizadores)
         {   
             int contadorLivrosEmprestados = 0;
-            Console.WriteLine("--------------------------------------------- Os seus Livros ---------------------------------------------");
+            Console.WriteLine("============================================= Os seus Livros =============================================");
 
             foreach (EmprestimosLivros livro in emprestimoLivros)
             {
@@ -94,7 +94,7 @@ namespace ProjetoPOO
                 MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
               }
 
-            Console.WriteLine("==========================================================================================================");
+            Console.WriteLine("_________________________________________________________________________________________________________|");
 
             consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
 
@@ -119,15 +119,17 @@ namespace ProjetoPOO
         public void ConsultaListaEmpr()
         {
             //objetivo do nr vezes alugado seria para fazer um best of livros mais requisitados
-            Console.WriteLine("---------------------------------------------------------------------------------------------");
-            Console.WriteLine($"| Titulo: {Livro.NomeLivro, -10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao}  | Data Pedido: {Data,-10} |");
+            Console.WriteLine("|------------------------------------------------------------------------------------------------------------------|");
+            Console.WriteLine($"| Titulo: {Livro.NomeLivro,-10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao}  | Data Pedido: {Data,-10} | Data Entrega: {DataEntregaLivroAlugado(),-10}");
+            Console.WriteLine("|------------------------------------------------------------------------------------------------------------------|");
         }
         public void ConsultaEmprestimoIndividual()
         {
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
 
-            Console.WriteLine("------------------------------------------------------------------------");
-            Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Duração: {Duracao,-9} | Data Pedido: {Data,-9} | | Entregar em: {DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber} |");
+            Console.WriteLine("|----------------------------------------------------------------------------------|");
+            Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Duração: {Duracao,-9} | Data Pedido: {Data,-9} | Entregar em: {DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber} |");
+            Console.WriteLine("|----------------------------------------------------------------------------------|");
         }
         // no relatorio poderia vir a informacao  se o livro foi devolvido a tempo etc
         public DateOnly DataEntregaLivroAlugado()
@@ -139,7 +141,7 @@ namespace ProjetoPOO
         {
             int contadorLivrosDoUtilizador = 0;
 
-            Console.WriteLine("--------------------------------------------- Os seus Livros ---------------------------------------------");
+            Console.WriteLine("======================================== Os seus Livros =============================================");
             foreach (EmprestimosLivros livro in emprestimoLivros)
             {
                 if ((livro.NomeCliente == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
@@ -154,7 +156,7 @@ namespace ProjetoPOO
                 MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
             }
 
-            Console.WriteLine("==========================================================================================================");
+            Console.WriteLine("|___________________________________________________________________________________________________|");
 
             }
     }
