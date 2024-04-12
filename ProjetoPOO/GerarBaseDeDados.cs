@@ -12,13 +12,19 @@ namespace ProjetoPOO
         {
             var dataAtual = DateOnly.FromDateTime(DateTime.Now);
 
+            var dataAntiga = new DateOnly(2024, 3, 17);
+
             RegistarLivro livroGrey = new RegistarLivro("grey", "bruno", 1720, 12, "Inglês", "Drama");
             RegistarLivro livroFox = new RegistarLivro("foxhound", "joaquim", 1790, 2, "Inglês", "Ação");
-            listaUtilizadores.Add(new Utilizadores("Eduardo Lopes", "Rua Braga", "987654321", "12345", true));
-            listaUtilizadores.Add(new Utilizadores("Sara", "Rua Braga", "987654321", "12345", true));
-            listaUtilizadores.Add(new Utilizadores("Bruno", "Rua Braga", "987654321", "12345", true));
-            emprestimoLivros.Add(new EmprestimosLivros("paula", livroGrey, 5, false, dataAtual));
-            emprestimoLivros.Add(new EmprestimosLivros("Sara", livroFox, 2, false, dataAtual));
+
+            Utilizadores eduardo = new Utilizadores("Eduardo Lopes", "Rua Braga", "987654321", "12345", true);
+            Utilizadores bruno = new Utilizadores("Bruno", "Rua Braga", "987654321", "12345", true);
+            Utilizadores sara = new Utilizadores("Sara", "Rua Braga", "987654321", "12345", true);
+            listaUtilizadores.Add(eduardo);
+            listaUtilizadores.Add(bruno);
+            listaUtilizadores.Add(sara);
+            emprestimoLivros.Add(new EmprestimosLivros(eduardo, livroGrey, 5, false, dataAtual));
+            emprestimoLivros.Add(new EmprestimosLivros(sara, livroFox, 2, false, dataAntiga));
             Livros.Add(livroGrey);
             Livros.Add(livroFox);
             Livros.Add(new RegistarLivro("uno", "jonh", 1989, 5, "Português", "Romance"));
