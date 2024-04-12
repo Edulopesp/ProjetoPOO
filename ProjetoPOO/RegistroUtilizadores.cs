@@ -40,6 +40,7 @@
             Console.WriteLine();
 
             Console.WriteLine("========== Menu ==========");
+            Console.WriteLine("|------------------------|");
             Console.WriteLine("| 1. Login               |");
             Console.WriteLine("| 2. Registrar           |");
             Console.WriteLine("|________________________|");
@@ -74,9 +75,9 @@
 
             do
             {
-                Console.Write("| Nome: ");
+                Console.Write("  Nome: ");
                 string nomeUtilizador = Console.ReadLine();
-                Console.Write("| Palavra-Chave: ");
+                Console.Write("  Palavra-Chave: ");
                 string palavraChaveUtilizador = Console.ReadLine() ;
                 Console.WriteLine("|_____________________________|");
                 Console.WriteLine();
@@ -225,7 +226,7 @@
                 Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-20} | Telefone: {usuario.TelefoneUtilizador,-20} |");
                 Console.WriteLine("|-------------------------------------------------------------|");
             }
-            Console.WriteLine("|______________________________________________________________|");
+            Console.WriteLine("|_____________________________________________________________|");
         }
     }
 }

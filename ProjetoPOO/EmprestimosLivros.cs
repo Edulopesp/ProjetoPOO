@@ -8,7 +8,7 @@ namespace ProjetoPOO
 {
     internal class EmprestimosLivros
     {
-        public string NomeCliente;
+        public Utilizadores Utilizador;
         public RegistarLivro Livro;
         public int Duracao;
         public bool Devolvido = false;
@@ -16,9 +16,9 @@ namespace ProjetoPOO
 
 
 
-        public EmprestimosLivros(string nomeCliente, RegistarLivro livro, int duracao, bool devolvido, DateOnly data) // int quantidadeLivroAlugado, int quantidadeExemplaresExistente,
+        public EmprestimosLivros(Utilizadores utilizador, RegistarLivro livro, int duracao, bool devolvido, DateOnly data) // int quantidadeLivroAlugado, int quantidadeExemplaresExistente,
         {
-            NomeCliente = nomeCliente;
+            Utilizador = utilizador;
             Livro = livro;
             Duracao = duracao;
             Devolvido = devolvido;
@@ -55,7 +55,7 @@ namespace ProjetoPOO
                         var dataLivroAluguer = DateOnly.FromDateTime(DateTime.Now);
 
                         //string nomeClienteAluguer = utilizadorLogado.NomeUtilizador;
-                        emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado.NomeUtilizador, livroEscolhido, duracaoLivroAluguer, false, dataLivroAluguer));
+                        emprestimoLivros.Add(new EmprestimosLivros(utilizadorLogado, livroEscolhido, duracaoLivroAluguer, false, dataLivroAluguer));
 
                         livroEscolhido.NumExemp--;
 
@@ -81,7 +81,7 @@ namespace ProjetoPOO
 
             foreach (EmprestimosLivros livro in emprestimoLivros)
             {
-                if ((livro.NomeCliente == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
+                if ((livro.Utilizador.NomeUtilizador == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
                 {
                     livro.ConsultaEmprestimoIndividual();
                     contadorLivrosEmprestados++;
@@ -120,16 +120,16 @@ namespace ProjetoPOO
         {
             //objetivo do nr vezes alugado seria para fazer um best of livros mais requisitados
             Console.WriteLine("|--------------------------------------------------------------------------------------------------------------------|");
-            Console.WriteLine($"| Titulo: {Livro.NomeLivro,-10} | Nome Cliente: {NomeCliente,-10} | Duracao: {Duracao}  | Data Pedido: {Data,-10} | Data Entrega: {DataEntregaLivroAlugado(),-10} |");
+            Console.WriteLine($"|Titulo: {Livro.NomeLivro,-10} | Nome Cliente: {Utilizador.NomeUtilizador,-12} | Duracao: {Duracao,-2}  | Data Pedido: {Data,-10} | Data Entrega: {DataEntregaLivroAlugado(),-10}|");
             Console.WriteLine("|--------------------------------------------------------------------------------------------------------------------|");
         }
         public void ConsultaEmprestimoIndividual()
         {
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
 
-            Console.WriteLine("|------------------------------------------------------------------------------------------------------------|");
-            Console.WriteLine($"| Título: {Livro.NomeLivro,-11} | Duração: {Duracao,-9} | Data Pedido: {Data,-9} | Entregar em: {DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber} |");
-            Console.WriteLine("|------------------------------------------------------------------------------------------------------------|");
+            Console.WriteLine("|------------------------------------------------------------------------------------------------|");
+            Console.WriteLine($"| Título: {Livro.NomeLivro,-18} | Duração: {Duracao,-4} | Data Pedido: {Data,-10} | Entregar em: {DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber,-10} |");
+            Console.WriteLine("|------------------------------------------------------------------------------------------------|");
         }
         // no relatorio poderia vir a informacao  se o livro foi devolvido a tempo etc
         public DateOnly DataEntregaLivroAlugado()
@@ -141,10 +141,10 @@ namespace ProjetoPOO
         {
             int contadorLivrosDoUtilizador = 0;
 
-            Console.WriteLine("=============================================== Os seus Livros ===============================================");
+            Console.WriteLine("========================================= Os seus Livros =========================================");
             foreach (EmprestimosLivros livro in emprestimoLivros)
             {
-                if ((livro.NomeCliente == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
+                if ((livro.Utilizador.NomeUtilizador == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
                 {
                     livro.ConsultaEmprestimoIndividual();
                     contadorLivrosDoUtilizador++;
@@ -156,7 +156,7 @@ namespace ProjetoPOO
                 MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
             }
 
-            Console.WriteLine("|____________________________________________________________________________________________________________|");
+            Console.WriteLine("|______________________________________________________________________________________________________|");
 
             }
     }

@@ -55,6 +55,7 @@ namespace ProjetoPOO
                         case 2:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
+                            RegistarLivro.ConsultaFiltrada(Livros);
                             Console.WriteLine();
                             EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros, listaUtilizadores);
                             break;
@@ -109,14 +110,15 @@ namespace ProjetoPOO
                     Console.WriteLine("| 2. Alugar livro             |");
                     Console.WriteLine("| 3. Consultar Alugueres      |");
                     Console.WriteLine("| 4. Devolver livro           |");
-                    Console.WriteLine("| 5. Sair                     |");
+                    Console.WriteLine("| 5. A não Perder             |");
+                    Console.WriteLine("| 6. Sair                     |");
                     Console.WriteLine("|_____________________________|");
                     Console.WriteLine();
 
                     Console.WriteLine("Escolha uma opção: ");
                     opcaoMenuPrincipal = int.Parse(Console.ReadLine());
 
-                    while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4))
+                    while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4) && (opcaoMenuPrincipal != 5))
                     {
                         Console.WriteLine("Opção inválida, escolha novamente: ");
                         opcaoMenuPrincipal = int.Parse(Console.ReadLine());
@@ -144,7 +146,11 @@ namespace ProjetoPOO
                             Console.Clear();
                             EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
                             break;
-                        case 5:
+                            case 5:
+                            Console.Clear();
+                            RelatoriosEmprestimos.RelatorioLivrosClientes(Livros);
+                            break;
+                        case 6:
                             Console.Clear();
                             break;
 

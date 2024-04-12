@@ -42,10 +42,10 @@ namespace ProjetoPOO
         public static void RelatorioLivrosClientes(List<RegistarLivro> Livros)
 
         {
-            var dataHoje = DateOnly.FromDateTime(DateTime.Now);
+            //var dataHoje = DateOnly.FromDateTime(DateTime.Now);
 
             int livroTeste = 0;
-            RegistarLivro LivroMaisAlugado;
+            RegistarLivro LivroMaisAlugado=new RegistarLivro() ;
 
 
             foreach (RegistarLivro livro in Livros)
@@ -53,35 +53,36 @@ namespace ProjetoPOO
                 if (livro.NumVezesAlugado > livroTeste)
                 {
                     livroTeste = livro.NumVezesAlugado;
-                    LivroMaisAlugado = livro;
+                   LivroMaisAlugado = livro;
+                    
                 }
             }
-            Console.WriteLine("==================================================== A Não Perder ===================================================");
-            Console.WriteLine("|                                                                                                                   |");
-            Console.WriteLine("|___________________________________________ Livro mais alugado do mês _____________________________________________|");
-            Console.WriteLine($"| Titulo: {LivroMaisAlugado.NomeLivro} | Autor: {LivroMaisAlugado.Autor} | Publicado: {LivroMaisAlugado.AnoPublic} |");
-            Console.WriteLine("|-------------------------------------------------------------------------------------------------------------------|");
-            Console.WriteLine("|_______________________________________________ Proximos Lançamentos ______________________________________________|");
-            Console.WriteLine("| Titulo: O Rapaz | Autor: Claudio Ramos | Gênero: Romance | Idioma: Português                                      |");
-            Console.WriteLine("| Titulo: A Corrente | Autor: Filipa Amorim | Gênero: Thriller | Idioma: Português                                  |");
-            Console.WriteLine("| Titulo: Too Late | Autor: Collen Hoover | Gênero: Drama | Idioma: Inglês                                          |");
-            Console.WriteLine("| Titulo: King of Sloth | Autor: Ana Huang | Gênero: Romance | Idioma: Inglês                                       |");
-            Console.WriteLine("|-------------------------------------------------------------------------------------------------------------------|");
-            Console.WriteLine("|_______________________________________________ Ultimas Oportunidades _____________________________________________|");
+            Console.WriteLine("=================================== A Não Perder ===================================");
+            Console.WriteLine("|----------------------------------------------------------------------------------|");
+            Console.WriteLine("|___________________________ Livro mais alugado do mês ____________________________|");
+            Console.WriteLine($"| Titulo: {LivroMaisAlugado.NomeLivro,-12} | Autor: {LivroMaisAlugado.Autor,-12} | Publicado: {LivroMaisAlugado.AnoPublic,-4} | Numero de vezes Alugado:{LivroMaisAlugado.NumVezesAlugado,-2} |");
+            Console.WriteLine("|----------------------------------------------------------------------------------|");
+            Console.WriteLine("|______________________________ Proximos Lançamentos ______________________________|");
+            Console.WriteLine("| Titulo: O Rapaz | Autor: Claudio Ramos | Gênero: Romance | Idioma: Português     |");
+            Console.WriteLine("| Titulo: A Corrente | Autor: Filipa Amorim | Gênero: Thriller | Idioma: Portuguê  |");
+            Console.WriteLine("| Titulo: Too Late | Autor: Collen Hoover | Gênero: Drama | Idioma: Inglês         |");
+            Console.WriteLine("| Titulo: King of Sloth | Autor: Ana Huang | Gênero: Romance | Idioma: Inglês      |");
+            Console.WriteLine("|----------------------------------------------------------------------------------|");
+            Console.WriteLine("|______________________________ Ultimas Oportunidades _____________________________|");
 
 
             foreach (var livro in Livros)
             {
                 if (livro.NumExemp == 1) 
                 {
-                    Console.WriteLine($"| Titulo: {livro.NomeLivro} | Autor: {livro.Autor} | Gênero: Romance | Idioma: Inglês |");
+                    Console.WriteLine($"| Titulo: {livro.NomeLivro,-16} | Autor: {livro.Autor,16} | Gênero:{livro.GeneroLivro,-10} | Idioma:{livro.IdiomaLivro,-10} |");
 
                 }
             }
-            Console.WriteLine("|--------------------------------------------------------------------------------------------------------------------|");
+            Console.WriteLine("|----------------------------------------------------------------------------------|");
 
 
-            Console.WriteLine("|____________________________________________________________________________________________________________________|"); // ajustar tamanho dps
+            Console.WriteLine("|__________________________________________________________________________________|"); // ajustar tamanho dps
         }
     }
 }
