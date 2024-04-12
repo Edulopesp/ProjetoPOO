@@ -1,4 +1,6 @@
-﻿namespace ProjetoPOO
+﻿using System.Runtime;
+
+namespace ProjetoPOO
 {
     internal class RegistarLivro
     {
@@ -47,13 +49,20 @@
 
             do
             {
-                Console.WriteLine("=============== Gestão de Livros ================");
+                
+                
+                //Console.WriteLine(" ===============================================");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.WriteLine( "                 Gestão de Livros               ");
+                Console.ResetColor();
+                Console.WriteLine("|-----------------------------------------------|");
                 Console.WriteLine("| 1. Adicionar Novo Livro                       |");
                 Console.WriteLine("| 2. Remover Livro Existente                    |");
                 Console.WriteLine("| 3. Atualizar Número de Exemplares Disponíveis |");
                 Console.WriteLine("| 4. Exibir Lista Atual de Livros               |");
                 Console.WriteLine("| 5. Voltar                                     |");
-                Console.WriteLine("=================================================");
+                Console.WriteLine("|_______________________________________________|");
 
                 opcao = int.Parse(Console.ReadLine());
                 Console.WriteLine("");
@@ -99,7 +108,7 @@
             string genero;
             string idioma;
 
-            Console.WriteLine("-------- Registo de Livros --------");
+            Console.WriteLine("============================ Registo de Livros ============================");
             Console.WriteLine("");
             Console.Write("| Título: ");
             nomeLivro = Console.ReadLine();
@@ -178,14 +187,15 @@
             int opcaoEscolhida;
 
             Console.WriteLine();
-            Console.WriteLine("------ Idiomas ------");
+            Console.WriteLine("====== Idiomas ======");
+            Console.WriteLine("|-------------------|");
             Console.WriteLine("| 1. Português      |");
             Console.WriteLine("| 2. Inglês         |");
             Console.WriteLine("| 3. Frances        |");
             Console.WriteLine("| 4. Espanhol       |");
             Console.WriteLine("| 5. Alemão         |");
             Console.WriteLine("| 0. voltar         |");
-            Console.WriteLine("====================");
+            Console.WriteLine("|___________________|");
             Console.WriteLine();
 
             do
@@ -227,14 +237,15 @@
             int opcaoEscolhida;
 
             Console.WriteLine();
-            Console.WriteLine("------ Géneros ------");
-            Console.WriteLine("| 1. Romance        |");
-            Console.WriteLine("| 2. Drama          |");
-            Console.WriteLine("| 3. Ação           |");
-            Console.WriteLine("| 4. Thriller       |");
-            Console.WriteLine("| 5. Terror         |");
-            Console.WriteLine("| 0. voltar         |");
-            Console.WriteLine("=====================");
+            Console.WriteLine("====== Géneros ======");
+            Console.WriteLine("|--------------------|");
+            Console.WriteLine("| 1. Romance         |");
+            Console.WriteLine("| 2. Drama           |");
+            Console.WriteLine("| 3. Ação            |");
+            Console.WriteLine("| 4. Thriller        |");
+            Console.WriteLine("| 5. Terror          |");
+            Console.WriteLine("| 0. voltar          |");
+            Console.WriteLine("|____________________|");
             Console.WriteLine();
 
             do
@@ -296,7 +307,7 @@
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("----------- Pesquisa por Genero ------------");
+                        Console.WriteLine("============================ Pesquisa por Genero ===============================");
                         Console.WriteLine();
 
                         string genero = ExibirListaGeneros();
@@ -327,7 +338,7 @@
                         {
                             int conta = 0;
                             Console.Clear();
-                            Console.WriteLine("----------- Pesquisa por Idioma ------------");
+                            Console.WriteLine("============================ Pesquisa por Idioma ===============================");
 
                             Console.WriteLine();
 

@@ -219,14 +219,14 @@
         {
             Console.WriteLine("");
             Console.WriteLine("===================== Lista de Utilizadores ===================");
-
+            Console.WriteLine("|-------------------------------------------------------------|");
             foreach (Utilizadores usuario in listaUtilizadores)
             {
                 Console.WriteLine("|-------------------------------------------------------------|");
                 Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-20} | Telefone: {usuario.TelefoneUtilizador,-20} |");
                 Console.WriteLine("|-------------------------------------------------------------|");
             }
-            Console.WriteLine("|_________________________________________________________________|");
+            Console.WriteLine("|______________________________________________________________|");
         }
     }
 }

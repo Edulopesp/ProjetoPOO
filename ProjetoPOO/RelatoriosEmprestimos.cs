@@ -23,7 +23,7 @@ namespace ProjetoPOO
             {
                 livroAlugado.ConsultaListaEmpr();
             }
-            Console.WriteLine("|____________________________________________________________________________________________________________________|"); // ajustar tamanho dps
+            Console.WriteLine("|___________________________________________________________________________________________________________________|"); // ajustar tamanho dps
         }
 
         public static void RelatorioLivrosEmpresas(List<EmprestimosLivros> emprestimoLivros, List<RegistarLivro> Livros)
