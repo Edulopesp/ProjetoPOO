@@ -39,23 +39,27 @@ namespace ProjetoPOO
             Console.WriteLine("======================================= Relatórios ========================================== ");
             Console.WriteLine("---------------------------------------------------------------------------------------------"); // ajustar tamanho dps
         }
+        public static void RelatorioLivrosClientes(List<RegistarLivro> Livros)
 
-        public void RelatorioLivrosClientes(List<RegistarLivro> Livros)
         {
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
-            int livroMaisAlugado = 0;
 
-            foreach (var livro in Livros)
+            int livroTeste = 0;
+            RegistarLivro LivroMaisAlugado;
+
+
+            foreach (RegistarLivro livro in Livros)
             {
-                if (livro.NumVezesAlugado > livroMaisAlugado)
+                if (livro.NumVezesAlugado > livroTeste)
                 {
+                    livroTeste = livro.NumVezesAlugado;
                     LivroMaisAlugado = livro;
                 }
             }
             Console.WriteLine("==================================================== A Não Perder ===================================================");
             Console.WriteLine("|                                                                                                                   |");
             Console.WriteLine("|___________________________________________ Livro mais alugado do mês _____________________________________________|");
-            Console.WriteLine($"| Titulo: {LivroMaisAlugado.NomeLivro} | Autor: {LivroMaisAlugado.Autor} | Publicado: {LivroMaisAlugado.AnoPublic}  |");
+            Console.WriteLine($"| Titulo: {LivroMaisAlugado.NomeLivro} | Autor: {LivroMaisAlugado.Autor} | Publicado: {LivroMaisAlugado.AnoPublic} |");
             Console.WriteLine("|-------------------------------------------------------------------------------------------------------------------|");
             Console.WriteLine("|_______________________________________________ Proximos Lançamentos ______________________________________________|");
             Console.WriteLine("| Titulo: O Rapaz | Autor: Claudio Ramos | Gênero: Romance | Idioma: Português                                      |");

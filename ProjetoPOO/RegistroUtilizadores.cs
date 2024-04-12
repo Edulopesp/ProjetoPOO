@@ -40,10 +40,9 @@
             Console.WriteLine();
 
             Console.WriteLine("========== Menu ==========");
-            Console.WriteLine("| 1 - Login              |");
-            Console.WriteLine("|------------------------|");
-            Console.WriteLine("| 2 - Registrar          |");
-            Console.WriteLine("|========================|");
+            Console.WriteLine("| 1. Login               |");
+            Console.WriteLine("| 2. Registrar           |");
+            Console.WriteLine("|________________________|");
 
             opcaoMenuLogRes = double.Parse(Console.ReadLine());
             Console.WriteLine("");
@@ -77,7 +76,6 @@
             {
                 Console.Write("| Nome: ");
                 string nomeUtilizador = Console.ReadLine();
-                Console.WriteLine("|-----------------------------|");
                 Console.Write("| Palavra-Chave: ");
                 string palavraChaveUtilizador = Console.ReadLine() ;
                 Console.WriteLine("|_____________________________|");

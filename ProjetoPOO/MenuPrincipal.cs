@@ -75,17 +75,21 @@ namespace ProjetoPOO
                             Utilizadores.mostrarListaUtilizadores(listaUtilizadores);
                             break;
                         case 7:
+                            Console.Clear();
+                            RelatoriosEmprestimos.RelatorioLivrosClientes(Livros);
+                            break;
+                        case 8:
                             break;
 
                     }
-                    if (opcaoMenuPrincipal != 7)
+                    if (opcaoMenuPrincipal != 8)
                     {
                         Console.WriteLine("Deseja ver o menu novamente? (S/N)");
                         string verMenu = Console.ReadLine();
 
                         if (verMenu.ToLower() == "n")
                         {
-                            opcaoMenuPrincipal = 7;
+                            opcaoMenuPrincipal = 8;
                             Console.WriteLine("Obrigado, até a próxima!");
                         }
                         else if (verMenu.ToLower() == "s")
@@ -93,7 +97,7 @@ namespace ProjetoPOO
                             Console.Clear();
                         }
                     }
-                } while (opcaoMenuPrincipal != 7);
+                } while (opcaoMenuPrincipal != 8);
             }
             else
             {

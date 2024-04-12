@@ -301,8 +301,6 @@ namespace ProjetoPOO
                 Console.WriteLine("3. Sair");
                 option = int.Parse(Console.ReadLine());
 
-
-
                 switch (option)
                 {
                     case 1:
@@ -315,7 +313,6 @@ namespace ProjetoPOO
 
                         foreach (var livro in Livros)
                         {
-
                             if ((genero.ToLower() == livro.GeneroLivro.ToLower()) && (livro.NumExemp > 0))
                             {
                                 Console.Clear();
