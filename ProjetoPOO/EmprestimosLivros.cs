@@ -81,12 +81,30 @@ namespace ProjetoPOO
                         Console.WriteLine();
                         Console.WriteLine("Livro não encontrado, tente novamente.");
                     }
-                } while (true);
-            }
-            return livroVazio;
+            } while (true);
+              return livroVazio;
         }
-        public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<RegistarLivro> Livros, List<Utilizadores> listaUtilizadores)
-        {
+
+        public static void DevolucaoLivroAluguer(Utilizadores utilizadorLogado,List<EmprestimosLivros>emprestimoLivros,List<RegistarLivro>Livros, List<Utilizadores> listaUtilizadores)
+        {   
+            int contadorLivrosEmprestados = 0;
+            Console.WriteLine("============================================= Os seus Livros =============================================");
+
+            foreach (EmprestimosLivros livro in emprestimoLivros)
+            {
+                if ((livro.NomeCliente == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
+                {
+                    livro.ConsultaEmprestimoIndividual();
+                    contadorLivrosEmprestados++;
+                }
+            }
+            if (contadorLivrosEmprestados == 0)
+              {
+                Console.WriteLine("Não há livros alugados na sua conta.");
+                MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
+              }
+
+            Console.WriteLine("_________________________________________________________________________________________________________|");
             consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
 
             Console.WriteLine();
@@ -125,15 +143,17 @@ namespace ProjetoPOO
         public void ConsultaListaEmpr()
         {
             //objetivo do nr vezes alugado seria para fazer um best of livros mais requisitados
-            Console.WriteLine("---------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("|------------------------------------------------------------------------------------------------------------------|");
             Console.WriteLine($"| Titulo: {Livro.NomeLivro,-10} | Nome Cliente: {Cliente.NomeUtilizador,-10} | Duracao: {Duracao}  | Data Pedido: {Data,-10} | Status: {statusEmprestimo(),-12} |");
+            Console.WriteLine("|------------------------------------------------------------------------------------------------------------------|");
         }
         public void ConsultaEmprestimoIndividual()
         {
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
 
-            Console.WriteLine("----------------------------------------------------------------------------------");
+            Console.WriteLine("|----------------------------------------------------------------------------------|");
             Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Duração: {Duracao,-2} | Data Pedido: {Data,-9} | {calculoDiasParaEntrega()} |");
+            Console.WriteLine("|----------------------------------------------------------------------------------|");
         }
         // no relatorio poderia vir a informacao  se o livro foi devolvido a tempo etc
         public DateOnly DataEntregaLivroAlugado()
@@ -145,7 +165,8 @@ namespace ProjetoPOO
         {
             int contadorLivrosDoUtilizador = 0;
 
-            Console.WriteLine("-------------------------------------- Os seus Livros ---------------------------------------");
+            Console.WriteLine("======================================== Os seus Livros =============================================");
+
             foreach (EmprestimosLivros livro in emprestimoLivros)
             {
                 if ((livro.Cliente.NomeUtilizador == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
@@ -159,9 +180,7 @@ namespace ProjetoPOO
                 Console.WriteLine("Não há livros alugados na sua conta.");
                 MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
             }
-
-            Console.WriteLine("=============================================================================================");
-
+            Console.WriteLine("|___________________________________________________________________________________________________|");
         }
         public string statusEmprestimo()
         {
@@ -186,7 +205,6 @@ namespace ProjetoPOO
                     return Status;
                 }
             }
-
         }
         public string calculoDiasParaEntrega()
         {
@@ -194,7 +212,6 @@ namespace ProjetoPOO
             string respostaCalculo;
 
             int diasCalculo = DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber;
-
             if (diasCalculo > 0) 
             {
                 respostaCalculo = $"Entregar em: {diasCalculo} dias";
@@ -204,8 +221,6 @@ namespace ProjetoPOO
                 respostaCalculo = "Status: Atrasado";
                 return respostaCalculo;
             }
-
-
         }
     }
 }

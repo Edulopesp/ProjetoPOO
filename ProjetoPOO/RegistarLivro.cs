@@ -34,16 +34,18 @@
         }
         public void ConsultaLivros()
         {
-            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("|----------------------------------------------------------------------------------------------------------------------|");
             Console.WriteLine($"| Título: {NomeLivro,-9} | Autor: {Autor,-9} | Ano de Publicação: {AnoPublic} | Qtd Disp: {NumExemp,-2} |  Gênero: {GeneroLivro,-7} | Idioma: {IdiomaLivro,-9} |");
+            Console.WriteLine("|----------------------------------------------------------------------------------------------------------------------|");
         }
+
         public static void RegLivros(List<RegistarLivro> Livros, Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<Utilizadores> listaUtilizadores)
         {
             int opcao;
 
             do
             {
-                Console.WriteLine("--------------- Gestão de Livros ----------------");
+                Console.WriteLine("=============== Gestão de Livros ================");
                 Console.WriteLine("| 1. Adicionar Novo Livro                       |");
                 Console.WriteLine("| 2. Remover Livro Existente                    |");
                 Console.WriteLine("| 3. Atualizar Número de Exemplares Disponíveis |");
@@ -169,7 +171,7 @@
         }
         public static void ExibirListaLivros(List<RegistarLivro> Livros)
         {
-            Console.WriteLine("------------------------------------------------ Consulta de Livros ---------------------------------------------------");
+            Console.WriteLine("============================================== Consulta de Livros ======================================================");
 
             foreach (var livro in Livros)
             {
@@ -179,7 +181,7 @@
                 }
             }
 
-            Console.WriteLine("=======================================================================================================================");
+            Console.WriteLine("|______________________________________________________________________________________________________________________|");
             Console.WriteLine();
         }
         public static string ExibirListaIdiomas()
@@ -291,41 +293,46 @@
 
             while (valor.ToLower() != "sair")
             {
+                int option;
+
                 Console.WriteLine();
                 Console.WriteLine("1. Pesquisa por Genero");
                 Console.WriteLine("2. Pesquisa por Idioma");
                 Console.WriteLine("3. Sair");
-                int option = int.Parse(Console.ReadLine());
+                option = int.Parse(Console.ReadLine());
+
+
 
                 switch (option)
                 {
                     case 1:
-
                         Console.Clear();
                         Console.WriteLine("----------- Pesquisa por Genero ------------");
-
                         Console.WriteLine();
 
                         string genero = ExibirListaGeneros();
+                        int contador = 0;
+
                         Console.Clear();
                         Console.WriteLine($"---------------------------------------------- Lista do Genero {genero, -7} ------------------------------------------------");
 
                         foreach (var livro in Livros)
                         {
 
-                            if (genero.ToLower() == livro.GeneroLivro.ToLower())
+                            if ((genero.ToLower() == livro.GeneroLivro.ToLower()) && (livro.NumExemp > 0))
                             {
                                 livro.ConsultaLivros();
+                                contador++;
                             }
-
                         }
-
-                        if ((genero.ToLower() == "sair") || (genero == "Opção Inválida"))
+                        if ((contador == 0) && (genero != "sair"))
+                        {
+                            Console.WriteLine(" Livro nao encontrado");
+                        }
+                        if (genero.ToLower() == "sair")
 
                         {
                             Console.WriteLine("Obrigado");
-
-                        
                         }
 
                         Console.WriteLine("=======================================================================================================================");
@@ -333,13 +340,23 @@
 
 
                         break;
-
                     case 2:
-                        
+
+                        while (valor.ToLower() != "sair")
+                        {
+                            int conta = 0;
+
                             Console.Clear();
                             Console.WriteLine("----------- Pesquisa por Idioma ------------");
 
                             Console.WriteLine();
+                            genero = ExibirListaGeneros();
+
+
+                            foreach (var livro in Livros)
+                            {
+
+                                if ((genero.ToLower() == livro.IdiomaLivro.ToLower()) && (livro.NumExemp > 0))
 
                             string idioma = ExibirListaIdiomas();
                             Console.Clear();
@@ -350,11 +367,23 @@
                                 if (idioma.ToLower() == livro.IdiomaLivro.ToLower())
                                 {
                                     livro.ConsultaLivros();
+                                    conta++;
+
                                 }
+
                             }
-                            if ((idioma.ToLower() == "sair") || (idioma == "Opção Inválida"))
+                            if ((conta == 0) && (genero != "sair"))
+                            {
+                                Console.WriteLine(" Idioma nao encontrado");
+
+                            }
+
+                            if (genero.ToLower() == "sair")
+
                             {
                                 Console.WriteLine("Obrigado");
+
+
                             }
 
                             Console.WriteLine("=======================================================================================================================");
@@ -365,12 +394,25 @@
                         Console.Clear();
                         valor = "sair";
                         break;
-                     
                 }
             }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
