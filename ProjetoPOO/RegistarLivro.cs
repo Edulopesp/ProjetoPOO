@@ -302,8 +302,6 @@
                 Console.WriteLine("3. Sair");
                 option = int.Parse(Console.ReadLine());
 
-
-
                 switch (option)
                 {
                     case 1:
@@ -314,14 +312,10 @@
                         string genero = ExibirListaGeneros();
                         int contador = 0;
 
-
-
                         foreach (var livro in Livros)
                         {
-
                             if ((genero.ToLower() == livro.GeneroLivro.ToLower()) && (livro.NumExemp > 0))
                             {
-
                                 Console.Clear();
                                 Console.WriteLine($"============================================== Lista do Genero {genero,-7} ================================================");
                                 livro.ConsultaLivros();
