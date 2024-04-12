@@ -238,14 +238,15 @@
             int opcaoEscolhida;
 
             Console.WriteLine();
-            Console.WriteLine("------ Géneros ------");
+            Console.WriteLine("====== Géneros ======");
+            Console.WriteLine("|-------------------|");
             Console.WriteLine("| 1. Romance        |");
             Console.WriteLine("| 2. Drama          |");
             Console.WriteLine("| 3. Ação           |");
             Console.WriteLine("| 4. Thriller       |");
             Console.WriteLine("| 5. Terror         |");
             Console.WriteLine("| 0. voltar         |");
-            Console.WriteLine("=====================");
+            Console.WriteLine("|___________________|");
             Console.WriteLine();
 
             do
@@ -307,20 +308,22 @@
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("----------- Pesquisa por Genero ------------");
+                        Console.WriteLine("=== Pesquisa por Genero ===");
                         Console.WriteLine();
 
                         string genero = ExibirListaGeneros();
                         int contador = 0;
 
-                        Console.Clear();
-                        Console.WriteLine($"---------------------------------------------- Lista do Genero {genero, -7} ------------------------------------------------");
+
 
                         foreach (var livro in Livros)
                         {
 
                             if ((genero.ToLower() == livro.GeneroLivro.ToLower()) && (livro.NumExemp > 0))
                             {
+
+                                Console.Clear();
+                                Console.WriteLine($"============================================== Lista do Genero {genero,-7} ================================================");
                                 livro.ConsultaLivros();
                                 contador++;
                             }
@@ -347,58 +350,51 @@
                             int conta = 0;
 
                             Console.Clear();
-                            Console.WriteLine("----------- Pesquisa por Idioma ------------");
+                            Console.WriteLine("=========== Pesquisa por Idioma ============");
 
                             Console.WriteLine();
-                            genero = ExibirListaGeneros();
-
-
-                            foreach (var livro in Livros)
-                            {
-
-                                if ((genero.ToLower() == livro.IdiomaLivro.ToLower()) && (livro.NumExemp > 0))
-
                             string idioma = ExibirListaIdiomas();
-                            Console.Clear();
-                            Console.WriteLine($"--------------------------------------------- Lista do Idioma {idioma,-7} -----------------------------------------------");
+
 
                             foreach (var livro in Livros)
                             {
-                                if (idioma.ToLower() == livro.IdiomaLivro.ToLower())
+                                if ((idioma.ToLower() == livro.IdiomaLivro.ToLower()) && (livro.NumExemp > 0))
                                 {
+                                    Console.Clear();
                                     livro.ConsultaLivros();
                                     conta++;
-
+                                    Console.WriteLine($"============================================= Lista do Idioma {idioma,-7} ===============================================");
                                 }
-
                             }
-                            if ((conta == 0) && (genero != "sair"))
+
+                            if ((conta == 0) && (idioma != "sair"))
                             {
                                 Console.WriteLine(" Idioma nao encontrado");
-
                             }
 
-                            if (genero.ToLower() == "sair")
+                            if (idioma.ToLower() == "sair")
 
                             {
                                 Console.WriteLine("Obrigado");
-
-
                             }
 
                             Console.WriteLine("=======================================================================================================================");
                             Console.WriteLine();
+                        }
 
                         break;
                     case 3:
                         Console.Clear();
                         valor = "sair";
                         break;
+
                 }
             }
         }
     }
 }
+
+
 
 
 
