@@ -75,12 +75,9 @@ namespace ProjetoPOO
                             Utilizadores.mostrarListaUtilizadores(listaUtilizadores);
                             break;
                         case 7:
-                            Console.WriteLine("Obrigado, até a próxima!");
                             break;
 
                     }
-
-
                     if (opcaoMenuPrincipal != 7)
                     {
                         Console.WriteLine("Deseja ver o menu novamente? (S/N)");
@@ -145,7 +142,6 @@ namespace ProjetoPOO
                             break;
                         case 5:
                             Console.Clear();
-                            Console.WriteLine("Obrigado, até a próxima!");
                             break;
 
                     }
@@ -159,16 +155,14 @@ namespace ProjetoPOO
                         if (verMenu.ToLower() == "n")
                         {
                             opcaoMenuPrincipal = 5;
-                            Console.WriteLine("Obrigado, até a próxima!");
                         }
-                        else if (verMenu.ToLower() == "s")
+                        else
                         {
                             Console.Clear();
                         }
                     }
                 } while (opcaoMenuPrincipal != 5);
             }
-            Utilizadores.MenuLogRes(listaUtilizadores, Livros);
         }
     }
 }
