@@ -19,14 +19,13 @@ namespace ProjetoPOO
         public static void RelatorioEmprestimos(List<EmprestimosLivros> emprestimoLivros)
         {
             Console.WriteLine("=============================================== Lista de Emprestimos ================================================");
-
             foreach (var livroAlugado in emprestimoLivros)
             {
                 livroAlugado.ConsultaListaEmpr();
             }
-            Console.WriteLine("|____________________________________________________________________________________________________________________|"); 
-
+            Console.WriteLine("|___________________________________________________________________________________________________________________|"); // ajustar tamanho dps
         }
+
         public static void RelatorioLivrosEmpresas(List<EmprestimosLivros> emprestimoLivros, List<RegistarLivro> Livros)
         {
             int totalLivrosBiblioteca = 0;
@@ -41,6 +40,7 @@ namespace ProjetoPOO
             Console.WriteLine("---------------------------------------------------------------------------------------------"); // ajustar tamanho dps
         }
         public static void RelatorioLivrosClientes(List<RegistarLivro> Livros)
+
         {
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
 
