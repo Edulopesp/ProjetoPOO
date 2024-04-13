@@ -8,8 +8,10 @@ namespace ProjetoPOO.Enum
 {
     internal enum MultasAluguer
     {//apenas se quer pagar a multa em dias de interdicao ou em dinheiro
-        Dias = 5,
-        Pagamento = 5
+        Dias1 = 5,
+        Dias2= 10,
+        Pagamento1 = 5,
+        Pagamento2 = 10
 
     }
 }

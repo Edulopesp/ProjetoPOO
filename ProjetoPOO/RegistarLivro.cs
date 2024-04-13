@@ -28,6 +28,11 @@ namespace ProjetoPOO
             IdiomaLivro = idioma;
         }
 
+        public RegistarLivro()
+        {
+        }
+
+
         // Métodos
         public void AtualizarQuantidadeDisponivel()
         {
@@ -51,11 +56,7 @@ namespace ProjetoPOO
             {
                 
                 
-                //Console.WriteLine(" ===============================================");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.BackgroundColor = ConsoleColor.Blue;
-                Console.WriteLine( "                 Gestão de Livros               ");
-                Console.ResetColor();
+                Console.WriteLine("=============== Gestão de Livros ================");              
                 Console.WriteLine("|-----------------------------------------------|");
                 Console.WriteLine("| 1. Adicionar Novo Livro                       |");
                 Console.WriteLine("| 2. Remover Livro Existente                    |");
@@ -237,7 +238,7 @@ namespace ProjetoPOO
             int opcaoEscolhida;
 
             Console.WriteLine();
-            Console.WriteLine("====== Géneros ======");
+            Console.WriteLine("====== Géneros =======");
             Console.WriteLine("|--------------------|");
             Console.WriteLine("| 1. Romance         |");
             Console.WriteLine("| 2. Drama           |");
@@ -331,43 +332,33 @@ namespace ProjetoPOO
                         }
                         break;
                     case 2:
-                        while (valor.ToLower() != "sair")
-                        {
-                            int conta = 0;
+                       // while (valor.ToLower() != "sair")
+                       // {
                             Console.Clear();
                             Console.WriteLine("============================ Pesquisa por Idioma ===============================");
-
                             Console.WriteLine();
 
                             genero = ExibirListaGeneros();
-
+                            int conta = 0;
 
                             foreach (var livro in Livros)
                             {
-
                                 if ((genero.ToLower() == livro.IdiomaLivro.ToLower()) && (livro.NumExemp > 0))
                                 {
                                     Console.Clear();
                                     livro.ConsultaLivros();
                                     conta++;
-
                                 }
-
                             }
                             if ((conta == 0) && (genero != "sair"))
                             {
                                 Console.WriteLine(" Idioma nao encontrado");
-
                             }
-
                             if (genero.ToLower() == "sair")
-
                             {
                                 Console.WriteLine("Obrigado");
-
-
                             }
-                        }
+                      //
                         break;
                     case 3:
                         Console.WriteLine("Obrigado");
