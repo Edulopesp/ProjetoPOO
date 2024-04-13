@@ -211,23 +211,23 @@ namespace ProjetoPOO
             {
                 case 1:
                     return "Português";
-                    break;
+                    
                 case 2:
                     return "Inglês";
-                    break;
+                    
                 case 3:
                     return "Frances";
-                    break;
+                   
                 case 4:
                     return "Espanhol";
-                    break;
+                   
                 case 5:
                     return "Alemão";
-                    break;
+                   
                 case 0:
                     return "sair";
 
-                    break;
+                 
                 default:
                     return "Opção Inválida";
             }
@@ -265,19 +265,17 @@ namespace ProjetoPOO
                     break;
                 case 2:
                     return "Drama";
-                    break;
                 case 3:
                     return "Ação";
-                    break;
                 case 4:
                     return "Thriller";
-                    break;
+                    
                 case 5:
                     return "Terror";
-                    break;
+                    
                 case 0:
                     return "sair";
-                    break;
+                    
                 default:
                     return "Opção Inválida";
 
@@ -304,27 +302,32 @@ namespace ProjetoPOO
 
                 switch (option)
                 {
+                    
                     case 1:
                         Console.Clear();
                         Console.WriteLine("============================ Pesquisa por Genero ===============================");
                         Console.WriteLine();
-
-                        string genero = ExibirListaGeneros();
-                        int contador = 0;
-
-                        foreach (var livro in Livros)
+                       
+                            string genero = ExibirListaGeneros();
+                            int contador = 0;
+                        Console.Clear();
+                        while ((contador == 0) && (genero != "sair")) 
                         {
-                            if ((genero.ToLower() == livro.GeneroLivro.ToLower()) && (livro.NumExemp > 0))
+                            foreach (var livro in Livros)
                             {
-                                Console.Clear();
-                                livro.ConsultaLivros();
-                                contador++;
+                                if ((genero.ToLower() == livro.GeneroLivro.ToLower()) && (livro.NumExemp > 0))
+                                {
+                                   
+                                    livro.ConsultaLivros();
+                                    contador++;
+                                }
+                            }
+                            if ((contador == 0) && (genero != "sair"))
+                            {
+                                Console.WriteLine(" Livro nao encontrado");
                             }
                         }
-                        if ((contador == 0) && (genero != "sair"))
-                        {
-                            Console.WriteLine(" Livro nao encontrado");
-                        }
+                      
                         if (genero.ToLower() == "sair")
 
                         {
@@ -332,25 +335,25 @@ namespace ProjetoPOO
                         }
                         break;
                     case 2:
-                       // while (valor.ToLower() != "sair")
-                       // {
+                        // while (valor.ToLower() != "sair")                    
+                            // {
                             Console.Clear();
                             Console.WriteLine("============================ Pesquisa por Idioma ===============================");
                             Console.WriteLine();
 
-                            genero = ExibirListaGeneros();
-                            int conta = 0;
-
-                            foreach (var livro in Livros)
+                            genero = ExibirListaIdiomas();
+                            contador = 0;
+                        Console.Clear();
+                        foreach (var livro in Livros)
                             {
                                 if ((genero.ToLower() == livro.IdiomaLivro.ToLower()) && (livro.NumExemp > 0))
                                 {
-                                    Console.Clear();
+                                    
                                     livro.ConsultaLivros();
-                                    conta++;
+                                    contador++;
                                 }
                             }
-                            if ((conta == 0) && (genero != "sair"))
+                            if ((contador == 0) && (genero != "sair"))
                             {
                                 Console.WriteLine(" Idioma nao encontrado");
                             }
@@ -358,7 +361,7 @@ namespace ProjetoPOO
                             {
                                 Console.WriteLine("Obrigado");
                             }
-                      //
+                        
                         break;
                     case 3:
                         Console.WriteLine("Obrigado");

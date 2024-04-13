@@ -156,7 +156,7 @@ namespace ProjetoPOO
                 MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
             }
 
-            Console.WriteLine("|______________________________________________________________________________________________________|");
+            Console.WriteLine("|_________________________________________________________________________________________________|");
 
             }
     }

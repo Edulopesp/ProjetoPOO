@@ -57,18 +57,18 @@ namespace ProjetoPOO
                     
                 }
             }
-            Console.WriteLine("=================================== A Não Perder ===================================");
-            Console.WriteLine("|----------------------------------------------------------------------------------|");
-            Console.WriteLine("|___________________________ Livro mais alugado do mês ____________________________|");
-            Console.WriteLine($"| Titulo: {LivroMaisAlugado.NomeLivro,-12} | Autor: {LivroMaisAlugado.Autor,-12} | Publicado: {LivroMaisAlugado.AnoPublic,-4} | Numero de vezes Alugado:{LivroMaisAlugado.NumVezesAlugado,-2} |");
-            Console.WriteLine("|----------------------------------------------------------------------------------|");
-            Console.WriteLine("|______________________________ Proximos Lançamentos ______________________________|");
-            Console.WriteLine("| Titulo: O Rapaz | Autor: Claudio Ramos | Gênero: Romance | Idioma: Português     |");
-            Console.WriteLine("| Titulo: A Corrente | Autor: Filipa Amorim | Gênero: Thriller | Idioma: Portuguê  |");
-            Console.WriteLine("| Titulo: Too Late | Autor: Collen Hoover | Gênero: Drama | Idioma: Inglês         |");
-            Console.WriteLine("| Titulo: King of Sloth | Autor: Ana Huang | Gênero: Romance | Idioma: Inglês      |");
-            Console.WriteLine("|----------------------------------------------------------------------------------|");
-            Console.WriteLine("|______________________________ Ultimas Oportunidades _____________________________|");
+            Console.WriteLine("======================================== A Não Perder ========================================");
+            Console.WriteLine("|--------------------------------------------------------------------------------------------|");
+            Console.WriteLine("|________________________________ Livro mais alugado do mês _________________________________|");
+            Console.WriteLine($"| Titulo: {LivroMaisAlugado.NomeLivro,-12} | Autor: {LivroMaisAlugado.Autor,-12} | Publicado: {LivroMaisAlugado.AnoPublic,-4} | Numero de vezes Alugado:{LivroMaisAlugado.NumVezesAlugado,-2}  |");
+            Console.WriteLine("|--------------------------------------------------------------------------------------------|");
+            Console.WriteLine("|___________________________________ Proximos Lançamentos ___________________________________|");
+            Console.WriteLine("| Titulo: O Rapaz | Autor: Claudio Ramos | Gênero: Romance | Idioma: Português               |");
+            Console.WriteLine("| Titulo: A Corrente | Autor: Filipa Amorim | Gênero: Thriller | Idioma: Português           |");
+            Console.WriteLine("| Titulo: Too Late | Autor: Collen Hoover | Gênero: Drama | Idioma: Inglês                   |");
+            Console.WriteLine("| Titulo: King of Sloth | Autor: Ana Huang | Gênero: Romance | Idioma: Inglês                |");
+            Console.WriteLine("|--------------------------------------------------------------------------------------------|");
+            Console.WriteLine("|___________________________________ Ultimas Oportunidades __________________________________|");
 
 
             foreach (var livro in Livros)
@@ -79,10 +79,10 @@ namespace ProjetoPOO
 
                 }
             }
-            Console.WriteLine("|----------------------------------------------------------------------------------|");
+            Console.WriteLine("|--------------------------------------------------------------------------------------------|");
 
 
-            Console.WriteLine("|__________________________________________________________________________________|"); // ajustar tamanho dps
+            Console.WriteLine("|____________________________________________________________________________________________|"); // ajustar tamanho dps
         }
     }
 }
