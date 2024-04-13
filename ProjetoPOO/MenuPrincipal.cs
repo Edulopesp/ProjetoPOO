@@ -38,7 +38,7 @@ namespace ProjetoPOO
                     Console.WriteLine("Escolha uma opção: ");
                     opcaoMenuPrincipal = int.Parse(Console.ReadLine());
 
-                    while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4) && (opcaoMenuPrincipal != 5) && (opcaoMenuPrincipal != 6) && (opcaoMenuPrincipal != 7))
+                    while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4) && (opcaoMenuPrincipal != 5) && (opcaoMenuPrincipal != 6) && (opcaoMenuPrincipal != 7) && (opcaoMenuPrincipal != 8))
                     {
                         Console.WriteLine("Opção inválida, escolha novamente: ");
                         opcaoMenuPrincipal = int.Parse(Console.ReadLine());
@@ -50,12 +50,11 @@ namespace ProjetoPOO
                         case 1:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
-                            RegistarLivro.ConsultaFiltrada(Livros);
+                            RegistarLivro.ConsultaFiltrada(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
                             break;
                         case 2:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
-                            RegistarLivro.ConsultaFiltrada(Livros);
                             Console.WriteLine();
                             EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros, listaUtilizadores);
                             break;
@@ -80,6 +79,7 @@ namespace ProjetoPOO
                             RelatoriosEmprestimos.RelatorioLivrosClientes(Livros);
                             break;
                         case 8:
+                            Console.Clear();
                             break;
 
                     }
@@ -118,7 +118,7 @@ namespace ProjetoPOO
                     Console.WriteLine("Escolha uma opção: ");
                     opcaoMenuPrincipal = int.Parse(Console.ReadLine());
 
-                    while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4) && (opcaoMenuPrincipal != 5))
+                    while ((opcaoMenuPrincipal != 1) && (opcaoMenuPrincipal != 2) && (opcaoMenuPrincipal != 3) && (opcaoMenuPrincipal != 4) && (opcaoMenuPrincipal != 5) && (opcaoMenuPrincipal != 6))
                     {
                         Console.WriteLine("Opção inválida, escolha novamente: ");
                         opcaoMenuPrincipal = int.Parse(Console.ReadLine());
@@ -130,8 +130,7 @@ namespace ProjetoPOO
                         case 1:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
-                            
-                            RegistarLivro.ConsultaFiltrada(Livros);
+                            RegistarLivro.ConsultaFiltrada(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
                             break;
                         case 2:
                             Console.Clear();
@@ -146,7 +145,7 @@ namespace ProjetoPOO
                             Console.Clear();
                             EmprestimosLivros.DevolucaoLivroAluguer(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
                             break;
-                            case 5:
+                        case 5:
                             Console.Clear();
                             RelatoriosEmprestimos.RelatorioLivrosClientes(Livros);
                             break;
@@ -156,22 +155,22 @@ namespace ProjetoPOO
 
                     }
 
-                    if (opcaoMenuPrincipal != 5)
+                    if (opcaoMenuPrincipal != 6)
                     {
-                        Console.WriteLine();
                         Console.WriteLine("Deseja ver o menu novamente? (S/N)");
                         string verMenu = Console.ReadLine();
 
                         if (verMenu.ToLower() == "n")
                         {
-                            opcaoMenuPrincipal = 5;
+                            opcaoMenuPrincipal = 6;
+                            Console.WriteLine("Obrigado, até a próxima!");
                         }
-                        else
+                        else if (verMenu.ToLower() == "s")
                         {
                             Console.Clear();
                         }
                     }
-                } while (opcaoMenuPrincipal != 5);
+                } while (opcaoMenuPrincipal != 6);
             }
         }
     }

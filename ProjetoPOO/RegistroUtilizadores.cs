@@ -31,6 +31,14 @@
                 totalLivrosBiblioteca += livro.NumExemp;
             }
 
+            for (int i = 0; i < 7; i++)
+            {
+                Console.ForegroundColor = (ConsoleColor)((i + 1) % 16); // Set text color
+                Console.WriteLine("This is rainbow text!");
+
+                Thread.Sleep(200); // Add a small delay for visibility
+            }
+
             Console.Clear();
             Console.WriteLine("            Bem vindo à Biblioteca BES<T>!");
             Console.WriteLine($"   Onde temos à sua disposição mais de {totalLivrosBiblioteca - 1} Livros");
@@ -70,15 +78,14 @@
         }
         public static Utilizadores efetuarLogin(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
         {
-            Console.WriteLine("============ Login ============");
-            Console.WriteLine("|-----------------------------|");
-
             do
             {
-                Console.Write("  Nome: ");
+                Console.WriteLine("============ Login ============");
+                Console.WriteLine("|-----------------------------|");
+                Console.Write("| Nome: ");
                 string nomeUtilizador = Console.ReadLine();
-                Console.Write("  Palavra-Chave: ");
-                string palavraChaveUtilizador = Console.ReadLine() ;
+                Console.Write("| Palavra-Chave: ");
+                string palavraChaveUtilizador = palavraChaveSegura();
                 Console.WriteLine("|_____________________________|");
                 Console.WriteLine();
 
@@ -91,7 +98,7 @@
                     if (utilizadorLogado.Funcionario == true)
                     {
                         Console.Clear();
-                        Console.WriteLine($"Bem vindo funcionário {utilizadorLogado.NomeUtilizador}!");
+                        Console.WriteLine($"Bem vindo funcionário(a) {utilizadorLogado.NomeUtilizador}!");
                         Console.WriteLine("");
                         return utilizadorLogado;
                     }
@@ -122,50 +129,46 @@
         }
         public static Utilizadores efetuarRegistro(List<Utilizadores> listaUtilizadores, List<RegistarLivro> Livros)
         {
-            Console.WriteLine("");
-            Console.WriteLine("======== Registrar =======");
-            Console.WriteLine("|------------------------|");
             string nomeUtilizador;
             string enderecoUtilizador;
             string telefoneUtilizador;
             string palavraChaveUtilizador;
             string identificadorUtilizador;
 
+            Console.WriteLine("");
+            Console.WriteLine("======== Registrar =======");
+            Console.WriteLine("|------------------------|");
             do
             {
                 Console.Write("| Nome: ");
                 nomeUtilizador = Console.ReadLine();
-                Console.WriteLine("|------------------------|");
+
             } while (nomeUtilizador == null);
 
             do {
                 Console.Write("| Endereço: ");
                 enderecoUtilizador = Console.ReadLine();
-                Console.WriteLine("|------------------------|");
             } while(enderecoUtilizador == null);
 
 
             do {
                 Console.Write("| Telefone: ");
                 telefoneUtilizador = Console.ReadLine();
-                Console.WriteLine("|------------------------|");
 
             } while (telefoneUtilizador == null);
 
             do
             {
                 Console.Write("| Palavra-Chave: ");
-                palavraChaveUtilizador = Console.ReadLine();
-                Console.WriteLine("|------------------------|");
+                palavraChaveUtilizador = palavraChaveSegura();
             } while (palavraChaveUtilizador == null);
 
             do {
                 Console.Write("| Funcionário: ");
                 identificadorUtilizador = Console.ReadLine().ToUpper();
-                Console.WriteLine("|------------------------|");
             } while(identificadorUtilizador == null);
 
-            Console.WriteLine("|------------------------|");
+            Console.WriteLine("|________________________|");
             Console.WriteLine();
 
 
@@ -190,7 +193,8 @@
                 Console.WriteLine("Usuário já registrado! Faça o login!");
                 Console.WriteLine("");
                 efetuarLogin(listaUtilizadores, Livros);
-                return utilizadorLogado; // adicionar a volta para o login
+                utilizadorLogado = MenuLogRes(listaUtilizadores, Livros);
+                return utilizadorLogado;
             }
             else
             {
@@ -224,9 +228,33 @@
             {
                 Console.WriteLine("|-------------------------------------------------------------|");
                 Console.WriteLine($"| Nome: {usuario.NomeUtilizador,-20} | Telefone: {usuario.TelefoneUtilizador,-20} |");
-                Console.WriteLine("|-------------------------------------------------------------|");
+                // Console.WriteLine("|-------------------------------------------------------------|");
             }
             Console.WriteLine("|_____________________________________________________________|");
+        }
+        static string palavraChaveSegura()
+        {
+            string palavrachave = "";
+            ConsoleKeyInfo key;
+
+            do
+            {
+                key = Console.ReadKey(true);
+
+                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+                {
+                    palavrachave += key.KeyChar;
+                    Console.Write("*");
+                }
+                else if (key.Key == ConsoleKey.Backspace && palavrachave.Length > 0)
+                {
+                    palavrachave = palavrachave.Substring(0, (palavrachave.Length - 1));
+                    Console.Write("\b \b");
+                }
+            } while (key.Key != ConsoleKey.Enter);
+
+            Console.WriteLine();
+            return palavrachave;
         }
     }
 }
