@@ -87,6 +87,7 @@ namespace ProjetoPOO
 
 
             Console.WriteLine("|____________________________________________________________________________________________|"); // ajustar tamanho dps
+            Console.WriteLine();
         }
     }
 }

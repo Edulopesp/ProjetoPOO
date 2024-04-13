@@ -92,6 +92,7 @@ namespace ProjetoPOO
                         MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
                         break;
                     default:
+                        Console.Clear();
                         Console.WriteLine("Opção inválida. Tente novamente!");
                         break;
                 }
