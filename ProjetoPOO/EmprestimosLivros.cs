@@ -89,37 +89,51 @@ namespace ProjetoPOO
             Console.Clear();
             consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
 
-            Console.WriteLine("Qual o livro que deseja devolver? ");
-            string livroAremover = Console.ReadLine();
+            StringWriter sw = new StringWriter();
+            TextWriter originalConsoleOut = Console.Out; 
+            Console.SetOut(sw); 
+            
+            int result = consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
 
-            var dataHoje = DateOnly.FromDateTime(DateTime.Now);
+            Console.SetOut(originalConsoleOut);
 
-            //lemos o nome do objeto novo atraves de uma variavel e vamos a procura de onde na lista um objeto tem esse nome
-            EmprestimosLivros DevolverLivro = emprestimoLivros.Find(x => x.Livro.NomeLivro == livroAremover);
-            Console.WriteLine();
-            if (DevolverLivro != null)
-            {//atribuimos o estado verdadeiro ao atributo da nossa classe emprestimosLivros
-                //adicionamos novamente a quantidade ao registo do livro devolvido
-                DevolverLivro.Devolvido = true;
-                DevolverLivro.Livro.NumExemp++;
-                Console.Clear();
+            string consoleOutput = sw.ToString();
 
-                int diasCalculo = DevolverLivro.DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber;
+            if (result  > 0)
+            {
 
-                if (diasCalculo > 0)
-                {
-                    Console.WriteLine("Livro devolvido com sucesso");
+                Console.WriteLine("Qual o livro que deseja devolver? ");
+                string livroAremover = Console.ReadLine();
+
+                var dataHoje = DateOnly.FromDateTime(DateTime.Now);
+
+                //lemos o nome do objeto novo atraves de uma variavel e vamos a procura de onde na lista um objeto tem esse nome
+                EmprestimosLivros DevolverLivro = emprestimoLivros.Find(x => x.Livro.NomeLivro == livroAremover);
+                Console.WriteLine();
+                if (DevolverLivro != null)
+                {//atribuimos o estado verdadeiro ao atributo da nossa classe emprestimosLivros
+                 //adicionamos novamente a quantidade ao registo do livro devolvido
+                    DevolverLivro.Devolvido = true;
+                    DevolverLivro.Livro.NumExemp++;
+                    Console.Clear();
+
+                    int diasCalculo = DevolverLivro.DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber;
+
+                    if (diasCalculo > 0)
+                    {
+                        Console.WriteLine("Livro devolvido com sucesso");
+                    }
+                    else
+                    {
+                        DevolverLivro.Utilizador.Penalizado = dataHoje.DayNumber;
+                        Console.WriteLine("Livro entregue com atraso, penalizado por 3 dias sem possibilidade de aluguer.");
+                    }
+
                 }
                 else
                 {
-                    DevolverLivro.Utilizador.Penalizado = dataHoje.DayNumber;
-                    Console.WriteLine("Livro entregue com atraso, penalizado por 3 dias sem possibilidade de aluguer.");
+                    Console.WriteLine("Livro nao encontrado");
                 }
-
-            }
-            else
-            {
-                Console.WriteLine("Livro nao encontrado");
             }
         }
         public void ConsultaListaEmpr()
@@ -142,12 +156,12 @@ namespace ProjetoPOO
             var dataLimite = Data.AddDays(Duracao);
             return dataLimite;
         }
-        public static void consultaAlugueresCliente(Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<RegistarLivro> Livros, List<Utilizadores> listaUtilizadores)
+        public static int consultaAlugueresCliente(Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<RegistarLivro> Livros, List<Utilizadores> listaUtilizadores)
         {
             int contadorLivrosDoUtilizador = 0;
 
             Console.WriteLine("========================================== Os seus Livros =============================================");
-            Console.WriteLine("|-----------------------------------------------------------------------------------------------------|");
+            
             foreach (EmprestimosLivros livro in emprestimoLivros)
             {
                 if ((livro.Utilizador.NomeUtilizador == utilizadorLogado.NomeUtilizador) && (livro.Devolvido == false))
@@ -158,12 +172,14 @@ namespace ProjetoPOO
             }
             if (contadorLivrosDoUtilizador == 0)
             {
+                Console.WriteLine("|-----------------------------------------------------------------------------------------------------|");
                 Console.WriteLine("| Não há livros alugados na sua conta                                                                 |");
             }
 
             Console.WriteLine("|_____________________________________________________________________________________________________|");
             Console.WriteLine();
 
+            return contadorLivrosDoUtilizador;
         }
         public string statusEmprestimo()
         {
