@@ -39,15 +39,12 @@ namespace ProjetoPOO
             Console.WriteLine("Nova Quantidade: ");
             NumExemp = int.Parse(Console.ReadLine());
         }
-
         public void ConsultaLivros()
         {
             Console.WriteLine("|----------------------------------------------------------------------------------------------------------------------|");
             Console.WriteLine($"| Título: {NomeLivro,-9} | Autor: {Autor,-9} | Ano de Publicação: {AnoPublic} | Qtd Disp: {NumExemp,-2} |  Gênero: {GeneroLivro,-7} | Idioma: {IdiomaLivro,-9} |");
-            Console.WriteLine("|----------------------------------------------------------------------------------------------------------------------|");
+            // Console.WriteLine("|----------------------------------------------------------------------------------------------------------------------|");
         }
-
-
         public static void RegLivros(List<RegistarLivro> Livros, Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<Utilizadores> listaUtilizadores)
         {
             int opcao;
@@ -81,13 +78,13 @@ namespace ProjetoPOO
                         break;
                     case 3:
                         Console.Clear();
+                        ExibirListaLivros(Livros);
                         AtualizarNumeroExemplares(Livros);
                         break;
                     case 4:
                         Console.Clear();
                         ExibirListaLivros(Livros);
-
-                        ConsultaFiltrada(Livros);
+                        ConsultaFiltrada(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
                         break;
                     case 5:
                         Console.Clear();
@@ -110,7 +107,7 @@ namespace ProjetoPOO
             string idioma;
 
             Console.WriteLine("============================ Registo de Livros ============================");
-            Console.WriteLine("");
+            Console.WriteLine("|-------------------------------------------------------------------------|");
             Console.Write("| Título: ");
             nomeLivro = Console.ReadLine();
 
@@ -245,7 +242,7 @@ namespace ProjetoPOO
             Console.WriteLine("| 3. Ação            |");
             Console.WriteLine("| 4. Thriller        |");
             Console.WriteLine("| 5. Terror          |");
-            Console.WriteLine("| 0. voltar          |");
+            Console.WriteLine("| 0. Voltar          |");
             Console.WriteLine("|____________________|");
             Console.WriteLine();
 
@@ -254,50 +251,48 @@ namespace ProjetoPOO
                 Console.Write("| Género do livro: ");
                 opcaoEscolhida = int.Parse(Console.ReadLine());
 
-
             } while ((opcaoEscolhida != 0) && (opcaoEscolhida != 1) && (opcaoEscolhida != 2) && (opcaoEscolhida != 3) && (opcaoEscolhida != 4) && (opcaoEscolhida != 5));
-
 
             switch (opcaoEscolhida)
             {
                 case 1:
                     return "Romance";
-                    break;
                 case 2:
                     return "Drama";
                 case 3:
                     return "Ação";
                 case 4:
                     return "Thriller";
-                    
                 case 5:
                     return "Terror";
-                    
                 case 0:
                     return "sair";
-                    
                 default:
                     return "Opção Inválida";
 
             }
-
-
         }
-        public static void ConsultaFiltrada(List<RegistarLivro> Livros)
+        public static void ConsultaFiltrada(List<Utilizadores> listaUtilizadores, Utilizadores utilizadorLogado, List<RegistarLivro> Livros, List<EmprestimosLivros> emprestimoLivros)
 
         {
             Console.WriteLine("Para retroceder escreva 'sair', para pesquisa filtrada prima ENTER");
 
             string valor = Console.ReadLine();
 
+            Console.Clear();
+
             while (valor.ToLower() != "sair")
             {
                 int option;
-
+                
                 Console.WriteLine();
-                Console.WriteLine("1. Pesquisa por Genero");
-                Console.WriteLine("2. Pesquisa por Idioma");
-                Console.WriteLine("3. Sair");
+                Console.WriteLine("==== Pesquisa Filtrada ====");
+                Console.WriteLine("|-------------------------|");
+                Console.WriteLine("| 1. Pesquisa por Genero  |");
+                Console.WriteLine("| 2. Pesquisa por Idioma  |");
+                Console.WriteLine("| 3. Voltar               |");
+                Console.WriteLine("|_________________________|");
+
                 option = int.Parse(Console.ReadLine());
 
                 switch (option)
@@ -307,12 +302,12 @@ namespace ProjetoPOO
                         Console.Clear();
                         Console.WriteLine("============================ Pesquisa por Genero ===============================");
                         Console.WriteLine();
-                       
-                            string genero = ExibirListaGeneros();
+                        string genero = ExibirListaGeneros();
                             int contador = 0;
                         Console.Clear();
                         while ((contador == 0) && (genero != "sair")) 
                         {
+                            Console.WriteLine($"============================================== Lista do Genero {genero,-7} ================================================");
                             foreach (var livro in Livros)
                             {
                                 if ((genero.ToLower() == livro.GeneroLivro.ToLower()) && (livro.NumExemp > 0))
@@ -325,49 +320,49 @@ namespace ProjetoPOO
                             if ((contador == 0) && (genero != "sair"))
                             {
                                 Console.WriteLine(" Livro nao encontrado");
-                            }
-                        }
-                      
-                        if (genero.ToLower() == "sair")
+                            } else 
+                            {
+                                Console.WriteLine("|______________________________________________________________________________________________________________________|");
 
-                        {
-                            Console.WriteLine("Obrigado");
+                            }
                         }
                         break;
                     case 2:
-                        // while (valor.ToLower() != "sair")                    
-                            // {
                             Console.Clear();
                             Console.WriteLine("============================ Pesquisa por Idioma ===============================");
                             Console.WriteLine();
 
-                            genero = ExibirListaIdiomas();
+                            string idioma = ExibirListaIdiomas();
                             contador = 0;
                         Console.Clear();
-                        foreach (var livro in Livros)
-                            {
-                                if ((genero.ToLower() == livro.IdiomaLivro.ToLower()) && (livro.NumExemp > 0))
+
+                        while ((contador == 0) && (idioma.ToLower() != "sair"))
+                        {
+                            Console.WriteLine($"============================================== Lista do Genero {idioma,-7} ===============================================");
+
+                            foreach (var livro in Livros)
                                 {
-                                    
-                                    livro.ConsultaLivros();
-                                    contador++;
+                                    if ((idioma.ToLower() == livro.IdiomaLivro.ToLower()) && (livro.NumExemp > 0))
+                                    {
+                                        livro.ConsultaLivros();
+                                        contador++;
+                                    }
                                 }
-                            }
-                            if ((contador == 0) && (genero != "sair"))
-                            {
-                                Console.WriteLine(" Idioma nao encontrado");
-                            }
-                            if (genero.ToLower() == "sair")
-                            {
-                                Console.WriteLine("Obrigado");
-                            }
-                        
+                                if ((contador == 0) && (idioma != "sair"))
+                                {
+                                    Console.WriteLine(" Idioma nao encontrado");
+                                } else
+                                {
+                                    Console.WriteLine("|______________________________________________________________________________________________________________________|");
+
+                                }
+                        }
                         break;
                     case 3:
-                        Console.WriteLine("Obrigado");
+                        Console.Clear();
                         valor = "sair";
+                        MenuPrincipal.MenuAcoesPrincipal(listaUtilizadores, utilizadorLogado, Livros, emprestimoLivros);
                         break;
-
                 }
             }
         }

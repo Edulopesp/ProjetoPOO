@@ -23,9 +23,8 @@ namespace ProjetoPOO
             {
                 livroAlugado.ConsultaListaEmpr();
             }
-            Console.WriteLine("|___________________________________________________________________________________________________________________|"); // ajustar tamanho dps
+            Console.WriteLine("|___________________________________________________________________________________________________________________|");
         }
-
         public static void RelatorioLivrosEmpresas(List<EmprestimosLivros> emprestimoLivros, List<RegistarLivro> Livros)
         {
             int totalLivrosBiblioteca = 0;
@@ -40,12 +39,10 @@ namespace ProjetoPOO
             Console.WriteLine("---------------------------------------------------------------------------------------------"); // ajustar tamanho dps
         }
         public static void RelatorioLivrosClientes(List<RegistarLivro> Livros)
-
         {
-            //var dataHoje = DateOnly.FromDateTime(DateTime.Now);
-
+            int contador = 0;
             int livroTeste = 0;
-            RegistarLivro LivroMaisAlugado=new RegistarLivro() ;
+            RegistarLivro LivroMaisAlugado = new RegistarLivro() ;
 
 
             foreach (RegistarLivro livro in Livros)
@@ -67,19 +64,22 @@ namespace ProjetoPOO
             Console.WriteLine("| Titulo: A Corrente | Autor: Filipa Amorim | Gênero: Thriller | Idioma: Português           |");
             Console.WriteLine("| Titulo: Too Late | Autor: Collen Hoover | Gênero: Drama | Idioma: Inglês                   |");
             Console.WriteLine("| Titulo: King of Sloth | Autor: Ana Huang | Gênero: Romance | Idioma: Inglês                |");
-            Console.WriteLine("|--------------------------------------------------------------------------------------------|");
-            Console.WriteLine("|___________________________________ Ultimas Oportunidades __________________________________|");
-
 
             foreach (var livro in Livros)
             {
                 if (livro.NumExemp == 1) 
                 {
+                    if (contador == 0)
+                    {
+                        Console.WriteLine("|--------------------------------------------------------------------------------------------|");
+                        Console.WriteLine("|___________________________________ Ultimas Oportunidades __________________________________|");
+                        contador++;
+                    }
                     Console.WriteLine($"| Titulo: {livro.NomeLivro,-16} | Autor: {livro.Autor,16} | Gênero:{livro.GeneroLivro,-10} | Idioma:{livro.IdiomaLivro,-10} |");
 
                 }
             }
-            Console.WriteLine("|--------------------------------------------------------------------------------------------|");
+            // Console.WriteLine("|--------------------------------------------------------------------------------------------|");
 
 
             Console.WriteLine("|____________________________________________________________________________________________|"); // ajustar tamanho dps
