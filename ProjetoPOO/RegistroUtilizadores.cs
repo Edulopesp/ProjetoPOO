@@ -31,21 +31,54 @@
                 totalLivrosBiblioteca += livro.NumExemp;
             }
 
-            for (int i = 0; i < 7; i++)
-            {
-                Console.ForegroundColor = (ConsoleColor)((i + 1) % 16); // Set text color
-                Console.WriteLine("This is rainbow text!");
-
-                Thread.Sleep(200); // Add a small delay for visibility
-            }
-
             Console.Clear();
-            Console.WriteLine("            Bem vindo à Biblioteca BES<T>!");
-            Console.WriteLine($"   Onde temos à sua disposição mais de {totalLivrosBiblioteca - 1} Livros");
-            Console.WriteLine($"           entre {Livros.Count()} Títulos diferentes!");
+
+            
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.Write("            Bem vindo à Biblioteca ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("BES<T>");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("!");
+            Console.Write("   Onde temos à sua disposição mais de ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(totalLivrosBiblioteca - 1);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" Livros");
+            Console.Write("           entre ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"{Livros.Count()} Títulos");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" diferentes!");
 
             Console.WriteLine();
             Console.WriteLine();
+
+            Console.ResetColor();
+            /*
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write("========== ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("Menu");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(" ==========");
+            Console.WriteLine("|------------------------|");
+            Console.Write("| 1. ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("Login");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("               |");
+            Console.Write("| 2. ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("Registrar");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("           |");
+            Console.WriteLine("|________________________|");
+
+            Console.ResetColor();
+            */
+
 
             Console.WriteLine("========== Menu ==========");
             Console.WriteLine("|------------------------|");
@@ -145,13 +178,15 @@
 
             } while (nomeUtilizador == null);
 
-            do {
+            do
+            {
                 Console.Write("| Endereço: ");
                 enderecoUtilizador = Console.ReadLine();
-            } while(enderecoUtilizador == null);
+            } while (enderecoUtilizador == null);
 
 
-            do {
+            do
+            {
                 Console.Write("| Telefone: ");
                 telefoneUtilizador = Console.ReadLine();
 
@@ -160,13 +195,14 @@
             do
             {
                 Console.Write("| Palavra-Chave: ");
-                palavraChaveUtilizador = palavraChaveSegura();
+                palavraChaveUtilizador = Console.ReadLine();
             } while (palavraChaveUtilizador == null);
 
-            do {
+            do
+            {
                 Console.Write("| Funcionário: ");
                 identificadorUtilizador = Console.ReadLine().ToUpper();
-            } while(identificadorUtilizador == null);
+            } while (identificadorUtilizador == null);
 
             Console.WriteLine("|________________________|");
             Console.WriteLine();

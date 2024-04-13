@@ -158,7 +158,7 @@ namespace ProjetoPOO
             }
             if (contadorLivrosDoUtilizador == 0)
             {
-                Console.WriteLine("| Não há livros alugados na sua conta                                                             |");
+                Console.WriteLine("| Não há livros alugados na sua conta                                                                 |");
             }
 
             Console.WriteLine("|_____________________________________________________________________________________________________|");
