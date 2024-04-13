@@ -16,7 +16,7 @@ namespace ProjetoPOO
 
             RegistarLivro livroGrey = new RegistarLivro("Grey", "Bruno", 1720, 12, "Inglês", "Drama");
             RegistarLivro livroFox = new RegistarLivro("Foxhound", "Joaquim", 1790, 2, "Inglês", "Ação");
-            RegistarLivro livroGame = new RegistarLivro("Game of Thrones", "George Martin", 1996, 22, "Inglês", "Ação");
+            RegistarLivro livroGame = new RegistarLivro("Shrek", "George", 1996, 22, "Inglês", "Ação");
             RegistarLivro livroMob = new RegistarLivro("Mob Dick", "Cleber", 1998, 12, "Português", "Drama");
 
             Livros.Add(livroGrey);
@@ -24,18 +24,18 @@ namespace ProjetoPOO
             Livros.Add(livroGame);
             Livros.Add(livroMob);
 
-            Livros.Add(new RegistarLivro("Jester", "Jennifer Aniston", 1989, 5, "Inglês", "Romance"));
-            Livros.Add(new RegistarLivro("Klarna", "Bruno Willis", 1986, 0, "Alemão", "Drama"));
-            Livros.Add(new RegistarLivro("JavaScript", "Clark Kent", 1980, 2, "Português", "Terror"));
-            Livros.Add(new RegistarLivro("Code like Pro", "Karla Bones", 1989, 5, "Inglês", "Romance"));
+            Livros.Add(new RegistarLivro("Jester", "Jennifer", 1989, 5, "Inglês", "Romance"));
+            Livros.Add(new RegistarLivro("Klarna", "Bruno", 1986, 0, "Alemão", "Drama"));
+            Livros.Add(new RegistarLivro("Jupter", "Clark", 1980, 2, "Português", "Terror"));
+            Livros.Add(new RegistarLivro("Coder", "Karla", 1989, 5, "Inglês", "Romance"));
             Livros.Add(new RegistarLivro("Geleia", "Julian J", 1986, 1, "Francês", "Thriller"));
-            Livros.Add(new RegistarLivro("Hooster", "Charles II", 1990, 1, "Português", "Terror"));
+            Livros.Add(new RegistarLivro("Hooster", "Charles" , 1990, 1, "Português", "Terror"));
 
             Utilizadores eduardo = new Utilizadores("Eduardo Lopes", "Rua Braga", "987654321", "12345", true);
             Utilizadores bruno = new Utilizadores("Bruno", "Rua Braga", "987654321", "12345", true);
             Utilizadores sara = new Utilizadores("Sara", "Rua Braga", "987654321", "12345", true);
             Utilizadores joao = new Utilizadores("Joao", "Rua do Porto", "923244856", "12345", false);
-            Utilizadores claudio = new Utilizadores("Marta", "Rua da Casa dela", "998764532", "12345", false);
+            Utilizadores claudio = new Utilizadores("Marta", "Rua Braga", "998764532", "12345", false);
 
             listaUtilizadores.Add(eduardo);
             listaUtilizadores.Add(bruno);

@@ -42,7 +42,7 @@ namespace ProjetoPOO
         public void ConsultaLivros()
         {
             Console.WriteLine("|----------------------------------------------------------------------------------------------------------------------|");
-            Console.WriteLine($"| Título: {NomeLivro,-9} | Autor: {Autor,-9} | Ano de Publicação: {AnoPublic} | Qtd Disp: {NumExemp,-2} |  Gênero: {GeneroLivro,-7} | Idioma: {IdiomaLivro,-9} |");
+            Console.WriteLine($"| Título: {NomeLivro,-8} | Autor: {Autor,-9} | Ano de Publicação: {AnoPublic} | Qtd Disp: {NumExemp,-2} |  Gênero: {GeneroLivro,-8} | Idioma: {IdiomaLivro,-9} |");
             // Console.WriteLine("|----------------------------------------------------------------------------------------------------------------------|");
         }
         public static void RegLivros(List<RegistarLivro> Livros, Utilizadores utilizadorLogado, List<EmprestimosLivros> emprestimoLivros, List<Utilizadores> listaUtilizadores)
