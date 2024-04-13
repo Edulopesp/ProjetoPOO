@@ -14,22 +14,42 @@ namespace ProjetoPOO
 
             var dataAntiga = new DateOnly(2024, 3, 17);
 
-            RegistarLivro livroGrey = new RegistarLivro("grey", "bruno", 1720, 12, "Inglês", "Drama");
-            RegistarLivro livroFox = new RegistarLivro("foxhound", "joaquim", 1790, 2, "Inglês", "Ação");
+            RegistarLivro livroGrey = new RegistarLivro("Grey", "Bruno", 1720, 12, "Inglês", "Drama");
+            RegistarLivro livroFox = new RegistarLivro("Foxhound", "Joaquim", 1790, 2, "Inglês", "Ação");
+            RegistarLivro livroGame = new RegistarLivro("Game of Thrones", "George Martin", 1996, 22, "Inglês", "Ação");
+            RegistarLivro livroMob = new RegistarLivro("Mob Dick", "Cleber", 1998, 12, "Português", "Drama");
+
+            Livros.Add(livroGrey);
+            Livros.Add(livroFox);
+            Livros.Add(livroGame);
+            Livros.Add(livroMob);
+
+            Livros.Add(new RegistarLivro("Jester", "Jennifer Aniston", 1989, 5, "Inglês", "Romance"));
+            Livros.Add(new RegistarLivro("Klarna", "Bruno Willis", 1986, 0, "Alemão", "Drama"));
+            Livros.Add(new RegistarLivro("JavaScript", "Clark Kent", 1980, 2, "Português", "Terror"));
+            Livros.Add(new RegistarLivro("Code like Pro", "Karla Bones", 1989, 5, "Inglês", "Romance"));
+            Livros.Add(new RegistarLivro("Geleia", "Julian J", 1986, 1, "Francês", "Thriller"));
+            Livros.Add(new RegistarLivro("Hooster", "Charles II", 1990, 1, "Português", "Terror"));
 
             Utilizadores eduardo = new Utilizadores("Eduardo Lopes", "Rua Braga", "987654321", "12345", true);
             Utilizadores bruno = new Utilizadores("Bruno", "Rua Braga", "987654321", "12345", true);
             Utilizadores sara = new Utilizadores("Sara", "Rua Braga", "987654321", "12345", true);
+            Utilizadores joao = new Utilizadores("Joao", "Rua do Porto", "923244856", "12345", false);
+            Utilizadores claudio = new Utilizadores("Marta", "Rua da Casa dela", "998764532", "12345", false);
+
             listaUtilizadores.Add(eduardo);
             listaUtilizadores.Add(bruno);
             listaUtilizadores.Add(sara);
+            listaUtilizadores.Add(joao);
+            listaUtilizadores.Add(claudio);
+
             emprestimoLivros.Add(new EmprestimosLivros(eduardo, livroGrey, 5, false, dataAtual));
             emprestimoLivros.Add(new EmprestimosLivros(sara, livroFox, 2, false, dataAntiga));
-            Livros.Add(livroGrey);
-            Livros.Add(livroFox);
-            Livros.Add(new RegistarLivro("uno", "jonh", 1989, 5, "Português", "Romance"));
-            Livros.Add(new RegistarLivro("duo", "jonh2", 1986, 0, "Português", "Drama"));
-            Livros.Add(new RegistarLivro("trio", "jonh3", 1980, 2, "Português", "Terror"));
+            emprestimoLivros.Add(new EmprestimosLivros(joao, livroMob, 3, false, dataAtual));
+            emprestimoLivros.Add(new EmprestimosLivros(claudio, livroGame, 6, true, dataAntiga));
+            emprestimoLivros.Add(new EmprestimosLivros(eduardo, livroGame, 4, true, dataAntiga));
+            emprestimoLivros.Add(new EmprestimosLivros(bruno, livroGame, 8, false, dataAtual));
+
         }
     }
 }

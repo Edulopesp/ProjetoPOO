@@ -74,6 +74,7 @@ namespace ProjetoPOO
                         break;
                     case 2:
                         Console.Clear();
+                        ExibirListaLivros(Livros);
                         RemoverLivroExistente(Livros);
                         break;
                     case 3:
@@ -136,7 +137,7 @@ namespace ProjetoPOO
         }
         static void RemoverLivroExistente(List<RegistarLivro> Livros)
         {
-            Console.Write("Nome do item a ser removido: ");
+            Console.Write("Nome do livro a ser removido: ");
             string nomeLivro = Console.ReadLine();
             RegistarLivro livroRemover = Livros.Find(i => i.NomeLivro == nomeLivro);
             if (livroRemover != null)
@@ -305,8 +306,7 @@ namespace ProjetoPOO
                         string genero = ExibirListaGeneros();
                             int contador = 0;
                         Console.Clear();
-                        while ((contador == 0) && (genero != "sair")) 
-                        {
+                        
                             Console.WriteLine($"============================================== Lista do Genero {genero,-7} ================================================");
                             foreach (var livro in Livros)
                             {
@@ -319,13 +319,11 @@ namespace ProjetoPOO
                             }
                             if ((contador == 0) && (genero != "sair"))
                             {
-                                Console.WriteLine(" Livro nao encontrado");
-                            } else 
-                            {
+                                Console.WriteLine("| Livros não encontrados                                                                                               |");
+                            }
                                 Console.WriteLine("|______________________________________________________________________________________________________________________|");
 
-                            }
-                        }
+                        
                         break;
                     case 2:
                             Console.Clear();
@@ -336,8 +334,7 @@ namespace ProjetoPOO
                             contador = 0;
                         Console.Clear();
 
-                        while ((contador == 0) && (idioma.ToLower() != "sair"))
-                        {
+                       
                             Console.WriteLine($"============================================== Lista do Genero {idioma,-7} ===============================================");
 
                             foreach (var livro in Livros)
@@ -350,13 +347,10 @@ namespace ProjetoPOO
                                 }
                                 if ((contador == 0) && (idioma != "sair"))
                                 {
-                                    Console.WriteLine(" Idioma nao encontrado");
-                                } else
-                                {
+                                    Console.WriteLine("| Idiomas não encontrados                                                                                              |");
+                                }
                                     Console.WriteLine("|______________________________________________________________________________________________________________________|");
 
-                                }
-                        }
                         break;
                     case 3:
                         Console.Clear();

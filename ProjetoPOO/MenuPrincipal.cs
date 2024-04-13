@@ -92,6 +92,7 @@ namespace ProjetoPOO
                         {
                             opcaoMenuPrincipal = 8;
                             Console.WriteLine("Obrigado, até a próxima!");
+                            break;
                         }
                         else if (verMenu.ToLower() == "s")
                         {

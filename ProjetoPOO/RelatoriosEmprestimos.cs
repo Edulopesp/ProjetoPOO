@@ -47,18 +47,22 @@ namespace ProjetoPOO
 
             foreach (RegistarLivro livro in Livros)
             {
-                if (livro.NumVezesAlugado > livroTeste)
+                if (livro.NumVezesAlugado >= livroTeste)
                 {
                     livroTeste = livro.NumVezesAlugado;
-                   LivroMaisAlugado = livro;
+                    LivroMaisAlugado = livro;
                     
                 }
             }
             Console.WriteLine("======================================== A Não Perder ========================================");
             Console.WriteLine("|--------------------------------------------------------------------------------------------|");
-            Console.WriteLine("|________________________________ Livro mais alugado do mês _________________________________|");
-            Console.WriteLine($"| Titulo: {LivroMaisAlugado.NomeLivro,-12} | Autor: {LivroMaisAlugado.Autor,-12} | Publicado: {LivroMaisAlugado.AnoPublic,-4} | Numero de vezes Alugado:{LivroMaisAlugado.NumVezesAlugado,-2}  |");
-            Console.WriteLine("|--------------------------------------------------------------------------------------------|");
+
+            if (LivroMaisAlugado.NumVezesAlugado > 0)
+            {
+                Console.WriteLine("|________________________________ Livro mais alugado do mês _________________________________|");
+                Console.WriteLine($"| Titulo: {LivroMaisAlugado.NomeLivro,-12} | Autor: {LivroMaisAlugado.Autor,-12} | Gênero:{LivroMaisAlugado.GeneroLivro,-8} | Numero de vezes Alugado:{LivroMaisAlugado.NumVezesAlugado,-2}  |");
+                Console.WriteLine("|--------------------------------------------------------------------------------------------|");
+            }
             Console.WriteLine("|___________________________________ Proximos Lançamentos ___________________________________|");
             Console.WriteLine("| Titulo: O Rapaz | Autor: Claudio Ramos | Gênero: Romance | Idioma: Português               |");
             Console.WriteLine("| Titulo: A Corrente | Autor: Filipa Amorim | Gênero: Thriller | Idioma: Português           |");
@@ -75,7 +79,7 @@ namespace ProjetoPOO
                         Console.WriteLine("|___________________________________ Ultimas Oportunidades __________________________________|");
                         contador++;
                     }
-                    Console.WriteLine($"| Titulo: {livro.NomeLivro,-16} | Autor: {livro.Autor,16} | Gênero:{livro.GeneroLivro,-10} | Idioma:{livro.IdiomaLivro,-10} |");
+                    Console.WriteLine($"| Titulo: {livro.NomeLivro,-16} | Autor: {livro.Autor, -16} | Gênero:{livro.GeneroLivro,-10} | Idioma:{livro.IdiomaLivro,-10} |");
 
                 }
             }
