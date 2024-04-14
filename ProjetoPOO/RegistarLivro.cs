@@ -306,7 +306,7 @@ namespace ProjetoPOO
                         Console.WriteLine();
                         string genero = ExibirListaGeneros();
                             int contador = 0;
-                        Console.Clear();
+                      //  Console.Clear();
                         
                             Console.WriteLine($"============================================== Lista do Genero {genero,-7} ================================================");
                             foreach (var livro in Livros)

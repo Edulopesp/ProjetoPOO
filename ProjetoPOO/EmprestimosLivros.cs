@@ -56,7 +56,7 @@ namespace ProjetoPOO
 
 
 
-                    RegistarLivro livroEscolhido = Livros.Find(a => a.NomeLivro == tituloLivroAluguer);
+                    RegistarLivro livroEscolhido = Livros.Find(a => a.NomeLivro.ToLower() == tituloLivroAluguer.ToLower());
 
 
                     if (livroEscolhido != null)
@@ -71,6 +71,7 @@ namespace ProjetoPOO
                         livroEscolhido.NumExemp--;
 
                         livroEscolhido.NumVezesAlugado++;
+                        Console.WriteLine("Livro alugado com sucesso.");
 
                         return livroEscolhido;
                     }
@@ -106,7 +107,7 @@ namespace ProjetoPOO
                 var dataHoje = DateOnly.FromDateTime(DateTime.Now);
 
                 //lemos o nome do objeto novo atraves de uma variavel e vamos a procura de onde na lista um objeto tem esse nome
-                EmprestimosLivros DevolverLivro = emprestimoLivros.Find(x => x.Livro.NomeLivro == livroAremover);
+                EmprestimosLivros DevolverLivro = emprestimoLivros.Find(x => x.Livro.NomeLivro.ToLower() == livroAremover.ToLower()); ;
                 Console.WriteLine();
                 if (DevolverLivro != null)
                 {//atribuimos o estado verdadeiro ao atributo da nossa classe emprestimosLivros
@@ -183,6 +184,8 @@ namespace ProjetoPOO
         {
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
             string Status;
+            //comparamos
+            int difDatas= dataHoje.CompareTo(DataEntregaLivroAlugado());
 
             if (Devolvido == true)
             {
@@ -191,8 +194,9 @@ namespace ProjetoPOO
             }
             else
             {
-                if (DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber < 0)
+                if (difDatas == 1)
                 {
+                    
                     Status = "Atrasado";
                     return Status;
                 }
@@ -208,7 +212,7 @@ namespace ProjetoPOO
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
             string respostaCalculo;
 
-            int diasCalculo = DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber;
+            int diasCalculo = DataEntregaLivroAlugado().CompareTo(dataHoje);
 
             if (diasCalculo > 0)
             {
