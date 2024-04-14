@@ -12,7 +12,7 @@ namespace ProjetoPOO
         {
             var dataAtual = DateOnly.FromDateTime(DateTime.Now);
 
-            var dataAntiga = new DateOnly(2024, 3, 17);
+            var dataAntiga = new DateOnly(2024, 3, 22);
 
             RegistarLivro livroGrey = new RegistarLivro("Grey", "Bruno", 1720, 12, "Inglês", "Drama");
             RegistarLivro livroFox = new RegistarLivro("Foxhound", "Joaquim", 1790, 2, "Inglês", "Ação");
@@ -48,7 +48,7 @@ namespace ProjetoPOO
             emprestimoLivros.Add(new EmprestimosLivros(joao, livroMob, 3, false, dataAtual));
             emprestimoLivros.Add(new EmprestimosLivros(claudio, livroGame, 6, true, dataAntiga));
             emprestimoLivros.Add(new EmprestimosLivros(eduardo, livroGame, 4, true, dataAntiga));
-            emprestimoLivros.Add(new EmprestimosLivros(bruno, livroGame, 8, false, dataAtual));
+            emprestimoLivros.Add(new EmprestimosLivros(bruno, livroGame,8, false, dataAtual));
 
         }
     }

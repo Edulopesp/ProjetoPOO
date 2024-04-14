@@ -33,7 +33,7 @@
 
             Console.Clear();
 
-            
+
             Console.ForegroundColor = ConsoleColor.Blue;
 
             Console.Write("            Bem vindo à Biblioteca ");
@@ -167,42 +167,58 @@
             string telefoneUtilizador;
             string palavraChaveUtilizador;
             string identificadorUtilizador;
-
-            Console.WriteLine("");
-            Console.WriteLine("======== Registrar =======");
-            Console.WriteLine("|------------------------|");
+            string saida = "";
             do
             {
+                Console.WriteLine("");
+                Console.WriteLine("======== Registrar =======");
+                Console.WriteLine("|------------------------|");
+
+
                 Console.Write("| Nome: ");
                 nomeUtilizador = Console.ReadLine();
+                saida = "sair";
 
-            } while (nomeUtilizador == null);
-
+                if (nomeUtilizador == "")
+                {
+                    Console.WriteLine("Nome introduzido nao admitido.");
+                    Console.WriteLine();
+                   Console.WriteLine("Para retroceder digite 'sair', caso contrario prima ENTER.");
+                    saida = Console.ReadLine();
+                    Console.Clear();
+                    if (saida.ToLower() == "sair")
+                    {
+                        Console.Clear();
+                         return MenuLogRes(listaUtilizadores, Livros);
+                       
+                    }
+                }
+            }
+            while (saida == "" );
             do
             {
                 Console.Write("| Endereço: ");
                 enderecoUtilizador = Console.ReadLine();
-            } while (enderecoUtilizador == null);
-
+            } while (enderecoUtilizador == "");
 
             do
             {
                 Console.Write("| Telefone: ");
                 telefoneUtilizador = Console.ReadLine();
 
-            } while (telefoneUtilizador == null);
+            } while (telefoneUtilizador == "");
 
             do
             {
                 Console.Write("| Palavra-Chave: ");
                 palavraChaveUtilizador = Console.ReadLine();
-            } while (palavraChaveUtilizador == null);
+            } while (palavraChaveUtilizador == "");
 
             do
             {
                 Console.Write("| Funcionário: ");
                 identificadorUtilizador = Console.ReadLine().ToUpper();
-            } while (identificadorUtilizador == null);
+            } while ((identificadorUtilizador != "") && (identificadorUtilizador != "BTCB"));
 
             Console.WriteLine("|________________________|");
             Console.WriteLine();
@@ -223,7 +239,7 @@
 
             Utilizadores utilizadorLogado = listaUtilizadores.Find(a => a.NomeUtilizador == nomeUtilizador);
 
-            if (utilizadorLogado != null)
+            if ((utilizadorLogado != null) && (utilizadorLogado.NomeUtilizador !="sair"))
             {
                 Console.Clear();
                 Console.WriteLine("Usuário já registrado! Faça o login!");
@@ -254,8 +270,10 @@
                     return utilizadorLogado;
                 }
             }
+
         }
-        public static void mostrarListaUtilizadores(List<Utilizadores> listaUtilizadores)
+
+       public static void mostrarListaUtilizadores(List<Utilizadores> listaUtilizadores)
         {
             Console.WriteLine("");
             Console.WriteLine("===================== Lista de Utilizadores ===================");
