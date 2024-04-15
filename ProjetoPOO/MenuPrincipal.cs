@@ -56,7 +56,8 @@ namespace ProjetoPOO
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
                             Console.WriteLine();
-                            EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros, listaUtilizadores);
+                           
+                           EmprestimosLivros.LerPedidoAluguer(Livros,utilizadorLogado,emprestimoLivros, listaUtilizadores);
                             break;
                         case 3:
                             Console.Clear();
@@ -136,6 +137,7 @@ namespace ProjetoPOO
                         case 2:
                             Console.Clear();
                             RegistarLivro.ExibirListaLivros(Livros);
+                            
                             EmprestimosLivros.LerPedidoAluguer(Livros, utilizadorLogado, emprestimoLivros, listaUtilizadores);
                             break;
                         case 3:
