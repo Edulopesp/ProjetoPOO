@@ -6,15 +6,15 @@ namespace ProjetoPOO
     {
         // Atributos da classe
 
-        public string NomeLivro;
-        public string Autor;
-        public int AnoPublic;
-        public int NumExemp;
-        public int NumVezesAlugado;
-        public string GeneroLivro;
-        public string IdiomaLivro;
+        public string NomeLivro { get; set; }
+        public string Autor { get; set; }
+        public int AnoPublic { get; set; }
+        public int NumExemp { get; set; }
+        public int NumVezesAlugado { get; set; }
+        public string GeneroLivro { get; set; }
+        public string IdiomaLivro { get; set; }
 
-        // adicionar sinopse individual 
+        
 
         // Construtor padrão
         public RegistarLivro(string nomeLivro, string autor, int anoPublic, int numExemp, string idioma, string genero)

@@ -9,6 +9,7 @@ namespace ProjetoPOO
 {
     internal class RelatoriosEmprestimos
     {
+        //atributo
         public RegistarLivro LivroMaisAlugado;
 
         public RelatoriosEmprestimos(RegistarLivro livroMaisAlugado)
@@ -44,7 +45,7 @@ namespace ProjetoPOO
             int livroTeste = 0;
             RegistarLivro LivroMaisAlugado = new RegistarLivro() ;
 
-
+            //substituicao do livro mais alugado sempre que ele e alugado
             foreach (RegistarLivro livro in Livros)
             {
                 if (livro.NumVezesAlugado >= livroTeste)

@@ -45,7 +45,7 @@ namespace ProjetoPOO
 
             emprestimoLivros.Add(new EmprestimosLivros(eduardo, livroGrey, 5, false, dataAtual));
             emprestimoLivros.Add(new EmprestimosLivros(sara, livroFox, 2, false, dataAntiga));
-            emprestimoLivros.Add(new EmprestimosLivros(joao, livroMob, 3, false, dataAtual));
+            emprestimoLivros.Add(new EmprestimosLivros(joao, livroMob, 3, false, dataAntiga));
             emprestimoLivros.Add(new EmprestimosLivros(claudio, livroGame, 6, true, dataAntiga));
             emprestimoLivros.Add(new EmprestimosLivros(eduardo, livroGame, 4, true, dataAntiga));
             emprestimoLivros.Add(new EmprestimosLivros(bruno, livroGame,8, false, dataAtual));
