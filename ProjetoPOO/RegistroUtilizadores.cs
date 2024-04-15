@@ -2,12 +2,12 @@
 {
     class Utilizadores
     {
-        public string NomeUtilizador;
-        public string EnderecoUtilizador;
-        public string TelefoneUtilizador;
-        public string PalavraChave;
-        public bool Funcionario;
-        public int Penalizado;
+        public string NomeUtilizador { get; set; }
+        public string EnderecoUtilizador { get; set; }
+        public string TelefoneUtilizador { get; set; }
+        public string PalavraChave{ get; private set; }
+        public bool Funcionario{ get; private set; }
+        public int Penalizado { get; set; }
 
         public Utilizadores(string nome, string endereco, string telefone, string palavraChave, bool funcionario)
         {

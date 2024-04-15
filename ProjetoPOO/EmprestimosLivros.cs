@@ -8,11 +8,11 @@ namespace ProjetoPOO
 {
     internal class EmprestimosLivros
     { // class com dois atributos objetos de outras classes
-        public Utilizadores Utilizador;
-        public RegistarLivro Livro;
-        public int Duracao;
+        public Utilizadores Utilizador { get; set; }
+        public RegistarLivro Livro { get; set; }
+        public int Duracao { get; set; }
         public bool Devolvido = false;
-        public DateOnly Data; //{ get; set; }
+    public DateOnly Data{ get; set; }
         
 
 
@@ -31,7 +31,8 @@ namespace ProjetoPOO
         {
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);
             //atribuimos uma data pena 
-            //int diaCalculo= CalculoDifData
+           // EmprestimosLivros LivroAlugado= new EmprestimosLivros();
+           // int diaCalculo =LivroAlugado.CalculoDifDatas();
             var dataPenalizacao = utilizadorLogado.Penalizado + 3;//(diacalculo)
             RegistarLivro livroVazio = new RegistarLivro("", "", 0, 0, "", "");
             Console.Clear();
@@ -116,7 +117,8 @@ namespace ProjetoPOO
                     DevolverLivro.Livro.NumExemp++;
                     Console.Clear();
 
-                    int diasCalculo = DevolverLivro.DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber;
+                   // int diasCalculo = DevolverLivro.DataEntregaLivroAlugado().DayNumber - dataHoje.DayNumber;
+                    int diasCalculo = DevolverLivro.DataEntregaLivroAlugado().CompareTo((dataHoje));
 
                     if (diasCalculo > 0)
                     {
@@ -144,7 +146,7 @@ namespace ProjetoPOO
         }
         public void ConsultaEmprestimoIndividual()
         {
-            var dataHoje = DateOnly.FromDateTime(DateTime.Now);
+            //var dataHoje = DateOnly.FromDateTime(DateTime.Now);
 
             Console.WriteLine("|----------------------------------------------------------------------------------------------------------|");
             Console.WriteLine($"| Título: {Livro.NomeLivro,-9} | Autor: {Livro.Autor, -9} | Duração: {Duracao,-2} | Data Pedido: {Data,-9} | {calculoDiasParaEntrega(), -20} |");
