@@ -35,7 +35,7 @@ namespace ProjetoPOO
            // int diaCalculo =LivroAlugado.CalculoDifDatas();
             var dataPenalizacao = utilizadorLogado.Penalizado + 3;//(diacalculo)
             RegistarLivro livroVazio = new RegistarLivro("", "", 0, 0, "", "");
-            Console.Clear();
+
             Console.WriteLine("Para retroceder digite 'sair'");
 
             // se estiver com atraso nao deixa alugar penalizacao padrao 3 dias
@@ -203,7 +203,7 @@ namespace ProjetoPOO
                 if (difDatas == 1)
                 {
                     int diasCalculo = CalculoDifDatas();
-                    Status = "Atrasado "+diasCalculo+ "dias";
+                    Status = "Atrasado"; // +diasCalculo+ "dias";
                     return Status;
                 }
                 else
@@ -213,8 +213,6 @@ namespace ProjetoPOO
                 }
             }
         }
-
-        
         public  string calculoDiasParaEntrega()
         {// da return do estado do status
             string respostaCalculo;
@@ -233,7 +231,6 @@ namespace ProjetoPOO
                 return respostaCalculo;
             }
         }
-
         public int CalculoDifDatas()
         { // faz a diferenca entre datas contemplando meses tambem
             var dataHoje = DateOnly.FromDateTime(DateTime.Now);           
