@@ -90,15 +90,14 @@ namespace ProjetoPOO
             Console.Clear();
             consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
 
-            StringWriter sw = new StringWriter();// cria uma string que pode escrever chars
-            TextWriter originalConsoleOut = Console.Out; // salva o output original para usar dps
+            StringWriter sw = new StringWriter(); // cria uma string que pode escrever chars
+            TextWriter originalConsoleOut = Console.Out; // salva o output oritinal para usar dps
             Console.SetOut(sw); // redireciona o output para o objeto sw
-            // vai guardar o resultado do metodo
-            int result = consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores);
-            // volta o output ao normal, onde foi salvo antes
-            Console.SetOut(originalConsoleOut);
+            
+            int result = consultaAlugueresCliente(utilizadorLogado, emprestimoLivros, Livros, listaUtilizadores); // vai guardar o resultado do metodo
 
-
+            Console.SetOut(originalConsoleOut); // volta o output ao normal, onde foi salvo antes
+         
             if (result  > 0)
             {
 
