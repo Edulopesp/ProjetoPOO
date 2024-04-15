@@ -51,8 +51,6 @@ namespace ProjetoPOO
 
             do
             {
-                
-                
                 Console.WriteLine("=============== Gestão de Livros ================");              
                 Console.WriteLine("|-----------------------------------------------|");
                 Console.WriteLine("| 1. Adicionar Novo Livro                       |");
